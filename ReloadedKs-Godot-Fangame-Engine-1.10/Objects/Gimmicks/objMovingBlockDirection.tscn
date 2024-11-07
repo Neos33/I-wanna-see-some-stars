@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5i0lpa6b6nlu"]
+
+[ext_resource type="Script" path="res://Scripts/Gimmicks/scrMovingBlockDirectional.gd" id="1_6siqt"]
+[ext_resource type="Texture2D" uid="uid://8f26yn08j41a" path="res://Graphics/Sprites/Gimmicks/sprMovingBlock.png" id="2_hw1lk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwaie"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2of5f"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1x4d6"]
+size = Vector2(32, 32)
+
+[node name="objMovingBlockDirection" type="AnimatableBody2D"]
+collision_layer = 2
+collision_mask = 64
+sync_to_physics = false
+script = ExtResource("1_6siqt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hw1lk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jwaie")
+
+[node name="playerDetector" type="ShapeCast2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_2of5f")
+target_position = Vector2(0, -16)
+max_results = 1
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(3.8147e-06, 9.53674e-07)
+scale = Vector2(1.6, 1.6)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_1x4d6")
+debug_color = Color(0.826897, 0.345894, 0.5112, 0.42)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

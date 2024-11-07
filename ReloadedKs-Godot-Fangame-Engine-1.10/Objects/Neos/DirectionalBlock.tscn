@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwwrn1lhw6p8k"]
+
+[ext_resource type="Texture2D" uid="uid://bje5nspoaqjj5" path="res://Graphics/Sprites/Neos/sprArrow.png" id="1_gt77x"]
+[ext_resource type="Script" path="res://Scripts/Neos/directional_block.gd" id="1_nd463"]
+[ext_resource type="Texture2D" uid="uid://ce764rqb8dydy" path="res://Graphics/Tiles/tilAllTiles.png" id="1_rti5g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ue2q"]
+size = Vector2(32, 32)
+
+[node name="objDirectionalBlock" type="StaticBody2D"]
+collision_layer = 2050
+script = ExtResource("1_nd463")
+direction_target = 90
+
+[node name="Block" type="Sprite2D" parent="."]
+texture = ExtResource("1_rti5g")
+centered = false
+region_enabled = true
+region_rect = Rect2(32, 96, 32, 32)
+
+[node name="Arrow" type="Sprite2D" parent="."]
+modulate = Color(0.698039, 0.309804, 0.513726, 1)
+position = Vector2(16, 16)
+rotation = 1.5708
+texture = ExtResource("1_gt77x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_3ue2q")

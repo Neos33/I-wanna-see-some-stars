@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bofp7x77ty1vt"
+path="res://.godot/imported/We Built This City.ogg-69a4baaa08b710914247d8e1423a249f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/Music/We Built This City.ogg"
+dest_files=["res://.godot/imported/We Built This City.ogg-69a4baaa08b710914247d8e1423a249f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

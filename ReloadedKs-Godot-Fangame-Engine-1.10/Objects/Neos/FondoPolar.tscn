@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dedln5e8yuyu4"]
+
+[ext_resource type="Shader" path="res://Scripts/Shaders/shPolarCoordinates.gdshader" id="1_dr4qn"]
+[ext_resource type="Texture2D" uid="uid://csf3hx5yffqid" path="res://Graphics/Sprites/Neos/sprNeosBoss_Aura_0.png" id="2_7fn7l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_htjey"]
+shader = ExtResource("1_dr4qn")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/tex_scale = 0.475
+shader_parameter/tex_repeat = 3.0
+shader_parameter/scroll_speed = 0.065
+shader_parameter/color_tint = Color(0.96, 0.3744, 0.68672, 1)
+shader_parameter/texture_sampler = ExtResource("2_7fn7l")
+
+[node name="Sprite2D" type="Sprite2D"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_htjey")
+position = Vector2(-3792.5, -2554.09)
+scale = Vector2(14.4292, 11.1192)
+texture = ExtResource("2_7fn7l")
