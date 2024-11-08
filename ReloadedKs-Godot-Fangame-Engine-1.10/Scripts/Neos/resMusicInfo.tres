@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bty8e38naje47"]
+
+[ext_resource type="Script" path="res://Scripts/Neos/scrResourceMusicInfo.gd" id="1_o0aia"]
+
+[resource]
+script = ExtResource("1_o0aia")
+loop_start = 0.0
+loop_end = 0.0

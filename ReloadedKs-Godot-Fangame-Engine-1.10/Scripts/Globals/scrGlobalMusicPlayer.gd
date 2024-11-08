@@ -5,10 +5,11 @@ var song_id: AudioStream = null
 var loop_start: float = 0.0
 var loop_end: float = 0.0
 
-enum MUSIC_MODE {PLAYING, PAUSED, STOPPED}
+enum MUSIC_MODE {PLAYING, PAUSED, STOPPED, SWITCHING, MUTED}
 
-var music_mode = null
-
+var current_music_mode = null
+var main_music_volume = 1.0
+var song_index_selection : int = 1
 
 # Music should keep on playing/processing even if the game is paused
 func _ready():
@@ -19,12 +20,12 @@ func _ready():
 # is paused or not
 func _physics_process(_delta):
 	
-	volume_db = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))
-	
-	if music_mode == MUSIC_MODE.PLAYING:
+	if current_music_mode == MUSIC_MODE.PLAYING:
+		volume_db = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))
 		# For pausing or resuming the music. Check scrGlobalGame
 		set_stream_paused(!GLOBAL_GAME.music_is_playing)
 	
+
 	# Set the start and end positions for the music loop
 	set_loop_positions()
 
@@ -40,7 +41,8 @@ func music_update_and_play() -> void:
 		autoplay = true
 		stream = song_playing
 		play()
-		music_mode = MUSIC_MODE.PLAYING
+		
+		current_music_mode = MUSIC_MODE.PLAYING
 
 
 # If we set a loop end position from objMusicPlayer, we then set the playback
@@ -52,11 +54,51 @@ func set_loop_positions():
 			
 
 func music_pause():
-	if music_mode == MUSIC_MODE.PLAYING:
-		music_mode = MUSIC_MODE.PAUSED
+	if current_music_mode == MUSIC_MODE.PLAYING:
+		current_music_mode = MUSIC_MODE.PAUSED
 		set_stream_paused(true)
 
 func music_resume():
-	if music_mode == MUSIC_MODE.PAUSED:
-		music_mode = MUSIC_MODE.PLAYING
+	if current_music_mode == MUSIC_MODE.PAUSED:
+		current_music_mode = MUSIC_MODE.PLAYING
 		set_stream_paused(false)
+		
+func swap_music(new_audio_file : AudioStream, duration : float = 1.0, sync_song : bool = false):
+	if current_music_mode == MUSIC_MODE.PLAYING:
+		current_music_mode = MUSIC_MODE.SWITCHING # Change mode
+		
+		var _get_volume = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))
+		var _volume_mute = linear_to_db(0.0001)
+		main_music_volume = _get_volume
+		var track_position = get_playback_position()
+		
+		var aux_music : AudioStreamPlayer = AudioStreamPlayer.new()
+		add_child(aux_music)
+		aux_music.volume_db = _volume_mute # Mute
+		aux_music.stream = new_audio_file
+		if !sync_song:
+			track_position = 0.0
+			
+		# Play song
+		aux_music.play(track_position)
+		var _tween = create_tween()
+		_tween.tween_property(self, "volume_db", _volume_mute, duration)
+		_tween.set_parallel().tween_property(aux_music, "volume_db", _get_volume, duration)
+		
+		await(_tween.finished)
+		
+		# Swap songs finished
+		print("Swap musics done")
+		
+		volume_db = _get_volume
+		stream = new_audio_file
+		song_playing = stream
+		play(aux_music.get_playback_position())
+		aux_music.stream = null
+		aux_music.stop()
+		
+		# Destroy added audio
+		aux_music.queue_free()
+		
+		# Set current mode to PLAYING
+		current_music_mode = MUSIC_MODE.PLAYING
