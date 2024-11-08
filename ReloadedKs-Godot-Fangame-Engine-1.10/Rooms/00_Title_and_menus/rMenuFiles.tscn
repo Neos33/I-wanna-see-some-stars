@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dihcyhsflfr2g" path="res://Objects/Backgrounds/Specific_backgrounds/objBackgroundMenus.tscn" id="2_72266"]
 [ext_resource type="PackedScene" uid="uid://wr3v4lkgftxk" path="res://Objects/Tiles/til16x16.tscn" id="3_lir3v"]
 [ext_resource type="PackedScene" uid="uid://byy0nyaw6gtki" path="res://Objects/Room_objects/objMusicPlayer.tscn" id="4_071b7"]
-[ext_resource type="AudioStream" uid="uid://bnnwvgmabq10w" path="res://Audio/Music/musMainMenu.ogg" id="5_otlqg"]
+[ext_resource type="Resource" uid="uid://f1k05iqdt75y" path="res://Scripts/Neos/resMusic_MainMusic.tres" id="5_dp2uq"]
 [ext_resource type="PackedScene" uid="uid://bm671n4cnmoon" path="res://Objects/System/objSavefilePreview.tscn" id="6_wb8lp"]
 [ext_resource type="FontFile" uid="uid://4m283seugry" path="res://Graphics/Fonts/NFPixels-Regular.otf" id="7_o7aeo"]
 [ext_resource type="PackedScene" uid="uid://614aveijpptq" path="res://Objects/UI/objMenuButton.tscn" id="8_46fqp"]
@@ -33,7 +33,7 @@ layer_0/tile_data = PackedInt32Array(2424832, 65537, 2, 2424833, 65537, 2, 24248
 
 [node name="objMusicPlayer" parent="Environment" instance=ExtResource("4_071b7")]
 position = Vector2(-12, 18)
-song_id = ExtResource("5_otlqg")
+song_data = Array[Resource]([ExtResource("5_dp2uq")])
 
 [node name="SavefilePreviews" type="Node2D" parent="."]
 

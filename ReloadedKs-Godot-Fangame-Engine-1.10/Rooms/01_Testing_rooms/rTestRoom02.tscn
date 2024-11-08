@@ -1,14 +1,12 @@
-[gd_scene load_steps=25 format=3 uid="uid://c7x2p1xnrh2l4"]
+[gd_scene load_steps=21 format=3 uid="uid://c7x2p1xnrh2l4"]
 
 [ext_resource type="PackedScene" uid="uid://bm40t36a6m8sc" path="res://Objects/Tiles/til32x32.tscn" id="1_eguov"]
-[ext_resource type="AudioStream" uid="uid://b5vc8h4i3atcf" path="res://Audio/Music/LinkinPark.ogg" id="3_sxrwc"]
+[ext_resource type="Resource" uid="uid://blhadyg4p87ni" path="res://Scripts/Neos/resMusic_LinkinPark.tres" id="3_0fe6s"]
 [ext_resource type="PackedScene" uid="uid://bp5rqk4l7tesk" path="res://Objects/Player/objPlayer.tscn" id="4_62n00"]
 [ext_resource type="PackedScene" uid="uid://bo3vrmvp7ayf8" path="res://Objects/Room_objects/objWarp.tscn" id="4_cy3jd"]
 [ext_resource type="PackedScene" uid="uid://uc3dfxqfjl7l" path="res://Objects/Backgrounds/objBackgroundTexture.tscn" id="4_dbyva"]
-[ext_resource type="Script" path="res://Scripts/Neos/scrResourceMusicInfo.gd" id="4_ppegs"]
 [ext_resource type="PackedScene" uid="uid://byy0nyaw6gtki" path="res://Objects/Room_objects/objMusicPlayer.tscn" id="5_nsdgs"]
 [ext_resource type="PackedScene" uid="uid://cdx3h81o7hqb4" path="res://Objects/Room_objects/objCameraDynamic.tscn" id="5_x1x80"]
-[ext_resource type="AudioStream" uid="uid://cbtxeavsqivpn" path="res://Audio/Music/musLevel01.ogg" id="6_8ejd4"]
 [ext_resource type="PackedScene" uid="uid://dr8oelp87b8uc" path="res://Objects/Gimmicks/objCoin.tscn" id="8_g8ylq"]
 [ext_resource type="PackedScene" uid="uid://b31w5fm4w5857" path="res://Objects/Room_objects/objSavePoint.tscn" id="8_yym6q"]
 [ext_resource type="PackedScene" uid="uid://dvh5p5m0s4ju3" path="res://Objects/Collectables/objCollectableItem.tscn" id="10_lunno"]
@@ -23,26 +21,13 @@
 [ext_resource type="AudioStream" uid="uid://bofp7x77ty1vt" path="res://Audio/Music/We Built This City.ogg" id="19_2xq8x"]
 [ext_resource type="AudioStream" uid="uid://bnnwvgmabq10w" path="res://Audio/Music/musMainMenu.ogg" id="20_7qib2"]
 
-[sub_resource type="Resource" id="Resource_op0of"]
-script = ExtResource("4_ppegs")
-musica = ExtResource("3_sxrwc")
-loop_start = 0.0
-loop_end = 0.0
-
-[sub_resource type="Resource" id="Resource_pte3l"]
-script = ExtResource("4_ppegs")
-musica = ExtResource("6_8ejd4")
-loop_start = 0.0
-loop_end = 0.0
-
 [node name="rTestRoom02" type="Node2D"]
 
 [node name="Environment" type="Node2D" parent="."]
 
 [node name="objMusicPlayer" parent="Environment" instance=ExtResource("5_nsdgs")]
 position = Vector2(-16, 16)
-song_id = ExtResource("6_8ejd4")
-song_data = [SubResource("Resource_op0of"), SubResource("Resource_pte3l")]
+song_data = Array[Resource]([ExtResource("3_0fe6s"), ExtResource("3_0fe6s")])
 
 [node name="til32x32" parent="Environment" instance=ExtResource("1_eguov")]
 rendering_quadrant_size = 32
@@ -190,7 +175,6 @@ duration = 4.0
 [node name="objTriggerMusic2" parent="." instance=ExtResource("18_25e2m")]
 position = Vector2(254, 461)
 new_music = ExtResource("20_7qib2")
-duration = 8.0
 
 [editable path="Trigger_related/objTriggerBlock"]
 [editable path="Trigger_related/objTriggerBlock2"]

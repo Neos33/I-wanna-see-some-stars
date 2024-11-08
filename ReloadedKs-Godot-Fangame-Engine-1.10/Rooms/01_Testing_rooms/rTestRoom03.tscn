@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://btn1uhjmceapp" path="res://Objects/Room_objects/StarBG.tscn" id="1_0mc3l"]
 [ext_resource type="PackedScene" uid="uid://byy0nyaw6gtki" path="res://Objects/Room_objects/objMusicPlayer.tscn" id="1_83y07"]
 [ext_resource type="Script" path="res://Rooms/01_Testing_rooms/r_test_room_03.gd" id="1_hp3aq"]
-[ext_resource type="AudioStream" uid="uid://cbtxeavsqivpn" path="res://Audio/Music/musLevel01.ogg" id="2_s7qj5"]
 [ext_resource type="PackedScene" uid="uid://yab7pya0yr1j" path="res://Objects/Room_objects/objCameraFixed.tscn" id="2_xjp4s"]
 [ext_resource type="PackedScene" uid="uid://bm40t36a6m8sc" path="res://Objects/Tiles/til32x32.tscn" id="3_o5y43"]
+[ext_resource type="Resource" uid="uid://bu232ghrmguxb" path="res://Scripts/Neos/resMusic_Level01.tres" id="4_26yxc"]
 [ext_resource type="PackedScene" uid="uid://cjgn1pokbuu0p" path="res://Objects/Backgrounds/objBackgroundScrolling.tscn" id="4_raj0e"]
 [ext_resource type="Texture2D" uid="uid://bukwyfjur2ycm" path="res://Graphics/Backgrounds/bckDefaultGrid.png" id="5_4mkqd"]
 [ext_resource type="PackedScene" uid="uid://bp5rqk4l7tesk" path="res://Objects/Player/objPlayer.tscn" id="6_6hdy4"]
@@ -46,7 +46,7 @@ offset_bottom = 608.0
 
 [node name="objMusicPlayer" parent="Environment" instance=ExtResource("1_83y07")]
 position = Vector2(-16, 16)
-song_id = ExtResource("2_s7qj5")
+song_data = Array[Resource]([ExtResource("4_26yxc")])
 
 [node name="til32x32" parent="Environment" instance=ExtResource("3_o5y43")]
 rendering_quadrant_size = 32
@@ -129,7 +129,7 @@ target_position = Vector2(0, 152)
 
 [node name="Sprite2D" parent="Hazards/objLaserStatic/laserComponents" index="1"]
 rotation = 1.5708
-region_rect = Rect2(-65, 0, 160, 14)
+region_rect = Rect2(-78.5, 0, 160, 14)
 
 [node name="beamTarget" parent="Hazards/objLaserStatic" index="1"]
 position = Vector2(0, 152)
@@ -142,7 +142,7 @@ target_position = Vector2(0, 184)
 
 [node name="Sprite2D" parent="Hazards/objLaserDynamic/laserComponents" index="1"]
 rotation = 1.5708
-region_rect = Rect2(-5.5, 0, 192, 14)
+region_rect = Rect2(-19, 0, 192, 14)
 
 [node name="beamTarget" parent="Hazards/objLaserDynamic" index="1"]
 position = Vector2(0, 184)
@@ -155,7 +155,7 @@ target_position = Vector2(0, -344)
 
 [node name="Sprite2D" parent="Hazards/objLaserDynamic2/laserComponents" index="1"]
 rotation = -1.5708
-region_rect = Rect2(-37.5, 0, 352, 14)
+region_rect = Rect2(-51, 0, 352, 14)
 
 [node name="beamTarget" parent="Hazards/objLaserDynamic2" index="1"]
 position = Vector2(0, -344)
@@ -168,7 +168,7 @@ target_position = Vector2(0, 152)
 
 [node name="Sprite2D" parent="Hazards/objLaserDynamic3/laserComponents" index="1"]
 rotation = 1.5708
-region_rect = Rect2(-66, 0, 160, 14)
+region_rect = Rect2(-79.5, 0, 160, 14)
 
 [node name="beamTarget" parent="Hazards/objLaserDynamic3" index="1"]
 position = Vector2(0, 152)

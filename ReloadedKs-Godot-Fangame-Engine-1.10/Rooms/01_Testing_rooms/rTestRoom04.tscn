@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://Rooms/01_Testing_rooms/r_test_room_04.gd" id="1_ic260"]
 [ext_resource type="PackedScene" uid="uid://byy0nyaw6gtki" path="res://Objects/Room_objects/objMusicPlayer.tscn" id="1_tjral"]
 [ext_resource type="PackedScene" uid="uid://btn1uhjmceapp" path="res://Objects/Room_objects/StarBG.tscn" id="1_x8a51"]
-[ext_resource type="AudioStream" uid="uid://cbtxeavsqivpn" path="res://Audio/Music/musLevel01.ogg" id="2_7au35"]
 [ext_resource type="PackedScene" uid="uid://bm40t36a6m8sc" path="res://Objects/Tiles/til32x32.tscn" id="3_dhyl2"]
 [ext_resource type="PackedScene" uid="uid://uc3dfxqfjl7l" path="res://Objects/Backgrounds/objBackgroundTexture.tscn" id="4_dumue"]
+[ext_resource type="Resource" uid="uid://bu232ghrmguxb" path="res://Scripts/Neos/resMusic_Level01.tres" id="4_lsv0t"]
 [ext_resource type="Texture2D" uid="uid://cbifnd0ykxhs" path="res://Graphics/Backgrounds/bckCastle.png" id="5_kwx58"]
 [ext_resource type="PackedScene" uid="uid://cdx3h81o7hqb4" path="res://Objects/Room_objects/objCameraDynamic.tscn" id="5_tia65"]
 [ext_resource type="PackedScene" uid="uid://bp5rqk4l7tesk" path="res://Objects/Player/objPlayer.tscn" id="6_jfw1u"]
@@ -43,22 +43,22 @@
 [ext_resource type="PackedScene" uid="uid://c5i0lpa6b6nlu" path="res://Objects/Gimmicks/objMovingBlockDirection.tscn" id="41_r0irw"]
 [ext_resource type="PackedScene" uid="uid://bqylv5tq4q10j" path="res://Objects/Gimmicks/objMovingBlock.tscn" id="42_rb7ni"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q4j4m"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t50vl"]
 shader = ExtResource("9_jmqlv")
 shader_parameter/new_color = Color(0, 0, 1, 1)
 shader_parameter/blinking = false
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rfrla"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_orw8j"]
 shader = ExtResource("9_jmqlv")
 shader_parameter/new_color = Color(1, 0, 0, 1)
 shader_parameter/blinking = false
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tc8q1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8d02w"]
 shader = ExtResource("9_jmqlv")
 shader_parameter/new_color = Color(0, 0.823529, 0, 1)
 shader_parameter/blinking = false
 
-[sub_resource type="Resource" id="Resource_l03w7"]
+[sub_resource type="Resource" id="Resource_l8qd4"]
 script = ExtResource("32_bihrb")
 texture_idx = 0
 flip = false
@@ -69,9 +69,9 @@ script = ExtResource("33_flmg7")
 position = Vector2(1313, 402)
 point_in = Vector2(-19, 0)
 point_out = Vector2(19, 0)
-properties = SubResource("Resource_l03w7")
+properties = SubResource("Resource_l8qd4")
 
-[sub_resource type="Resource" id="Resource_e4odf"]
+[sub_resource type="Resource" id="Resource_0dnpo"]
 script = ExtResource("32_bihrb")
 texture_idx = 0
 flip = false
@@ -82,9 +82,9 @@ script = ExtResource("33_flmg7")
 position = Vector2(1345, 450)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_e4odf")
+properties = SubResource("Resource_0dnpo")
 
-[sub_resource type="Resource" id="Resource_ymx23"]
+[sub_resource type="Resource" id="Resource_3t4ok"]
 script = ExtResource("32_bihrb")
 texture_idx = 0
 flip = false
@@ -95,9 +95,9 @@ script = ExtResource("33_flmg7")
 position = Vector2(1515, 599)
 point_in = Vector2(253, -99)
 point_out = Vector2(-253, 99)
-properties = SubResource("Resource_ymx23")
+properties = SubResource("Resource_3t4ok")
 
-[sub_resource type="Resource" id="Resource_rqc7a"]
+[sub_resource type="Resource" id="Resource_lv5tr"]
 script = ExtResource("32_bihrb")
 texture_idx = 0
 flip = false
@@ -108,9 +108,9 @@ script = ExtResource("33_flmg7")
 position = Vector2(1346, 780)
 point_in = Vector2(116, -54)
 point_out = Vector2(-116, 54)
-properties = SubResource("Resource_rqc7a")
+properties = SubResource("Resource_lv5tr")
 
-[sub_resource type="Resource" id="Resource_dyvrb"]
+[sub_resource type="Resource" id="Resource_db8yp"]
 script = ExtResource("32_bihrb")
 texture_idx = 0
 flip = false
@@ -121,9 +121,9 @@ script = ExtResource("33_flmg7")
 position = Vector2(1313, 402)
 point_in = Vector2(-19, 0)
 point_out = Vector2(19, 0)
-properties = SubResource("Resource_dyvrb")
+properties = SubResource("Resource_db8yp")
 
-[sub_resource type="Resource" id="Resource_ompxs"]
+[sub_resource type="Resource" id="Resource_hxofg"]
 script = ExtResource("32_bihrb")
 texture_idx = 0
 flip = false
@@ -134,9 +134,9 @@ script = ExtResource("33_flmg7")
 position = Vector2(1033, 809)
 point_in = Vector2(28, 33)
 point_out = Vector2(-28, -33)
-properties = SubResource("Resource_ompxs")
+properties = SubResource("Resource_hxofg")
 
-[sub_resource type="Resource" id="Resource_jfv3d"]
+[sub_resource type="Resource" id="Resource_stl1a"]
 script = ExtResource("32_bihrb")
 texture_idx = 0
 flip = false
@@ -147,9 +147,9 @@ script = ExtResource("33_flmg7")
 position = Vector2(980, 619)
 point_in = Vector2(138, 12)
 point_out = Vector2(-138, -12)
-properties = SubResource("Resource_jfv3d")
+properties = SubResource("Resource_stl1a")
 
-[sub_resource type="Resource" id="Resource_pert1"]
+[sub_resource type="Resource" id="Resource_rf5x0"]
 script = ExtResource("32_bihrb")
 texture_idx = 0
 flip = false
@@ -160,9 +160,9 @@ script = ExtResource("33_flmg7")
 position = Vector2(1008, 487)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_pert1")
+properties = SubResource("Resource_rf5x0")
 
-[sub_resource type="Resource" id="Resource_uptkq"]
+[sub_resource type="Resource" id="Resource_0hoyn"]
 script = ExtResource("32_bihrb")
 texture_idx = 0
 flip = false
@@ -173,9 +173,9 @@ script = ExtResource("33_flmg7")
 position = Vector2(917, 353)
 point_in = Vector2(-11, 77)
 point_out = Vector2(11, -77)
-properties = SubResource("Resource_uptkq")
+properties = SubResource("Resource_0hoyn")
 
-[sub_resource type="Resource" id="Resource_s5eah"]
+[sub_resource type="Resource" id="Resource_oibx8"]
 script = ExtResource("32_bihrb")
 texture_idx = 0
 flip = false
@@ -186,9 +186,9 @@ script = ExtResource("33_flmg7")
 position = Vector2(1091, 324)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_s5eah")
+properties = SubResource("Resource_oibx8")
 
-[sub_resource type="Resource" id="Resource_os3uf"]
+[sub_resource type="Resource" id="Resource_2d2ja"]
 script = ExtResource("32_bihrb")
 texture_idx = 0
 flip = false
@@ -199,9 +199,9 @@ script = ExtResource("33_flmg7")
 position = Vector2(1167, 223)
 point_in = Vector2(-77, 15)
 point_out = Vector2(77, -15)
-properties = SubResource("Resource_os3uf")
+properties = SubResource("Resource_2d2ja")
 
-[sub_resource type="Resource" id="Resource_npf4n"]
+[sub_resource type="Resource" id="Resource_u26is"]
 script = ExtResource("32_bihrb")
 texture_idx = 0
 flip = false
@@ -212,9 +212,9 @@ script = ExtResource("33_flmg7")
 position = Vector2(1221, 342)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_npf4n")
+properties = SubResource("Resource_u26is")
 
-[sub_resource type="Resource" id="Resource_2glwx"]
+[sub_resource type="Resource" id="Resource_n6fxe"]
 script = ExtResource("32_bihrb")
 texture_idx = 0
 flip = false
@@ -225,7 +225,7 @@ script = ExtResource("33_flmg7")
 position = Vector2(1236, 373)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_2glwx")
+properties = SubResource("Resource_n6fxe")
 
 [sub_resource type="Resource" id="Resource_ve06u"]
 script = ExtResource("34_mf5pb")
@@ -326,7 +326,7 @@ visible = false
 
 [node name="objMusicPlayer" parent="Environment" instance=ExtResource("1_tjral")]
 position = Vector2(-16, 16)
-song_id = ExtResource("2_7au35")
+song_data = Array[Resource]([ExtResource("4_lsv0t")])
 
 [node name="til32x32" parent="Environment" instance=ExtResource("3_dhyl2")]
 rendering_quadrant_size = 32
@@ -384,16 +384,16 @@ position = Vector2(16, 1232)
 [node name="Gimmicks" type="Node2D" parent="."]
 
 [node name="tilSheepBlocks" parent="Gimmicks" instance=ExtResource("8_3tsjv")]
-material = SubResource("ShaderMaterial_q4j4m")
+material = SubResource("ShaderMaterial_t50vl")
 layer_0/tile_data = PackedInt32Array(1900564, 0, 0, 1900563, 0, 0, 1900562, 0, 0, 1769491, 65536, 0, 1835027, 65536, 0)
 
 [node name="tilSheepBlocks2" parent="Gimmicks" instance=ExtResource("8_3tsjv")]
-material = SubResource("ShaderMaterial_rfrla")
+material = SubResource("ShaderMaterial_orw8j")
 layer_0/tile_data = PackedInt32Array(1900558, 0, 0, 1900557, 0, 0, 1900556, 0, 0, 1835021, 65536, 0, 1638413, 65536, 0, 1638414, 65536, 0, 1638412, 65536, 0, 1900555, 0, 0, 1835020, 65536, 0, 1638411, 65536, 0)
 tilemap_color = Color(1, 0, 0, 1)
 
 [node name="tilSheepBlocks3" parent="Gimmicks" instance=ExtResource("8_3tsjv")]
-material = SubResource("ShaderMaterial_tc8q1")
+material = SubResource("ShaderMaterial_8d02w")
 layer_0/tile_data = PackedInt32Array(1703941, 0, 0, 1769477, 0, 0, 1703942, 65536, 0, 1769478, 65536, 0, 1835013, 0, 0, 1900549, 0, 0, 1835014, 65536, 0, 1900550, 0, 0, 1900551, 0, 0)
 tilemap_color = Color(0, 0.823529, 0, 1)
 
@@ -473,7 +473,7 @@ position = Vector2(40, 688)
 target_position = Vector2(664, 0)
 
 [node name="Sprite2D" parent="Hazards/objLaserDynamic/laserComponents" index="1"]
-region_rect = Rect2(-32.5, 0, 672, 14)
+region_rect = Rect2(-45, 0, 672, 14)
 
 [node name="beamTarget" parent="Hazards/objLaserDynamic" index="1"]
 position = Vector2(664, 0)

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://f1k05iqdt75y"]
+
+[ext_resource type="AudioStream" uid="uid://bnnwvgmabq10w" path="res://Audio/Music/musMainMenu.ogg" id="1_6shgy"]
+[ext_resource type="Script" path="res://Scripts/Neos/scrResourceMusicInfo.gd" id="2_hvw1p"]
+
+[resource]
+script = ExtResource("2_hvw1p")
+musica = ExtResource("1_6shgy")
+loop_start = 0.0
+loop_end = 0.0

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dihcyhsflfr2g" path="res://Objects/Backgrounds/Specific_backgrounds/objBackgroundMenus.tscn" id="1_qj5f2"]
 [ext_resource type="PackedScene" uid="uid://wr3v4lkgftxk" path="res://Objects/Tiles/til16x16.tscn" id="2_b4bxb"]
 [ext_resource type="PackedScene" uid="uid://byy0nyaw6gtki" path="res://Objects/Room_objects/objMusicPlayer.tscn" id="3_h0b7q"]
-[ext_resource type="AudioStream" uid="uid://bnnwvgmabq10w" path="res://Audio/Music/musMainMenu.ogg" id="4_o77qd"]
+[ext_resource type="Resource" uid="uid://f1k05iqdt75y" path="res://Scripts/Neos/resMusic_MainMusic.tres" id="5_n1vkl"]
 [ext_resource type="FontFile" uid="uid://4m283seugry" path="res://Graphics/Fonts/NFPixels-Regular.otf" id="5_uvw3o"]
 [ext_resource type="PackedScene" uid="uid://614aveijpptq" path="res://Objects/UI/objMenuButton.tscn" id="7_34exa"]
 
@@ -31,7 +31,7 @@ layer_0/tile_data = PackedInt32Array(131072, 65537, 0, 917504, 65537, 2, 917505,
 
 [node name="objMusicPlayer" parent="Environment" instance=ExtResource("3_h0b7q")]
 position = Vector2(-16, 16)
-song_id = ExtResource("4_o77qd")
+song_data = Array[Resource]([ExtResource("5_n1vkl")])
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0

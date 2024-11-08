@@ -9,7 +9,7 @@ enum MUSIC_MODE {PLAYING, PAUSED, STOPPED, SWITCHING, MUTED}
 
 var current_music_mode = null
 var main_music_volume = 1.0
-var song_index_selection : int = 1
+var song_index_selection : int = 0
 
 # Music should keep on playing/processing even if the game is paused
 func _ready():
@@ -68,8 +68,7 @@ func swap_music(new_audio_file : AudioStream, duration : float = 1.0, sync_song 
 		current_music_mode = MUSIC_MODE.SWITCHING # Change mode
 		
 		var _get_volume = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))
-		var _volume_mute = linear_to_db(0.0001)
-		main_music_volume = _get_volume
+		var _volume_mute = linear_to_db(0.05)
 		var track_position = get_playback_position()
 		
 		var aux_music : AudioStreamPlayer = AudioStreamPlayer.new()
@@ -82,8 +81,9 @@ func swap_music(new_audio_file : AudioStream, duration : float = 1.0, sync_song 
 		# Play song
 		aux_music.play(track_position)
 		var _tween = create_tween()
+		_tween.set_parallel(true)
 		_tween.tween_property(self, "volume_db", _volume_mute, duration)
-		_tween.set_parallel().tween_property(aux_music, "volume_db", _get_volume, duration)
+		_tween.tween_property(aux_music, "volume_db", _get_volume, duration)
 		
 		await(_tween.finished)
 		

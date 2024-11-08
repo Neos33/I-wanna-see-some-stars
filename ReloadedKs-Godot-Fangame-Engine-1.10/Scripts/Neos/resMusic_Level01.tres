@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bu232ghrmguxb"]
+
+[ext_resource type="AudioStream" uid="uid://cbtxeavsqivpn" path="res://Audio/Music/musLevel01.ogg" id="1_xfe5j"]
+[ext_resource type="Script" path="res://Scripts/Neos/scrResourceMusicInfo.gd" id="2_udrkv"]
+
+[resource]
+script = ExtResource("2_udrkv")
+musica = ExtResource("1_xfe5j")
+loop_start = 0.0
+loop_end = 0.0

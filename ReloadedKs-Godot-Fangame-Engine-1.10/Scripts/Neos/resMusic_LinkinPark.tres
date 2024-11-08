@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://blhadyg4p87ni"]
+
+[ext_resource type="AudioStream" uid="uid://b5vc8h4i3atcf" path="res://Audio/Music/LinkinPark.ogg" id="1_c7afq"]
+[ext_resource type="Script" path="res://Scripts/Neos/scrResourceMusicInfo.gd" id="2_b17sp"]
+
+[resource]
+script = ExtResource("2_b17sp")
+musica = ExtResource("1_c7afq")
+loop_start = 0.0
+loop_end = 0.0

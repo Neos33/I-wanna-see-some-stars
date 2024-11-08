@@ -1,11 +1,6 @@
 extends Node2D
 
-@export var song_id: AudioStream = null
-@export var loop_start: float = 0.0
-@export var loop_end: float = 0.0
-
-const RES_MUSIC_INFO = preload("res://Scripts/Neos/resMusicInfo.tres")
-@export var song_data : Array = [RES_MUSIC_INFO, RES_MUSIC_INFO]
+@export var song_data : Array[Resource] = []
 
 func _ready():
 	$Sprite2D.visible = false

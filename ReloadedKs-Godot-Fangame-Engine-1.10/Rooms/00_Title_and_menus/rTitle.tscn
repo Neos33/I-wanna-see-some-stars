@@ -5,7 +5,7 @@
 [ext_resource type="Shader" path="res://Scripts/Shaders/shScrollMotion.gdshader" id="2_av8xl"]
 [ext_resource type="PackedScene" uid="uid://byy0nyaw6gtki" path="res://Objects/Room_objects/objMusicPlayer.tscn" id="2_liwba"]
 [ext_resource type="PackedScene" uid="uid://uc3dfxqfjl7l" path="res://Objects/Backgrounds/objBackgroundTexture.tscn" id="2_ljlgv"]
-[ext_resource type="AudioStream" uid="uid://bnnwvgmabq10w" path="res://Audio/Music/musMainMenu.ogg" id="3_ey46e"]
+[ext_resource type="Resource" uid="uid://f1k05iqdt75y" path="res://Scripts/Neos/resMusic_MainMusic.tres" id="3_56exq"]
 [ext_resource type="PackedScene" uid="uid://bm40t36a6m8sc" path="res://Objects/Tiles/til32x32.tscn" id="3_u2wbq"]
 [ext_resource type="Texture2D" uid="uid://nc32sed5ti8l" path="res://Graphics/Sprites/Player/sprPlayerRunning.png" id="5_0i3ae"]
 [ext_resource type="Texture2D" uid="uid://bwlyhgiw23fwi" path="res://Graphics/Sprites/Hazards/sprCherry.png" id="5_b0fbw"]
@@ -172,7 +172,7 @@ metadata/_edit_lock_ = true
 
 [node name="objMusicPlayer" parent="Environment" instance=ExtResource("2_liwba")]
 position = Vector2(-16, 16)
-song_id = ExtResource("3_ey46e")
+song_data = Array[Resource]([ExtResource("3_56exq")])
 
 [node name="ColorRect" type="ColorRect" parent="Environment"]
 visible = false

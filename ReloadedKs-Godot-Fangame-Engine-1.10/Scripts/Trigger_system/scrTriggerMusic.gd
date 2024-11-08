@@ -17,4 +17,9 @@ func _process(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if GLOBAL_MUSIC.song_playing != new_music:
 		GLOBAL_MUSIC.swap_music(new_music, duration)
+		$Timer.start(duration)
 		print("Changing music")
+
+
+func _on_timer_timeout() -> void:
+	print("Its supposed to be finished already")

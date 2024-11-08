@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://wr3v4lkgftxk" path="res://Objects/Tiles/til16x16.tscn" id="2_ino11"]
 [ext_resource type="PackedScene" uid="uid://614aveijpptq" path="res://Objects/UI/objMenuButton.tscn" id="4_k2tdr"]
 [ext_resource type="PackedScene" uid="uid://byy0nyaw6gtki" path="res://Objects/Room_objects/objMusicPlayer.tscn" id="5_4ewjm"]
-[ext_resource type="AudioStream" uid="uid://bnnwvgmabq10w" path="res://Audio/Music/musMainMenu.ogg" id="6_88q26"]
+[ext_resource type="Resource" uid="uid://f1k05iqdt75y" path="res://Scripts/Neos/resMusic_MainMusic.tres" id="5_kxcej"]
 
 [node name="rMenuSettings" type="Control"]
 layout_mode = 3
@@ -40,7 +40,7 @@ layer_0/tile_data = PackedInt32Array(2359304, 1, 1, 2359305, 65537, 1, 2359306, 
 
 [node name="objMusicPlayer" parent="Environment" instance=ExtResource("5_4ewjm")]
 position = Vector2(-16, 16)
-song_id = ExtResource("6_88q26")
+song_data = Array[Resource]([ExtResource("5_kxcej")])
 
 [node name="cameraAnchor" type="Node2D" parent="Environment"]
 position = Vector2(400, 304)
