@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="NANC 2 The dark void"
+config/name="Some adventure game that does not have a name yet"
 config/tags=PackedStringArray("fangame_engine")
 run/main_scene="res://Rooms/00_Title_and_menus/rTitle.tscn"
 config/features=PackedStringArray("4.3", "Mobile")

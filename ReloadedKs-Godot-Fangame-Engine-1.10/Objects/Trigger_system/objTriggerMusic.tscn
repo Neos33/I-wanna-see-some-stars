@@ -16,7 +16,7 @@ color = Color(1, 1, 1, 0.298039)
 
 [node name="MusicSprite" type="Sprite2D" parent="."]
 position = Vector2(16, 16)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_bfi8d")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -27,8 +27,4 @@ visible = false
 position = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_67xvi")
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -168,13 +168,16 @@ position = Vector2(736, 320)
 trigger_sound = ExtResource("16_vq0hl")
 
 [node name="objTriggerMusic" parent="." instance=ExtResource("18_25e2m")]
-position = Vector2(165, 458)
+modulate = Color(0.6, 1, 1, 1)
+position = Vector2(160, 480)
 new_music = ExtResource("19_2xq8x")
 duration = 4.0
 
 [node name="objTriggerMusic2" parent="." instance=ExtResource("18_25e2m")]
-position = Vector2(254, 461)
+modulate = Color(1, 0.4, 1, 1)
+position = Vector2(224, 480)
 new_music = ExtResource("20_7qib2")
+sync_song = true
 
 [editable path="Trigger_related/objTriggerBlock"]
 [editable path="Trigger_related/objTriggerBlock2"]
