@@ -131,21 +131,11 @@ func set_position_on_load():
 # clean save (otherwise it would teleport the player to 0,0 and to an undefined
 # room).
 func set_first_time_saving():
-	var playerdefaultGameData : Dictionary = {
-		"first_time_saving" : false,
-		"player_x" : position.x,
-		"player_y" : position.y,
-		"player_sprite_flipped" : xscale,
-		"room_name" : get_tree().get_current_scene().get_scene_file_path(),
-		"total_time" : 0.0,
-		"total_deaths" : 0
-	}
-	#print("ENRTO?")
-	#GLOBAL_SAVELOAD.variableGameData.player_x = playerdefaultGameData.player_x
-	#GLOBAL_SAVELOAD.variableGameData.player_y = playerdefaultGameData.player_y
-	#GLOBAL_SAVELOAD.variableGameData.player_sprite_flipped = playerdefaultGameData.player_sprite_flipped
-	#GLOBAL_SAVELOAD.variableGameData.room_name = playerdefaultGameData.room_name
-	#GLOBAL_SAVELOAD.variableGameData.first_time_saving = playerdefaultGameData.first_time_saving
+	GLOBAL_SAVELOAD.variableGameData.player_x = position.x
+	GLOBAL_SAVELOAD.variableGameData.player_y = position.y
+	GLOBAL_SAVELOAD.variableGameData.player_sprite_flipped = xscale
+	GLOBAL_SAVELOAD.variableGameData.room_name = get_tree().get_current_scene().get_scene_file_path()
+	GLOBAL_SAVELOAD.variableGameData.first_time_saving = false
 	
 	# After changing the variable game data to the proper values, we save them.
 	GLOBAL_SAVELOAD.save_data()
