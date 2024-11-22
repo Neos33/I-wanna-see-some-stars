@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b3lqpj43pl41j"
+path="res://.godot/imported/What I've Done - Linkin Park - Ending.ogg-61a304b6566201f9d66c66d5c7106812.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/Music/What I've Done - Linkin Park - Ending.ogg"
+dest_files=["res://.godot/imported/What I've Done - Linkin Park - Ending.ogg-61a304b6566201f9d66c66d5c7106812.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

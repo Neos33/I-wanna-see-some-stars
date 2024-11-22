@@ -1,12 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://caltdhnx7ca4t"]
+[gd_scene load_steps=8 format=3 uid="uid://caltdhnx7ca4t"]
 
 [ext_resource type="Script" path="res://Scripts/Traps/scrMichaelBayMeme.gd" id="1_23tiq"]
 [ext_resource type="Texture2D" uid="uid://i2sj13mlptlq" path="res://Graphics/Sprites/Traps/MichaelBay.png" id="1_pc4lt"]
-[ext_resource type="AudioStream" uid="uid://b5vc8h4i3atcf" path="res://Audio/Music/LinkinPark.ogg" id="2_oca18"]
+[ext_resource type="AudioStream" uid="uid://b3lqpj43pl41j" path="res://Audio/Music/What I've Done - Linkin Park - Ending.ogg" id="3_7453x"]
+[ext_resource type="FontFile" uid="uid://bn4jqd4ajravt" path="res://Graphics/Fonts/BankGothicMediumBT.ttf" id="4_qmvyv"]
 
 [sub_resource type="Animation" id="Animation_am42e"]
 resource_name = "LinkinPark"
-length = 5.0
+length = 6.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -32,29 +33,14 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1.5, 1.5), Vector2(1, 1)]
 }
-tracks/2/type = "audio"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"clips": [{
-"end_offset": 15.24,
-"start_offset": 22.54,
-"stream": ExtResource("2_oca18")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/2/use_blend = true
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 2.1, 5),
+"times": PackedFloat32Array(0, 2.1, 6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
@@ -67,6 +53,21 @@ tracks/3/keys = {
 "method": &"finished"
 }]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LinkinParkMusic")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 132.702,
+"start_offset": 65.0584,
+"stream": ExtResource("3_7453x")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_0emf6"]
 length = 0.001
@@ -111,6 +112,7 @@ offset_bottom = 608.0
 color = Color(0, 0, 0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(400, 304)
 scale = Vector2(3.60119, 3.60119)
 texture = ExtResource("1_pc4lt")
@@ -120,5 +122,40 @@ libraries = {
 "": SubResource("AnimationLibrary_ds3lx")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-bus = &"Music"
+[node name="LinkinParkMusic" type="AudioStreamPlayer" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_qmvyv")
+theme_override_font_sizes/font_size = 22
+text = "Directed by"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_qmvyv")
+theme_override_font_sizes/font_size = 41
+text = "Michael \"Kayin\" O'Reilly"
+horizontal_alignment = 1
