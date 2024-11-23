@@ -1,0 +1,294 @@
+[gd_scene load_steps=26 format=3 uid="uid://bgsnqoli388d7"]
+
+[ext_resource type="Texture2D" uid="uid://cigf5frmkx05w" path="res://Graphics/Sprites/Hazards/sprSpikeUp.png" id="1_07ac4"]
+[ext_resource type="Script" path="res://Objects/Neos/robot_laser_attack.gd" id="1_omksu"]
+[ext_resource type="Texture2D" uid="uid://cgxds7f02aouh" path="res://Graphics/Sprites/Particle Textures/smoke_01.png" id="2_vskgh"]
+[ext_resource type="Texture2D" uid="uid://dqnjfa3j6xyjf" path="res://Graphics/Sprites/Particle Textures/fire_01.png" id="3_odvgn"]
+[ext_resource type="AudioStream" uid="uid://bte5omjbleqo1" path="res://Audio/Sounds/Neos/Robot/snd_tor_eruption.wav" id="5_teklx"]
+[ext_resource type="AudioStream" uid="uid://rdliki0kea8p" path="res://Audio/Sounds/Neos/Robot/snd_exp_rock.wav" id="6_kln8d"]
+
+[sub_resource type="Gradient" id="Gradient_srscm"]
+offsets = PackedFloat32Array(0, 0.489011, 1)
+colors = PackedColorArray(1, 0.53, 0.53, 1, 0.968099, 0.514815, 0.650112, 1, 0.661089, 0, 0.130668, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6h3r0"]
+gradient = SubResource("Gradient_srscm")
+width = 700
+
+[sub_resource type="Animation" id="Animation_c5edh"]
+resource_name = "Laser"
+length = 1.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LaserVision/Laser:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.4, 0.5),
+"transitions": PackedFloat32Array(2, 1, 1, 0.5, 1),
+"update": 0,
+"values": [PackedVector2Array(0, 0, 700, 0, 700, 0), PackedVector2Array(0, 0, 700, -100, 700, 100), PackedVector2Array(0, 0, 700, -120, 700, 120), PackedVector2Array(0, 0, 700, -100, 700, 100), PackedVector2Array(0, 0, 700, 0, 700, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LaserVision/Laser:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 0.68302, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 3.14159, 3.14159]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"explode_ground"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_1esf2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LaserVision/Laser:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(0, 0, 414, -50, 414, 50)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LaserVision/Laser:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_skmr3"]
+_data = {
+"Laser": SubResource("Animation_c5edh"),
+"RESET": SubResource("Animation_1esf2")
+}
+
+[sub_resource type="Animation" id="Animation_i4r81"]
+resource_name = "RobotBackgroundFall"
+length = 0.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RobotBackground/Robot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.435275, 1),
+"update": 0,
+"values": [Vector2(400, -32), Vector2(400, 96)]
+}
+
+[sub_resource type="Animation" id="Animation_xdlrf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RobotBackground/Robot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(400, -32)]
+}
+
+[sub_resource type="Animation" id="Animation_tfyr4"]
+resource_name = "RobotBackgroundWave"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RobotBackground/Robot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(0.5, -2, 2),
+"update": 0,
+"values": [Vector2(400, 96), Vector2(400, 90), Vector2(400, 96)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kp546"]
+_data = {
+"RESET": SubResource("Animation_xdlrf"),
+"RobotBackgroundFall": SubResource("Animation_i4r81"),
+"RobotBackgroundWave": SubResource("Animation_tfyr4")
+}
+
+[sub_resource type="Curve" id="Curve_2q0bu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.136842, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_w1fj8"]
+curve = SubResource("Curve_2q0bu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0h6qy"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(400, 0, 0)
+emission_shape = 3
+emission_box_extents = Vector3(400, 1, 1)
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+spread = 10.0
+initial_velocity_max = 159.29
+gravity = Vector3(0, -38.135, 0)
+color = Color(0.389287, 0.389287, 0.389287, 1)
+alpha_curve = SubResource("CurveTexture_w1fj8")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1bxdk"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_f7j4j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0789474, 1), 0.0, 0.0, 0, 0, Vector2(0.731579, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_scpjh"]
+curve = SubResource("Curve_f7j4j")
+
+[sub_resource type="Gradient" id="Gradient_klytr"]
+offsets = PackedFloat32Array(0, 0.209877, 0.512346, 0.703704, 1)
+colors = PackedColorArray(0.85, 0.821667, 0, 1, 0.88, 0.7128, 0.2112, 1, 0.798828, 0.587858, 0.413771, 1, 0.38, 0.22192, 0.1976, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uw7xm"]
+gradient = SubResource("Gradient_klytr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tojil"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(400, 0, 0)
+emission_shape = 3
+emission_box_extents = Vector3(400, 0, 1)
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+spread = 13.211
+initial_velocity_min = 685.84
+initial_velocity_max = 685.84
+gravity = Vector3(0, -33.115, 0)
+color_ramp = SubResource("GradientTexture1D_uw7xm")
+alpha_curve = SubResource("CurveTexture_scpjh")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnfa2"]
+size = Vector2(800, 232)
+
+[node name="RobotTrap" type="Node2D"]
+script = ExtResource("1_omksu")
+
+[node name="Spike" type="Node2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="Spike" groups=["Killers"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="SpikeSprite" type="Sprite2D" parent="Spike/Hitbox"]
+texture = ExtResource("1_07ac4")
+
+[node name="SpikeCollider" type="CollisionPolygon2D" parent="Spike/Hitbox"]
+polygon = PackedVector2Array(0, -16, -16, 16, 16, 16)
+
+[node name="RobotBackground" type="CanvasLayer" parent="."]
+
+[node name="Robot" type="Sprite2D" parent="RobotBackground"]
+modulate = Color(0.687215, 0.687215, 0.687215, 1)
+position = Vector2(400, -32)
+texture = ExtResource("1_07ac4")
+metadata/_edit_lock_ = true
+
+[node name="LaserVision" type="Node2D" parent="RobotBackground"]
+position = Vector2(400, 96)
+
+[node name="Laser" type="Polygon2D" parent="RobotBackground/LaserVision"]
+color = Color(1, 0.61, 0.7725, 1)
+texture = SubResource("GradientTexture2D_6h3r0")
+polygon = PackedVector2Array(0, 0, 414, -50, 414, 50)
+
+[node name="AttackAnimation" type="AnimationPlayer" parent="RobotBackground"]
+libraries = {
+"": SubResource("AnimationLibrary_skmr3")
+}
+
+[node name="RobotMovement" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kp546")
+}
+
+[node name="PrepareAttack" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="SpawnParticles" type="Node2D" parent="."]
+
+[node name="Smoke" type="GPUParticles2D" parent="SpawnParticles"]
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_0h6qy")
+texture = ExtResource("2_vskgh")
+one_shot = true
+
+[node name="Explosion" type="GPUParticles2D" parent="SpawnParticles"]
+material = SubResource("CanvasItemMaterial_1bxdk")
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_tojil")
+texture = ExtResource("3_odvgn")
+lifetime = 0.4
+one_shot = true
+
+[node name="AreaExplosionKiller" type="Area2D" parent="SpawnParticles" groups=["Killers"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="ExplosionCollider" type="CollisionShape2D" parent="SpawnParticles/AreaExplosionKiller"]
+position = Vector2(400, -116)
+shape = SubResource("RectangleShape2D_dnfa2")
+disabled = true
+debug_color = Color(0.901687, 0.233112, 0.520292, 0.42)
+
+[node name="LaserVisionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_teklx")
+bus = &"Sounds"
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_kln8d")
+bus = &"Sounds"
+
+[node name="SoundOverlap" type="Timer" parent="."]
+wait_time = 0.075
+
+[connection signal="animation_finished" from="RobotBackground/AttackAnimation" to="." method="_on_attack_animation_animation_finished"]
+[connection signal="animation_finished" from="RobotMovement" to="." method="_on_robot_movement_animation_finished"]
+[connection signal="timeout" from="PrepareAttack" to="." method="_on_prepare_attack_timeout"]
+[connection signal="finished" from="SpawnParticles/Explosion" to="." method="_on_explosion_finished"]
+[connection signal="timeout" from="SoundOverlap" to="." method="_on_sound_overlap_timeout"]

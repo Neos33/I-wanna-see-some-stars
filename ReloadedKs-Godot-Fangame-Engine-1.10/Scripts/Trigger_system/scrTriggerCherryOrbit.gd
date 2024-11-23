@@ -35,4 +35,3 @@ func _physics_process(_delta):
 				# and not every frame, we use the triggered variable to do it.
 				# Otherwise the direction vector would update constantly
 				move_and_collide(orbit_velocity)
-

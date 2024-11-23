@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://1ipi02ltnf6"]
+
+[ext_resource type="PackedScene" uid="uid://bm40t36a6m8sc" path="res://Objects/Tiles/til32x32.tscn" id="2_srr13"]
+[ext_resource type="PackedScene" uid="uid://bp5rqk4l7tesk" path="res://Objects/Player/objPlayer.tscn" id="3_ett0c"]
+[ext_resource type="PackedScene" uid="uid://cdx3h81o7hqb4" path="res://Objects/Room_objects/objCameraDynamic.tscn" id="4_3jgni"]
+[ext_resource type="PackedScene" uid="uid://b31w5fm4w5857" path="res://Objects/Room_objects/objSavePoint.tscn" id="5_8pcl1"]
+[ext_resource type="PackedScene" uid="uid://bgsnqoli388d7" path="res://Objects/Neos/RobotLaserAttack.tscn" id="6_egork"]
+[ext_resource type="PackedScene" uid="uid://da1qaif83tf17" path="res://Objects/Trigger_system/objTrigger.tscn" id="7_lq7ay"]
+
+[node name="rTemplate" type="Node2D"]
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="til32x32" parent="Environment" instance=ExtResource("2_srr13")]
+rendering_quadrant_size = 32
+layer_0/tile_data = PackedInt32Array(1179648, 0, 0, 1179649, 0, 0, 1179650, 0, 0, 1179651, 0, 0, 1179652, 0, 0, 1179653, 0, 0, 1179654, 0, 0, 1179663, 0, 0, 1179664, 0, 0, 1179665, 0, 0, 1179666, 0, 0, 1179667, 0, 0, 1179668, 0, 0, 1179669, 0, 0, 1179670, 0, 0, 1179671, 0, 0, 1179672, 0, 0, 1179662, 0, 0, 1179661, 0, 0, 1179660, 0, 0, 1179659, 0, 0, 1179658, 0, 0, 1179657, 0, 0, 1179656, 0, 0, 1179655, 0, 0, 1245182, 0, 0, 1245181, 0, 0, 1245180, 0, 0, 1245179, 0, 0, 1245178, 0, 0, 1245183, 0, 0, 1179673, 0, 0, 1179674, 0, 0, 1179675, 0, 0, 1179676, 0, 0, 1179677, 0, 0, 1179678, 0, 0, 1179679, 0, 0, 917505, 0, 0, 917504, 0, 0, 917506, 0, 0, 917528, 0, 0, 917527, 0, 0, 917526, 0, 0, 720920, 0, 0, 720919, 0, 0, 720897, 0, 0, 720896, 0, 0)
+
+[node name="Room_related" type="Node2D" parent="."]
+
+[node name="objPlayer" parent="Room_related" instance=ExtResource("3_ett0c")]
+position = Vector2(112, 552)
+
+[node name="objCameraDynamic" parent="Room_related" node_paths=PackedStringArray("target_node") instance=ExtResource("4_3jgni")]
+target_node = NodePath("../objPlayer")
+stop_left_at = -800
+stop_up_at = 0
+stop_right_at = 2400
+stop_down_at = 608
+
+[node name="objSavePoint" parent="Room_related" instance=ExtResource("5_8pcl1")]
+position = Vector2(240, 560)
+
+[node name="Gimmicks" type="Node2D" parent="."]
+
+[node name="Hazards" type="Node2D" parent="."]
+
+[node name="Trigger_related" type="Node2D" parent="."]
+
+[node name="RobotTrap" parent="Trigger_related" instance=ExtResource("6_egork")]
+trigger_id = 1
+
+[node name="Spike" parent="Trigger_related/RobotTrap" index="0"]
+position = Vector2(400, 560)
+metadata/_edit_group_ = true
+
+[node name="objTrigger" parent="Trigger_related" instance=ExtResource("7_lq7ay")]
+position = Vector2(384, 384)
+scale = Vector2(1, 5.04)
+trigger_id = 1
+
+[editable path="Trigger_related/RobotTrap"]
