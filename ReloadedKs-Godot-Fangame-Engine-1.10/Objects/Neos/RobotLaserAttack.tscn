@@ -70,7 +70,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [PackedVector2Array(0, 0, 414, -50, 414, 50)]
+"values": [PackedVector2Array(0, 0, 414, 0, 414, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -91,6 +91,21 @@ _data = {
 "RESET": SubResource("Animation_1esf2")
 }
 
+[sub_resource type="Animation" id="Animation_xdlrf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RobotBackground/Robot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(400, -32)]
+}
+
 [sub_resource type="Animation" id="Animation_i4r81"]
 resource_name = "RobotBackgroundFall"
 length = 0.5
@@ -106,21 +121,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.435275, 1),
 "update": 0,
 "values": [Vector2(400, -32), Vector2(400, 96)]
-}
-
-[sub_resource type="Animation" id="Animation_xdlrf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RobotBackground/Robot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(400, -32)]
 }
 
 [sub_resource type="Animation" id="Animation_tfyr4"]
@@ -206,16 +206,14 @@ size = Vector2(800, 232)
 [node name="RobotTrap" type="Node2D"]
 script = ExtResource("1_omksu")
 
-[node name="Spike" type="Node2D" parent="."]
-
-[node name="Hitbox" type="Area2D" parent="Spike" groups=["Killers"]]
+[node name="Spike" type="StaticBody2D" parent="." groups=["Killers"]]
 collision_layer = 8
 collision_mask = 0
 
-[node name="SpikeSprite" type="Sprite2D" parent="Spike/Hitbox"]
+[node name="SpikeSprite" type="Sprite2D" parent="Spike"]
 texture = ExtResource("1_07ac4")
 
-[node name="SpikeCollider" type="CollisionPolygon2D" parent="Spike/Hitbox"]
+[node name="SpikeCollider" type="CollisionPolygon2D" parent="Spike"]
 polygon = PackedVector2Array(0, -16, -16, 16, 16, 16)
 
 [node name="RobotBackground" type="CanvasLayer" parent="."]
@@ -232,7 +230,7 @@ position = Vector2(400, 96)
 [node name="Laser" type="Polygon2D" parent="RobotBackground/LaserVision"]
 color = Color(1, 0.61, 0.7725, 1)
 texture = SubResource("GradientTexture2D_6h3r0")
-polygon = PackedVector2Array(0, 0, 414, -50, 414, 50)
+polygon = PackedVector2Array(0, 0, 414, 0, 414, 0)
 
 [node name="AttackAnimation" type="AnimationPlayer" parent="RobotBackground"]
 libraries = {
@@ -266,7 +264,7 @@ texture = ExtResource("3_odvgn")
 lifetime = 0.4
 one_shot = true
 
-[node name="AreaExplosionKiller" type="Area2D" parent="SpawnParticles" groups=["Killers"]]
+[node name="AreaExplosionKiller" type="StaticBody2D" parent="SpawnParticles" groups=["Killers"]]
 collision_layer = 8
 collision_mask = 0
 

@@ -2,7 +2,8 @@ extends Node2D
 
 @export var trigger_id : int = 0
 
-@onready var spike: Node2D = $Spike
+@onready var spike: StaticBody2D = $Spike
+
 @onready var robot: Sprite2D = $RobotBackground/Robot
 
 @onready var attack_animation: AnimationPlayer = $RobotBackground/AttackAnimation
@@ -35,7 +36,8 @@ func _process(delta: float) -> void:
 	if GLOBAL_GAME.triggered_events.has(trigger_id) and !triggered:
 		var tween = create_tween()
 		var duration = 3.0
-		tween.tween_property(spike, "position:y", -32, duration)
+		tween.tween_property(spike, "position:y", -64, duration)
+		tween.parallel().tween_property(spike, "scale", Vector2(3.0, 3.0), 0.5)
 		GLOBAL_SOUNDS.play_sound(GLOBAL_SOUNDS.sndCherry)
 		triggered = true
 		await tween.finished
