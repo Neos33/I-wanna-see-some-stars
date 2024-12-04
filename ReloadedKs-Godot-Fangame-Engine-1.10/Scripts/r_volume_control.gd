@@ -8,6 +8,9 @@ extends Control
 @onready var bgm_value_info: Label = $VBoxContainer/BGMData/ValueInfo
 @onready var sfx_value_info: Label = $VBoxContainer/SFXData/ValueInfo
 
+@onready var music_play: AudioStreamPlayer = $MusicPlay
+@onready var music_playing_text: Label = $MusicPlayingText
+
 var master_bus = null
 var music_bus = null
 var sound_bus = null
@@ -59,5 +62,11 @@ func _on_sound_button_pressed() -> void:
 	GLOBAL_SOUNDS.play_sound(GLOBAL_SOUNDS.sndShoot)
 
 
-func _on_music_button_pressed() -> void:
-	pass # Replace with function body.
+
+func _on_music_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		music_play.play()
+		music_playing_text.visible = true
+	else:
+		music_play.stop()
+		music_playing_text.visible = false

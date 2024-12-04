@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyb8wstwwwxci"]
+[gd_scene load_steps=3 format=3 uid="uid://cyb8wstwwwxci"]
 
-[ext_resource type="Script" path="res://Scripts/r_volume_control.gd" id="1_sf7oj"]
+[ext_resource type="Script" path="res://Scripts/r_volume_control.gd" id="1_vs528"]
+[ext_resource type="AudioStream" uid="uid://dio0twbyudmye" path="res://Audio/Music/guy_rock.ogg" id="2_yx1gk"]
 
 [node name="rVolumeControl" type="Control"]
 layout_mode = 3
@@ -9,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_sf7oj")
+script = ExtResource("1_vs528")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -123,6 +124,7 @@ focus_neighbor_left = NodePath("../SoundButton")
 focus_neighbor_top = NodePath("../../SFXData/SFXSlider")
 focus_neighbor_right = NodePath("../SoundButton")
 focus_neighbor_bottom = NodePath("../../MasterData/MasterSlider")
+toggle_mode = true
 text = "Test music"
 
 [node name="Label" type="Label" parent="."]
@@ -140,8 +142,28 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Press [Enter] to continue."
 
+[node name="MusicPlay" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_yx1gk")
+bus = &"Music"
+
+[node name="MusicPlayingText" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.64
+anchor_top = 0.566
+anchor_right = 0.64
+anchor_bottom = 0.566
+offset_left = -6.10352e-05
+offset_top = -0.128021
+offset_right = 60.9999
+offset_bottom = 31.872
+theme_override_constants/outline_size = 3
+text = "Playing!"
+vertical_alignment = 1
+
 [connection signal="value_changed" from="VBoxContainer/MasterData/MasterSlider" to="." method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/BGMData/BGMSlider" to="." method="_on_bgm_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/SFXData/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/ButtonTestAudio/SoundButton" to="." method="_on_sound_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonTestAudio/MusicButton" to="." method="_on_music_button_pressed"]
+[connection signal="toggled" from="VBoxContainer/ButtonTestAudio/MusicButton" to="." method="_on_music_button_toggled"]
