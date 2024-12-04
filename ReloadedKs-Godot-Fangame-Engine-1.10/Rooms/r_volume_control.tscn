@@ -1,0 +1,147 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyb8wstwwwxci"]
+
+[ext_resource type="Script" path="res://Scripts/r_volume_control.gd" id="1_sf7oj"]
+
+[node name="rVolumeControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sf7oj")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.393086, 0.393086, 0.393085, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = -69.0
+offset_right = 264.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VoulmeCheck" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Volume Check"
+horizontal_alignment = 1
+
+[node name="MasterData" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Info" type="Label" parent="VBoxContainer/MasterData"]
+layout_mode = 2
+text = "Master"
+
+[node name="MasterSlider" type="HSlider" parent="VBoxContainer/MasterData"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../ButtonTestAudio/MusicButton")
+focus_neighbor_bottom = NodePath("../../BGMData/BGMSlider")
+
+[node name="ValueInfo" type="Label" parent="VBoxContainer/MasterData"]
+layout_mode = 2
+text = "-1%"
+horizontal_alignment = 2
+
+[node name="BGMData" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Info2" type="Label" parent="VBoxContainer/BGMData"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Music"
+horizontal_alignment = 2
+
+[node name="BGMSlider" type="HSlider" parent="VBoxContainer/BGMData"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../MasterData/MasterSlider")
+focus_neighbor_bottom = NodePath("../../SFXData/SFXSlider")
+
+[node name="ValueInfo" type="Label" parent="VBoxContainer/BGMData"]
+layout_mode = 2
+text = "-1%"
+horizontal_alignment = 2
+
+[node name="SFXData" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Info3" type="Label" parent="VBoxContainer/SFXData"]
+layout_mode = 2
+text = "Sound"
+
+[node name="SFXSlider" type="HSlider" parent="VBoxContainer/SFXData"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../BGMData/BGMSlider")
+focus_neighbor_bottom = NodePath("../../ButtonTestAudio/SoundButton")
+
+[node name="ValueInfo" type="Label" parent="VBoxContainer/SFXData"]
+layout_mode = 2
+text = "-1%"
+horizontal_alignment = 2
+
+[node name="ButtonTestAudio" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SoundButton" type="Button" parent="VBoxContainer/ButtonTestAudio"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../MusicButton")
+focus_neighbor_top = NodePath("../../SFXData/SFXSlider")
+focus_neighbor_right = NodePath("../MusicButton")
+focus_neighbor_bottom = NodePath("../../MasterData/MasterSlider")
+text = "Test sound"
+
+[node name="MusicButton" type="Button" parent="VBoxContainer/ButtonTestAudio"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../SoundButton")
+focus_neighbor_top = NodePath("../../SFXData/SFXSlider")
+focus_neighbor_right = NodePath("../SoundButton")
+focus_neighbor_bottom = NodePath("../../MasterData/MasterSlider")
+text = "Test music"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -208.0
+offset_top = -40.0
+offset_right = -13.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Press [Enter] to continue."
+
+[connection signal="value_changed" from="VBoxContainer/MasterData/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/BGMData/BGMSlider" to="." method="_on_bgm_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/SFXData/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/ButtonTestAudio/SoundButton" to="." method="_on_sound_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonTestAudio/MusicButton" to="." method="_on_music_button_pressed"]

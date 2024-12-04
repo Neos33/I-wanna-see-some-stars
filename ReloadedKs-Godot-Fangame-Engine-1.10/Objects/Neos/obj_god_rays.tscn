@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://baogwlrtel4cc"]
+
+[ext_resource type="Shader" path="res://GodRays.gdshader" id="1_8cx3i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u8wf4"]
+shader = ExtResource("1_8cx3i")
+shader_parameter/angle = -0.245
+shader_parameter/position = -0.055
+shader_parameter/spread = 0.876
+shader_parameter/cutoff = 0.118
+shader_parameter/falloff = 0.686
+shader_parameter/edge_fade = 0.297
+shader_parameter/speed = 1.23
+shader_parameter/ray1_density = 11.085
+shader_parameter/ray2_density = 35.35
+shader_parameter/ray2_intensity = 0.594
+shader_parameter/color = Color(0.72, 1, 0.958, 1)
+shader_parameter/hdr = false
+shader_parameter/seed = 8.32
+
+[node name="objGodRays" type="ColorRect"]
+material = SubResource("ShaderMaterial_u8wf4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

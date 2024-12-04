@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bgsnqoli388d7"]
+[gd_scene load_steps=28 format=3 uid="uid://bgsnqoli388d7"]
 
 [ext_resource type="Texture2D" uid="uid://cigf5frmkx05w" path="res://Graphics/Sprites/Hazards/sprSpikeUp.png" id="1_07ac4"]
 [ext_resource type="Script" path="res://Objects/Neos/robot_laser_attack.gd" id="1_omksu"]
@@ -7,8 +7,18 @@
 [ext_resource type="AudioStream" uid="uid://bte5omjbleqo1" path="res://Audio/Sounds/Neos/Robot/snd_tor_eruption.wav" id="5_teklx"]
 [ext_resource type="AudioStream" uid="uid://rdliki0kea8p" path="res://Audio/Sounds/Neos/Robot/snd_exp_rock.wav" id="6_kln8d"]
 
+[sub_resource type="Gradient" id="Gradient_s1h7k"]
+offsets = PackedFloat32Array(0, 0.324176, 0.692308, 0.714286, 0.989011, 1)
+colors = PackedColorArray(0.963112, 0.890884, 0.893504, 0, 0.87, 0.6003, 0.6902, 0, 0.8, 0.392, 0.5484, 0, 1, 0.21, 0.223166, 1, 0.757692, 0.159115, 0.35778, 0.134615, 0.72, 0.1512, 0.37872, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tmwo2"]
+gradient = SubResource("Gradient_s1h7k")
+width = 700
+height = 454
+fill_from = Vector2(0.857724, 0.720784)
+
 [sub_resource type="Gradient" id="Gradient_srscm"]
-offsets = PackedFloat32Array(0, 0.489011, 1)
+offsets = PackedFloat32Array(0, 0.489011, 0.978022)
 colors = PackedColorArray(1, 0.53, 0.53, 1, 0.968099, 0.514815, 0.650112, 1, 0.661089, 0, 0.130668, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_6h3r0"]
@@ -22,7 +32,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LaserVision/Laser:polygon")
+tracks/0/path = NodePath("LaserVision/MainLaser:polygon")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -34,7 +44,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("LaserVision/Laser:rotation")
+tracks/1/path = NodePath("LaserVision/MainLaser:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -57,13 +67,49 @@ tracks/2/keys = {
 "method": &"explode_ground"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LaserVision/OutlineLaser:polygon")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 0.5, 1),
+"update": 0,
+"values": [PackedVector2Array(0, 0, 728, 0, 728, 0), PackedVector2Array(0, 0, 728, -128, 728, 128), PackedVector2Array(0, 0, 728, -148, 728, 148), PackedVector2Array(0, 0, 728, -128, 728, 128), PackedVector2Array(0, 0, 728, 0, 728, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LaserVision/OutlineLaser/Laser3:polygon")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 0.5, 1),
+"update": 0,
+"values": [PackedVector2Array(0, 0, 728, 0, 728, 0), PackedVector2Array(0, 0, 728, -128, 728, 128), PackedVector2Array(0, 0, 728, -148, 728, 148), PackedVector2Array(0, 0, 728, -128, 728, 128), PackedVector2Array(0, 0, 728, 0, 728, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LaserVision/OutlineLaser:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 0.68302, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 3.14159, 3.14159]
+}
 
 [sub_resource type="Animation" id="Animation_1esf2"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LaserVision/Laser:polygon")
+tracks/0/path = NodePath("LaserVision/MainLaser:polygon")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -75,10 +121,46 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("LaserVision/Laser:rotation")
+tracks/1/path = NodePath("LaserVision/MainLaser:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LaserVision/OutlineLaser:polygon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(0, 0, 728, 0, 728, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LaserVision/OutlineLaser/Laser3:polygon")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(0, 0, 728, 0, 728, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LaserVision/OutlineLaser:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -227,7 +309,21 @@ metadata/_edit_lock_ = true
 [node name="LaserVision" type="Node2D" parent="RobotBackground"]
 position = Vector2(400, 96)
 
-[node name="Laser" type="Polygon2D" parent="RobotBackground/LaserVision"]
+[node name="OutlineLaser" type="Polygon2D" parent="RobotBackground/LaserVision"]
+modulate = Color(1, 1, 1, 0.6)
+color = Color(1, 0.61, 0.7725, 1)
+texture = SubResource("GradientTexture2D_tmwo2")
+invert_border = 40.6
+polygon = PackedVector2Array(0, 0, 728, 0, 728, 0)
+
+[node name="Laser3" type="Polygon2D" parent="RobotBackground/LaserVision/OutlineLaser"]
+scale = Vector2(1, -1)
+color = Color(1, 0.61, 0.7725, 1)
+texture = SubResource("GradientTexture2D_tmwo2")
+invert_border = 40.6
+polygon = PackedVector2Array(0, 0, 728, 0, 728, 0)
+
+[node name="MainLaser" type="Polygon2D" parent="RobotBackground/LaserVision"]
 color = Color(1, 0.61, 0.7725, 1)
 texture = SubResource("GradientTexture2D_6h3r0")
 polygon = PackedVector2Array(0, 0, 414, 0, 414, 0)
@@ -283,10 +379,15 @@ stream = ExtResource("6_kln8d")
 bus = &"Sounds"
 
 [node name="SoundOverlap" type="Timer" parent="."]
-wait_time = 0.075
+wait_time = 0.05
+
+[node name="SoundOverlapStop" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
 
 [connection signal="animation_finished" from="RobotBackground/AttackAnimation" to="." method="_on_attack_animation_animation_finished"]
 [connection signal="animation_finished" from="RobotMovement" to="." method="_on_robot_movement_animation_finished"]
 [connection signal="timeout" from="PrepareAttack" to="." method="_on_prepare_attack_timeout"]
 [connection signal="finished" from="SpawnParticles/Explosion" to="." method="_on_explosion_finished"]
 [connection signal="timeout" from="SoundOverlap" to="." method="_on_sound_overlap_timeout"]
+[connection signal="timeout" from="SoundOverlapStop" to="." method="_on_sound_overlap_stop_timeout"]

@@ -2,13 +2,13 @@ extends Node2D
 
 @export var trigger_id : int = 0
 
+
 @onready var spike: StaticBody2D = $Spike
 
 @onready var robot: Sprite2D = $RobotBackground/Robot
 
 @onready var attack_animation: AnimationPlayer = $RobotBackground/AttackAnimation
 @onready var robot_movement: AnimationPlayer = $RobotMovement
-
 
 @onready var prepare_attack: Timer = $PrepareAttack
 
@@ -22,6 +22,7 @@ extends Node2D
 @onready var explosion_sound: AudioStreamPlayer = $ExplosionSound
 
 @onready var sound_overlap: Timer = $SoundOverlap
+@onready var sound_overlap_stop: Timer = $SoundOverlapStop
 
 var explosion_spam_sound : bool = false
 var triggered : bool = false
@@ -41,10 +42,13 @@ func _process(delta: float) -> void:
 		GLOBAL_SOUNDS.play_sound(GLOBAL_SOUNDS.sndCherry)
 		triggered = true
 		await tween.finished
-		robot_movement.play("RobotBackgroundFall")
+		
+		# Is player alive?
+		if is_instance_valid(GLOBAL_INSTANCES.objPlayerID):
+			robot_movement.play("RobotBackgroundFall")
 	
-	if explosion_spam_sound:
-		explosion_sound.play()
+	#if explosion_spam_sound:
+	#	explosion_sound.play()
 	
 
 
@@ -52,6 +56,7 @@ func _process(delta: float) -> void:
 func explode_ground():
 	#explosion_spam_sound = true
 	sound_overlap.start()
+	sound_overlap_stop.start()
 	
 	smoke.emitting = true
 	explosion.emitting = true
@@ -63,7 +68,7 @@ func explode_ground():
 
 func _on_explosion_finished() -> void:
 	explosion_spam_sound = false
-	sound_overlap.stop()
+	#sound_overlap.stop()
 	explosion_collider.disabled = true
 
 
@@ -90,3 +95,9 @@ func _on_robot_movement_animation_finished(anim_name: StringName) -> void:
 
 func _on_sound_overlap_timeout() -> void:
 	explosion_sound.play()
+
+
+func _on_sound_overlap_stop_timeout() -> void:
+	sound_overlap.stop()
+	sound_overlap.queue_free()
+	print("sound gone")
