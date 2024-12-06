@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cntuum6spm8lb"]
+
+[ext_resource type="Shader" path="res://LaserNoise.gdshader" id="1_t6it7"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hi2kl"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oblrk"]
+seamless = true
+noise = SubResource("FastNoiseLite_hi2kl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gwtaj"]
+shader = ExtResource("1_t6it7")
+shader_parameter/speed_texture = Vector2(-0.605, 0.15)
+shader_parameter/texture_size = Vector2(64, 64)
+shader_parameter/screen_size = Vector2(13, 60)
+shader_parameter/texture_color = Color(0.368, 0.828, 0.92, 1)
+shader_parameter/replacement_color = Color(1, 1, 1, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_oblrk")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r86cs"]
+size = Vector2(11.089, 5.8697)
+
+[node name="Node2D" type="Node2D"]
+scale = Vector2(21.2, 2)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_gwtaj")
+offset_top = -24.0
+offset_right = 48.0
+offset_bottom = 24.0
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(23.9623, -2.38419e-07)
+scale = Vector2(4.3218, 6.81466)
+shape = SubResource("RectangleShape2D_r86cs")

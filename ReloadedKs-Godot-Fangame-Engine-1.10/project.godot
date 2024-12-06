@@ -235,6 +235,7 @@ button_proceed_check={
 2d_physics/layer_10="Vines"
 2d_physics/layer_11="SheepBlocks"
 2d_physics/layer_12="DirectionalBlocks"
+2d_physics/layer_13="PowerSourceGimmick"
 
 [rendering]
 

@@ -1,0 +1,241 @@
+[gd_scene load_steps=20 format=3 uid="uid://xbpnpw1b8qwk"]
+
+[ext_resource type="Script" path="res://Objects/Neos/obj_ring_power_attach.gd" id="1_auxjs"]
+[ext_resource type="AudioStream" uid="uid://lbuq56fwi0pd" path="res://Audio/Music/Neos/Charge1.ogg" id="2_rhunv"]
+
+[sub_resource type="Gradient" id="Gradient_r5wcu"]
+offsets = PackedFloat32Array(0.335052, 0.515464, 0.680412)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dowdp"]
+gradient = SubResource("Gradient_r5wcu")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_aakei"]
+resource_name = "GradientAnimate"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ring:texture:gradient:offsets")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.633333, 1),
+"transitions": PackedFloat32Array(0.297302, 1, 2.2974, 1),
+"update": 0,
+"values": [PackedFloat32Array(0.335052, 0.515464, 0.680412), PackedFloat32Array(0.335052, 0.407216, 0.680412), PackedFloat32Array(0.335052, 0.57732, 0.680412), PackedFloat32Array(0.335052, 0.515464, 0.680412)]
+}
+
+[sub_resource type="Animation" id="Animation_fbba6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ring:texture:gradient:offsets")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedFloat32Array(0.335052, 0.515464, 0.680412)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c3x30"]
+_data = {
+"GradientAnimate": SubResource("Animation_aakei"),
+"RESET": SubResource("Animation_fbba6")
+}
+
+[sub_resource type="Animation" id="Animation_l24vl"]
+resource_name = "Expand"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ring:texture:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.353553, -2, 4.59479),
+"update": 0,
+"values": [64, 80, 64]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ring:texture:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.353553, -2, 4.59479),
+"update": 0,
+"values": [64, 80, 64]
+}
+
+[sub_resource type="Animation" id="Animation_c1i3u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ring:texture:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [64]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ring:texture:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [64]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7c2iu"]
+_data = {
+"Expand": SubResource("Animation_l24vl"),
+"RESET": SubResource("Animation_c1i3u")
+}
+
+[sub_resource type="Animation" id="Animation_tqw6v"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_83jtq"]
+resource_name = "ToggleVisibility"
+length = 16.0
+step = 0.1
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("PowerSourceMusic")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_rhunv")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(7.5, 9.4, 11.3, 13.2, 14.1, 15.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0.5],
+"method": &"toggle_speed"
+}, {
+"args": [0.25],
+"method": &"toggle_speed"
+}, {
+"args": [0.125],
+"method": &"toggle_speed"
+}, {
+"args": [0.1],
+"method": &"toggle_speed"
+}, {
+"args": [0.05],
+"method": &"toggle_speed"
+}, {
+"args": [],
+"method": &"stop_toggle"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yu3cl"]
+_data = {
+"RESET": SubResource("Animation_tqw6v"),
+"ToggleVisibility": SubResource("Animation_83jtq")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eoy4a"]
+radius = 35.0
+
+[sub_resource type="Curve" id="Curve_hinoq"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_0emed"]
+curve = SubResource("Curve_hinoq")
+
+[sub_resource type="Curve" id="Curve_qp36b"]
+max_value = 4.0
+_data = [Vector2(0, 4), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mhuip"]
+curve = SubResource("Curve_qp36b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h1n6o"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 32.0
+emission_ring_radius = 32.0
+emission_ring_inner_radius = 26.59
+gravity = Vector3(0, -9.185, 0)
+radial_accel_min = 0.889998
+radial_accel_max = 35.4
+scale_curve = SubResource("CurveTexture_mhuip")
+alpha_curve = SubResource("CurveTexture_0emed")
+
+[node name="objRingPowerAttach" type="Node2D" groups=["PlayerPowerSource"]]
+script = ExtResource("1_auxjs")
+
+[node name="Ring" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_dowdp")
+
+[node name="RingGradientAnimate" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c3x30")
+}
+autoplay = "GradientAnimate"
+
+[node name="RingExpand" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7c2iu")
+}
+autoplay = "Expand"
+
+[node name="RingToggle" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yu3cl")
+}
+
+[node name="PowerSourceMusic" type="AudioStreamPlayer" parent="."]
+
+[node name="ToggleVisibilityTimer" type="Timer" parent="."]
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+shape = SubResource("CircleShape2D_eoy4a")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 55
+process_material = SubResource("ParticleProcessMaterial_h1n6o")
+lifetime = 2.0
+
+[connection signal="timeout" from="ToggleVisibilityTimer" to="." method="_on_toggle_visibility_timer_timeout"]

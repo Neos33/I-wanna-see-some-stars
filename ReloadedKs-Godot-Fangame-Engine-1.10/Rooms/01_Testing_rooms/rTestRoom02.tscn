@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://c7x2p1xnrh2l4"]
 
 [ext_resource type="PackedScene" uid="uid://bm40t36a6m8sc" path="res://Objects/Tiles/til32x32.tscn" id="1_eguov"]
-[ext_resource type="Resource" uid="uid://blhadyg4p87ni" path="res://Scripts/Neos/resMusic_LinkinPark.tres" id="3_0fe6s"]
+[ext_resource type="Resource" uid="uid://blhadyg4p87ni" path="res://Scripts/Neos/Music Resources/resMusic_LinkinPark.tres" id="3_0fe6s"]
 [ext_resource type="PackedScene" uid="uid://bp5rqk4l7tesk" path="res://Objects/Player/objPlayer.tscn" id="4_62n00"]
 [ext_resource type="PackedScene" uid="uid://bo3vrmvp7ayf8" path="res://Objects/Room_objects/objWarp.tscn" id="4_cy3jd"]
 [ext_resource type="PackedScene" uid="uid://uc3dfxqfjl7l" path="res://Objects/Backgrounds/objBackgroundTexture.tscn" id="4_dbyva"]

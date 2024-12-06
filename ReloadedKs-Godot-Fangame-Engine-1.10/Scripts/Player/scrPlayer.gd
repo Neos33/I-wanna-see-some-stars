@@ -550,3 +550,12 @@ func _on_sheep_blocks_body_entered(body):
 		GLOBAL_SOUNDS.play_sound(GLOBAL_SOUNDS.sndSheepBlock)
 		body.animation_player.play("animSheepBlock")
 		body.activated = true
+
+
+func _on_charge_source_area_entered(area: Area2D) -> void:
+	GLOBAL_MUSIC.music_pause()
+	print("AREA COLLIDING")
+
+
+func _on_charge_source_area_exited(area: Area2D) -> void:
+	pass

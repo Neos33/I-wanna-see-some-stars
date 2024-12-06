@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bvcymmq3uy3af"]
 
 [ext_resource type="PackedScene" uid="uid://byy0nyaw6gtki" path="res://Objects/Room_objects/objMusicPlayer.tscn" id="1_h61di"]
-[ext_resource type="Resource" uid="uid://bu232ghrmguxb" path="res://Scripts/Neos/resMusic_Level01.tres" id="2_peutx"]
+[ext_resource type="Resource" uid="uid://bu232ghrmguxb" path="res://Scripts/Neos/Music Resources/resMusic_Level01.tres" id="2_peutx"]
 [ext_resource type="PackedScene" uid="uid://bm40t36a6m8sc" path="res://Objects/Tiles/til32x32.tscn" id="3_8wqnp"]
 [ext_resource type="PackedScene" uid="uid://uc3dfxqfjl7l" path="res://Objects/Backgrounds/objBackgroundTexture.tscn" id="4_fbekd"]
 [ext_resource type="PackedScene" uid="uid://cjgn1pokbuu0p" path="res://Objects/Backgrounds/objBackgroundScrolling.tscn" id="5_5652x"]

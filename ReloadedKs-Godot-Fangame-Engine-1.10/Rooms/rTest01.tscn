@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://1ipi02ltnf6"]
+[gd_scene load_steps=10 format=3 uid="uid://1ipi02ltnf6"]
 
 [ext_resource type="PackedScene" uid="uid://bm40t36a6m8sc" path="res://Objects/Tiles/til32x32.tscn" id="2_srr13"]
 [ext_resource type="PackedScene" uid="uid://bp5rqk4l7tesk" path="res://Objects/Player/objPlayer.tscn" id="3_ett0c"]
 [ext_resource type="PackedScene" uid="uid://cdx3h81o7hqb4" path="res://Objects/Room_objects/objCameraDynamic.tscn" id="4_3jgni"]
+[ext_resource type="PackedScene" uid="uid://byy0nyaw6gtki" path="res://Objects/Room_objects/objMusicPlayer.tscn" id="5_7uscm"]
 [ext_resource type="PackedScene" uid="uid://b31w5fm4w5857" path="res://Objects/Room_objects/objSavePoint.tscn" id="5_8pcl1"]
 [ext_resource type="PackedScene" uid="uid://bgsnqoli388d7" path="res://Objects/Neos/RobotLaserAttack.tscn" id="6_egork"]
+[ext_resource type="Resource" uid="uid://bu232ghrmguxb" path="res://Scripts/Neos/Music Resources/resMusic_Level01.tres" id="6_t3fk7"]
+[ext_resource type="PackedScene" uid="uid://cbb60on63st1e" path="res://Objects/Neos/objRingPowerSource.tscn" id="7_l4kct"]
 [ext_resource type="PackedScene" uid="uid://da1qaif83tf17" path="res://Objects/Trigger_system/objTrigger.tscn" id="7_lq7ay"]
 
 [node name="rTemplate" type="Node2D"]
@@ -30,6 +33,10 @@ stop_down_at = 608
 [node name="objSavePoint" parent="Room_related" instance=ExtResource("5_8pcl1")]
 position = Vector2(240, 560)
 
+[node name="objMusicPlayer" parent="Room_related" instance=ExtResource("5_7uscm")]
+position = Vector2(-16, 96)
+song_data = Array[Resource]([ExtResource("6_t3fk7")])
+
 [node name="Gimmicks" type="Node2D" parent="."]
 
 [node name="Hazards" type="Node2D" parent="."]
@@ -47,5 +54,8 @@ metadata/_edit_group_ = true
 position = Vector2(384, 384)
 scale = Vector2(1, 5.04)
 trigger_id = 1
+
+[node name="objRingPowerSource" parent="." instance=ExtResource("7_l4kct")]
+position = Vector2(176, 520)
 
 [editable path="Trigger_related/RobotTrap"]

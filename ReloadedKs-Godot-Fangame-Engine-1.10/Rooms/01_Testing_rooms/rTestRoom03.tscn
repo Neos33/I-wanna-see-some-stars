@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Rooms/01_Testing_rooms/r_test_room_03.gd" id="1_hp3aq"]
 [ext_resource type="PackedScene" uid="uid://yab7pya0yr1j" path="res://Objects/Room_objects/objCameraFixed.tscn" id="2_xjp4s"]
 [ext_resource type="PackedScene" uid="uid://bm40t36a6m8sc" path="res://Objects/Tiles/til32x32.tscn" id="3_o5y43"]
-[ext_resource type="Resource" uid="uid://bu232ghrmguxb" path="res://Scripts/Neos/resMusic_Level01.tres" id="4_26yxc"]
+[ext_resource type="Resource" uid="uid://bu232ghrmguxb" path="res://Scripts/Neos/Music Resources/resMusic_Level01.tres" id="4_26yxc"]
 [ext_resource type="PackedScene" uid="uid://cjgn1pokbuu0p" path="res://Objects/Backgrounds/objBackgroundScrolling.tscn" id="4_raj0e"]
 [ext_resource type="Texture2D" uid="uid://bukwyfjur2ycm" path="res://Graphics/Backgrounds/bckDefaultGrid.png" id="5_4mkqd"]
 [ext_resource type="PackedScene" uid="uid://bp5rqk4l7tesk" path="res://Objects/Player/objPlayer.tscn" id="6_6hdy4"]
