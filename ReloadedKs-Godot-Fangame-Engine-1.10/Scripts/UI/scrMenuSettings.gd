@@ -8,7 +8,7 @@ extends Control
 @onready var sounds_bus: int = AudioServer.get_bus_index("Sounds")
 var music_volume: float = 1.0
 var sound_volume: float = 1.0
-var volume_step: float = 0.1
+var volume_step: float = 0.01
 
 # Toggleable variables (fullscreen, vsync, autoreset)
 var fullscreen_on: bool = false
@@ -265,6 +265,3 @@ func set_camera_anchor_positions():
 	for settings_container_nodes in $SettingsContainer.get_children():
 		if settings_container_nodes.has_focus():
 			camera_anchor_node.position.y = settings_container_nodes.position.y
-
-
-

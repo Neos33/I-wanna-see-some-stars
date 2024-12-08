@@ -30,10 +30,13 @@ func _process(delta: float) -> void:
 func destroy_attach():
 	GLOBAL_INSTANCES.objPlayerID.modulate = Color.WHITE
 	GLOBAL_MUSIC.music_resume()
+	get_tree().call_group("PowerSourceCentral", "available")
 	queue_free()
 	
 func activate():
 	print("ACTIVATED")
+	
+func run_countdown():
 	if !ring_toggle.is_playing():
 		ring_toggle.play("ToggleVisibility")
 	

@@ -31,6 +31,8 @@ var active : bool = false
 var time : float = 0
 var time_speed : float = 0.1
 
+var power_player = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -63,8 +65,18 @@ func _on_toggle_visibility_timer_timeout() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	#print("IS THIS GETTING ACTIVATED?")
 	get_tree().call_group("PlayerPowerSource", "destroy_attach")
+	power_player = null
 	music_source.stop()
 	GLOBAL_MUSIC.music_pause()
+	
+	# Create Power source attach
+	power_player = RING_POWER_ATTACH.instantiate()
+	power_player.call_deferred("activate")
+	GLOBAL_INSTANCES.objPlayerID.add_child(power_player)
+	
+	if is_instance_valid(GLOBAL_INSTANCES.objPlayerID):
+		GLOBAL_INSTANCES.objPlayerID.modulate = ring.modulate
+	
 		#Stop charge music
 	# Sound charging looping
 	# Stop main music
@@ -72,21 +84,21 @@ func _on_area_entered(area: Area2D) -> void:
 
 func _on_area_exited(area: Area2D) -> void:
 	#ring_toggle.play("ToggleVisibility")
-	var power_player = RING_POWER_ATTACH.instantiate()
-	power_player.call_deferred("activate")
+
+	
+	if power_player != null:
+		power_player.call_deferred("run_countdown")
 
 	var total_song = song_list.size()
 	var song_selected = song_list[randi() % total_song]
 	var music_pick = load(song_selected)
 	music_source.stream = music_pick
 	music_source.play()
-	
-	
-	GLOBAL_INSTANCES.objPlayerID.add_child(power_player)
-	
-	if is_instance_valid(GLOBAL_INSTANCES.objPlayerID):
-		GLOBAL_INSTANCES.objPlayerID.modulate = ring.modulate
 		
 	
 	#Play charge music 
 	# Stop Sound charging looping
+
+func available():
+	power_player = null
+	print("Is now available")

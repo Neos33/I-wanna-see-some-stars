@@ -8,7 +8,7 @@ var items_menu := preload("res://Objects/UI/objPauseMenuItems.tscn")
 var button_color_unfocused: Color = Color(0, 0, 0)
 var music_volume: float = 1.0
 var sound_volume: float = 1.0
-var volume_step: float = 0.1
+var volume_step: float = 0.01
 
 
 # Loads and sets values, gives focus, sets button labels and colors
