@@ -8,3 +8,4 @@ extends Node
 # The player object
 var objPlayerID: Node = null
 
+var objCameraID: Node = null

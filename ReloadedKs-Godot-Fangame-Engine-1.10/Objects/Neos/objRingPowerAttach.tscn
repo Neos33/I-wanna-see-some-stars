@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://xbpnpw1b8qwk"]
 
-[ext_resource type="Script" path="res://Objects/Neos/obj_ring_power_attach.gd" id="1_auxjs"]
+[ext_resource type="Script" path="res://Scripts/Neos/scrRingPowerAttach.gd" id="1_auxjs"]
 [ext_resource type="AudioStream" uid="uid://lbuq56fwi0pd" path="res://Audio/Music/Neos/Charge1.ogg" id="2_rhunv"]
 
 [sub_resource type="Gradient" id="Gradient_r5wcu"]

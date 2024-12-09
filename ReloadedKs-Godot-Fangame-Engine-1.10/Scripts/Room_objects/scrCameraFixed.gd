@@ -17,6 +17,10 @@ var camera_height: float = 608
 # Sets the zoom scaling and position smoothing speed once
 func _ready():
 	
+	if GLOBAL_INSTANCES.objCameraID == null or GLOBAL_INSTANCES.objCameraID != self:
+		GLOBAL_INSTANCES.objCameraID = self
+		print(name)
+		
 	# Sets the camera for each reset
 	if is_instance_valid(target_node):
 		set_camera_target()

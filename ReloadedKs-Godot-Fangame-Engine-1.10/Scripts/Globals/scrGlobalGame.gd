@@ -32,6 +32,9 @@ var dialog_events: Array = []
 var warp_to_point: Vector2 = Vector2.ZERO
 
 
+var circuit_gimmick : bool = false
+
+
 """
 Public readonly variables, meant to be accessed but not modified outside of this script
 """
@@ -311,3 +314,10 @@ func handle_titlebar():
 	title += deaths_str
 	
 	get_window().title = title
+	
+	
+	
+	
+# Custom methods
+func circuit_mode(mode : bool):
+	circuit_gimmick = mode

@@ -23,7 +23,9 @@ var get_xy: Vector2 = Vector2.ZERO
 
 
 func _ready():
-		
+		if GLOBAL_INSTANCES.objCameraID == null or GLOBAL_INSTANCES.objCameraID != self:
+			GLOBAL_INSTANCES.objCameraID = self
+			print(name)
 		# Gets camera target (player object, mostly)
 		# We know from objPlayerStart that objPlayer gets created alongside
 		# this camera object, so we just check in there if it actually exists

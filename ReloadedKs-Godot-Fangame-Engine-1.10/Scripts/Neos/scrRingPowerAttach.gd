@@ -28,9 +28,10 @@ func _process(delta: float) -> void:
 	
 	
 func destroy_attach():
-	GLOBAL_INSTANCES.objPlayerID.modulate = Color.WHITE
-	GLOBAL_MUSIC.music_resume()
-	get_tree().call_group("PowerSourceCentral", "available")
+	GLOBAL_INSTANCES.objPlayerID.modulate = Color.WHITE # Reset color
+	GLOBAL_MUSIC.music_resume() # Resume music
+	get_tree().call_group("PowerSourceCentral", "available") # Set available
+	GLOBAL_GAME.circuit_mode(false) # Reset gimmick
 	queue_free()
 	
 func activate():

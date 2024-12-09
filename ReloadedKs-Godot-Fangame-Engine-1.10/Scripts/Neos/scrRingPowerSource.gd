@@ -62,6 +62,7 @@ func _on_toggle_visibility_timer_timeout() -> void:
 	visible = !visible
 	
 
+# Touch the power
 func _on_area_entered(area: Area2D) -> void:
 	#print("IS THIS GETTING ACTIVATED?")
 	get_tree().call_group("PlayerPowerSource", "destroy_attach")
@@ -76,12 +77,14 @@ func _on_area_entered(area: Area2D) -> void:
 	
 	if is_instance_valid(GLOBAL_INSTANCES.objPlayerID):
 		GLOBAL_INSTANCES.objPlayerID.modulate = ring.modulate
+		
+	GLOBAL_GAME.circuit_mode(true)
 	
 		#Stop charge music
 	# Sound charging looping
 	# Stop main music
 
-
+# Not touching the power anymore, start action
 func _on_area_exited(area: Area2D) -> void:
 	#ring_toggle.play("ToggleVisibility")
 
