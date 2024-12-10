@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxqox6vyx3bli"]
+
+[ext_resource type="Texture2D" uid="uid://mgx6x5nn2vb8" path="res://Graphics/Tilemaps/tilSpikes.png" id="1_71g6f"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1s4bh"]
+texture = ExtResource("1_71g6f")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 0, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -16, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 0, 16, -16, 16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, 0, -16, 16, -16, -16)
+
+[sub_resource type="TileSet" id="TileSet_5lym1"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 8
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_1s4bh")
+
+[node name="tilSpikes" type="TileMap" groups=["Killers"]]
+tile_set = SubResource("TileSet_5lym1")
+format = 2

@@ -559,3 +559,9 @@ func _on_charge_source_area_entered(area: Area2D) -> void:
 
 func _on_charge_source_area_exited(area: Area2D) -> void:
 	pass
+
+
+# You will die only if the power source gimmick is OFF
+func _on_ps_killers_body_entered(body: Node2D) -> void:
+	if !GLOBAL_GAME.circuit_gimmick:
+		on_death()

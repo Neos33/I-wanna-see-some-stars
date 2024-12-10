@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bp5rqk4l7tesk"]
+[gd_scene load_steps=32 format=3 uid="uid://bp5rqk4l7tesk"]
 
 [ext_resource type="Script" path="res://Scripts/Player/scrPlayer.gd" id="1_qesj7"]
 [ext_resource type="Texture2D" uid="uid://burygy08cq204" path="res://Graphics/Sprites/Player/sprPlayerFall.png" id="2_vhr1p"]
@@ -168,6 +168,9 @@ size = Vector2(12, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8ugm"]
 size = Vector2(14, 22)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvft0"]
+size = Vector2(12, 20)
+
 [node name="objPlayer" type="CharacterBody2D" groups=["Player"]]
 z_index = 2
 collision_mask = 6
@@ -263,15 +266,27 @@ position = Vector2(1, 6)
 shape = SubResource("RectangleShape2D_mo373")
 debug_color = Color(1, 0.00784314, 0.0509804, 0.419608)
 
-[node name="ChargeSource" type="Area2D" parent="extraCollisions"]
+[node name="ChargeCircuitCollider" type="Node2D" parent="extraCollisions"]
+
+[node name="ChargeSource" type="Area2D" parent="extraCollisions/ChargeCircuitCollider"]
 collision_layer = 4096
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="extraCollisions/ChargeSource"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="extraCollisions/ChargeCircuitCollider/ChargeSource"]
 visible = false
 position = Vector2(1, 6)
 shape = SubResource("RectangleShape2D_y8ugm")
 debug_color = Color(0.634317, 0.52645, 0.0902487, 0.42)
+
+[node name="PSKillers" type="Area2D" parent="extraCollisions/ChargeCircuitCollider"]
+collision_layer = 0
+collision_mask = 8192
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="extraCollisions/ChargeCircuitCollider/PSKillers"]
+visible = false
+position = Vector2(1, 6)
+shape = SubResource("RectangleShape2D_kvft0")
+debug_color = Color(0.875006, 0.303041, 0.433075, 0.42)
 
 [connection signal="body_entered" from="extraCollisions/Platforms" to="." method="_on_platforms_body_entered"]
 [connection signal="body_exited" from="extraCollisions/Platforms" to="." method="_on_platforms_body_exited"]
@@ -282,5 +297,6 @@ debug_color = Color(0.634317, 0.52645, 0.0902487, 0.42)
 [connection signal="body_entered" from="extraCollisions/Vines" to="." method="_on_vines_body_entered"]
 [connection signal="body_exited" from="extraCollisions/Vines" to="." method="_on_vines_body_exited"]
 [connection signal="body_entered" from="extraCollisions/SheepBlocks" to="." method="_on_sheep_blocks_body_entered"]
-[connection signal="area_entered" from="extraCollisions/ChargeSource" to="." method="_on_charge_source_area_entered"]
-[connection signal="area_exited" from="extraCollisions/ChargeSource" to="." method="_on_charge_source_area_exited"]
+[connection signal="area_entered" from="extraCollisions/ChargeCircuitCollider/ChargeSource" to="." method="_on_charge_source_area_entered"]
+[connection signal="area_exited" from="extraCollisions/ChargeCircuitCollider/ChargeSource" to="." method="_on_charge_source_area_exited"]
+[connection signal="body_entered" from="extraCollisions/ChargeCircuitCollider/PSKillers" to="." method="_on_ps_killers_body_entered"]
