@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bp5rqk4l7tesk"]
+[gd_scene load_steps=33 format=3 uid="uid://bp5rqk4l7tesk"]
 
 [ext_resource type="Script" path="res://Scripts/Player/scrPlayer.gd" id="1_qesj7"]
 [ext_resource type="Texture2D" uid="uid://burygy08cq204" path="res://Graphics/Sprites/Player/sprPlayerFall.png" id="2_vhr1p"]
@@ -171,6 +171,9 @@ size = Vector2(14, 22)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kvft0"]
 size = Vector2(12, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wu6p6"]
+size = Vector2(12, 20)
+
 [node name="objPlayer" type="CharacterBody2D" groups=["Player"]]
 z_index = 2
 collision_mask = 6
@@ -288,6 +291,16 @@ position = Vector2(1, 6)
 shape = SubResource("RectangleShape2D_kvft0")
 debug_color = Color(0.875006, 0.303041, 0.433075, 0.42)
 
+[node name="PSBouncers" type="Area2D" parent="extraCollisions/ChargeCircuitCollider"]
+collision_layer = 0
+collision_mask = 16384
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="extraCollisions/ChargeCircuitCollider/PSBouncers"]
+visible = false
+position = Vector2(1, 6)
+shape = SubResource("RectangleShape2D_wu6p6")
+debug_color = Color(0.155286, 0.60693, 0.610992, 0.42)
+
 [connection signal="body_entered" from="extraCollisions/Platforms" to="." method="_on_platforms_body_entered"]
 [connection signal="body_exited" from="extraCollisions/Platforms" to="." method="_on_platforms_body_exited"]
 [connection signal="body_entered" from="extraCollisions/Killers" to="." method="_on_killers_body_entered"]
@@ -300,3 +313,4 @@ debug_color = Color(0.875006, 0.303041, 0.433075, 0.42)
 [connection signal="area_entered" from="extraCollisions/ChargeCircuitCollider/ChargeSource" to="." method="_on_charge_source_area_entered"]
 [connection signal="area_exited" from="extraCollisions/ChargeCircuitCollider/ChargeSource" to="." method="_on_charge_source_area_exited"]
 [connection signal="body_entered" from="extraCollisions/ChargeCircuitCollider/PSKillers" to="." method="_on_ps_killers_body_entered"]
+[connection signal="area_entered" from="extraCollisions/ChargeCircuitCollider/PSBouncers" to="." method="_on_ps_bouncers_area_entered"]

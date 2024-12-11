@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://filj18te7doj"]
+
+[ext_resource type="Script" path="res://Scripts/Neos/scrPSBlockBounce.gd" id="1_4v2r3"]
+[ext_resource type="Texture2D" uid="uid://ce764rqb8dydy" path="res://Graphics/Tiles/tilAllTiles.png" id="1_ft7x3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kuli5"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0iro"]
+size = Vector2(32, 9.5)
+
+[node name="objPSBlockBounce" type="AnimatableBody2D"]
+collision_layer = 2
+script = ExtResource("1_4v2r3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0.93, 0.527, 1)
+texture = ExtResource("1_ft7x3")
+centered = false
+region_enabled = true
+region_rect = Rect2(96, 64, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_kuli5")
+
+[node name="BounceHitbox" type="Area2D" parent="."]
+collision_layer = 16384
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BounceHitbox"]
+position = Vector2(16, -3.25)
+shape = SubResource("RectangleShape2D_a0iro")
+debug_color = Color(0.90617, 0.227843, 0.510381, 0.42)

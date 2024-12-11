@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://1ipi02ltnf6"]
+[gd_scene load_steps=14 format=3 uid="uid://1ipi02ltnf6"]
 
 [ext_resource type="PackedScene" uid="uid://bm40t36a6m8sc" path="res://Objects/Tiles/til32x32.tscn" id="2_srr13"]
 [ext_resource type="PackedScene" uid="uid://bp5rqk4l7tesk" path="res://Objects/Player/objPlayer.tscn" id="3_ett0c"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cbb60on63st1e" path="res://Objects/Neos/objRingPowerSource.tscn" id="7_l4kct"]
 [ext_resource type="PackedScene" uid="uid://da1qaif83tf17" path="res://Objects/Trigger_system/objTrigger.tscn" id="7_lq7ay"]
 [ext_resource type="Texture2D" uid="uid://mgx6x5nn2vb8" path="res://Graphics/Tilemaps/tilSpikes.png" id="10_70thi"]
+[ext_resource type="PackedScene" uid="uid://filj18te7doj" path="res://Objects/Neos/objPSBlockBounce.tscn" id="11_q6hro"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_euu1o"]
 texture = ExtResource("10_70thi")
@@ -30,7 +31,7 @@ physics_layer_0/collision_mask = 0
 terrain_set_0/mode = 0
 sources/0 = SubResource("TileSetAtlasSource_euu1o")
 
-[node name="rTemplate" type="Node2D"]
+[node name="rTest01" type="Node2D"]
 
 [node name="Environment" type="Node2D" parent="."]
 
@@ -82,5 +83,14 @@ position = Vector2(176, 520)
 modulate = Color(0.337, 1, 0.22, 1)
 tile_map_data = PackedByteArray(0, 0, 253, 255, 17, 0, 0, 0, 1, 0, 0, 0, 0, 0, 253, 255, 16, 0, 0, 0, 1, 0, 0, 0, 0, 0, 253, 255, 15, 0, 0, 0, 1, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_d73sw")
+
+[node name="objPSBlockBounce" parent="." instance=ExtResource("11_q6hro")]
+position = Vector2(-224, 576)
+
+[node name="objPSBlockBounce2" parent="." instance=ExtResource("11_q6hro")]
+position = Vector2(-288, 576)
+
+[node name="objPSBlockBounce3" parent="." instance=ExtResource("11_q6hro")]
+position = Vector2(-288, 448)
 
 [editable path="Trigger_related/RobotTrap"]

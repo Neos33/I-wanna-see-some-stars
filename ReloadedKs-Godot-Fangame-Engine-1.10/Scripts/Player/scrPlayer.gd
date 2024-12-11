@@ -28,7 +28,7 @@ signal player_djumped
 signal player_walljumped
 signal player_shot
 
-
+var PS_stored_velocity : Vector2 = Vector2.ZERO
 
 func _ready():
 	
@@ -91,6 +91,9 @@ func _physics_process(delta):
 	# animation bug when resetting.
 	move_and_slide()
 	handle_animations()
+	
+		
+
 
 
 # Debug key inputs
@@ -565,3 +568,12 @@ func _on_charge_source_area_exited(area: Area2D) -> void:
 func _on_ps_killers_body_entered(body: Node2D) -> void:
 	if !GLOBAL_GAME.circuit_gimmick:
 		on_death()
+
+
+# Bounce blocks works if we fall into the block
+func _on_ps_bouncers_area_entered(area: Area2D) -> void:
+	if GLOBAL_GAME.circuit_gimmick and velocity.y > 0:
+		velocity.y = -s_jump_speed * 1.5
+		# Audio
+		GLOBAL_SOUNDS.play_sound(GLOBAL_SOUNDS.sndCoin)
+	print(velocity.y)
