@@ -33,6 +33,7 @@ var warp_to_point: Vector2 = Vector2.ZERO
 
 
 var circuit_gimmick : bool = false
+var camera_position_global : Vector2 = Vector2.ZERO
 
 
 """

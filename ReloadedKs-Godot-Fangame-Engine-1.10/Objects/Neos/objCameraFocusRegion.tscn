@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cepb2ntnm3yds"]
+
+[ext_resource type="Script" path="res://Scripts/Neos/scrCameraFocusRegion.gd" id="1_whs7l"]
+[ext_resource type="Texture2D" uid="uid://b6wjn6wemp8tk" path="res://Graphics/Sprites/Room_objects/sprCamera.png" id="2_6eyej"]
+
+[node name="objCameraFocusRegion" type="Node2D" groups=["CameraRegion"]]
+script = ExtResource("1_whs7l")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(1, 1, 1, 0.568627)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_6eyej")
+centered = false
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 1, 1, 0.447059)
+invert_enabled = true
+invert_border = 2.0
+polygon = PackedVector2Array(28, 4, 28, 28, 4, 28, 4, 4)
