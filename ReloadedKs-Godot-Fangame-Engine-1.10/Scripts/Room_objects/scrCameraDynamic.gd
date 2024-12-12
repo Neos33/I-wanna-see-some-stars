@@ -58,7 +58,7 @@ func _ready():
 			zoom = manual_zoom_amount
 		
 		# Invisible sprite, just for room creation
-		#$Sprite2D.visible = false
+		$Sprite2D.visible = false
 		
 		# Sets the camera's limits
 		for limit_array_1 in 4:

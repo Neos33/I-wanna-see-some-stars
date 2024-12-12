@@ -45,8 +45,10 @@ func _ready():
 	# Turns hitbox visible if debug setting is enabled
 	if GLOBAL_GAME.debug_hitbox:
 		$playerMask/ColorRect.visible = GLOBAL_GAME.debug_hitbox
-
-
+		
+		
+	GLOBAL_GAME.circuit_gimmick = false
+	
 """
 ---------- MAIN LOGIC LOOP ----------
 """

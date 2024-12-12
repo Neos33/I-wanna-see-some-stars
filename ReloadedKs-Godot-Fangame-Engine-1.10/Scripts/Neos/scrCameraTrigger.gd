@@ -22,6 +22,7 @@ func _ready() -> void:
 		sprite_2d.queue_free()
 		label.queue_free()
 		
+	visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
