@@ -8,6 +8,7 @@
 size = Vector2(32, 32)
 
 [node name="objCameraTrigger" type="Area2D"]
+visible = false
 collision_layer = 0
 script = ExtResource("1_l1ovh")
 trigger_id = 1
