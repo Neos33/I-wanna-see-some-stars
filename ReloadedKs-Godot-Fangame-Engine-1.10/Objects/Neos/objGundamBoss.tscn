@@ -1,0 +1,103 @@
+[gd_scene load_steps=6 format=3 uid="uid://qpkvcl0iv3c3"]
+
+[ext_resource type="Texture2D" uid="uid://dxncfahux68wn" path="res://Graphics/Sprites/Neos/Boss/PlayStation 2 - SD Gundam G Generation Wars - Akatsuki Oowashi Pack.png" id="1_cy6st"]
+[ext_resource type="Script" path="res://Scripts/Neos/scrGundamBoss.gd" id="1_li8o1"]
+[ext_resource type="AudioStream" uid="uid://b7xe2mm2nhqin" path="res://Audio/Sounds/Neos/Boss/Chrysalis_Singing.ogg" id="3_7jhhv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_08skg"]
+radius = 32.0
+height = 128.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iwmom"]
+radius = 128.996
+
+[node name="objGundamBoss" type="Node2D"]
+script = ExtResource("1_li8o1")
+
+[node name="RobotPart" type="Node2D" parent="."]
+
+[node name="fly" type="Sprite2D" parent="RobotPart"]
+position = Vector2(176, 152)
+texture = ExtResource("1_cy6st")
+region_enabled = true
+region_rect = Rect2(144, 520, 216, 56)
+
+[node name="arm_gun" type="Sprite2D" parent="RobotPart"]
+position = Vector2(40, 256)
+texture = ExtResource("1_cy6st")
+region_enabled = true
+region_rect = Rect2(0, 56, 128, 120)
+
+[node name="arm_gun5" type="Sprite2D" parent="RobotPart"]
+position = Vector2(240, 232)
+texture = ExtResource("1_cy6st")
+region_enabled = true
+region_rect = Rect2(336, 424, 112, 64)
+
+[node name="arm_gun3" type="Sprite2D" parent="RobotPart"]
+position = Vector2(96, 232)
+texture = ExtResource("1_cy6st")
+region_enabled = true
+region_rect = Rect2(128, 56, 80, 88)
+
+[node name="head" type="Sprite2D" parent="RobotPart"]
+position = Vector2(112, 168)
+texture = ExtResource("1_cy6st")
+region_enabled = true
+region_rect = Rect2(0, 176, 136, 112)
+
+[node name="arm_gun2" type="Sprite2D" parent="RobotPart"]
+position = Vector2(360, 176)
+texture = ExtResource("1_cy6st")
+region_enabled = true
+region_rect = Rect2(0, 0, 80, 56)
+
+[node name="arm_gun4" type="Sprite2D" parent="RobotPart"]
+position = Vector2(280, 304)
+texture = ExtResource("1_cy6st")
+region_enabled = true
+region_rect = Rect2(240, 344, 56, 40)
+
+[node name="arm_hand" type="Sprite2D" parent="RobotPart"]
+position = Vector2(184, 216)
+texture = ExtResource("1_cy6st")
+region_enabled = true
+region_rect = Rect2(136, 200, 96, 48)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D"]
+color = Color(1, 0.45, 0.45, 1)
+polygon = PackedVector2Array(0, 64, 32, 0, 0, -64, -32, -64, -32, 64)
+
+[node name="DamageHitbox" type="Area2D" parent="Node2D"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/DamageHitbox"]
+shape = SubResource("CapsuleShape2D_08skg")
+
+[node name="ShieldHitbox" type="Area2D" parent="Node2D"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/ShieldHitbox"]
+shape = SubResource("CircleShape2D_iwmom")
+disabled = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -24.0
+offset_top = 72.0
+offset_right = 16.0
+offset_bottom = 95.0
+text = "HP: "
+
+[node name="AudioAISinging" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7jhhv")
+max_distance = 300.0
+bus = &"Sounds"
+
+[connection signal="body_entered" from="Node2D/DamageHitbox" to="." method="_on_damage_hitbox_body_entered"]
+[connection signal="body_entered" from="Node2D/ShieldHitbox" to="." method="_on_shield_hitbox_body_entered"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd0w13m7gscov"]
+
+[ext_resource type="Shader" path="res://Scripts/Shaders/shNoiseTrick.gdshader" id="1_the8o"]
+[ext_resource type="Texture2D" uid="uid://3jxspa25b3vt" path="res://Graphics/Sprites/Neos/noise_texture_rgb.png" id="2_1ba12"]
+[ext_resource type="Script" path="res://Scripts/Neos/objFog.gd" id="3_6b1ub"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ejx0o"]
+shader = ExtResource("1_the8o")
+shader_parameter/scroll_speed1 = Vector2(-0.16, 0.075)
+shader_parameter/scroll_speed2 = Vector2(0.03, 0.08)
+shader_parameter/scroll_speed3 = Vector2(0.1, -0.065)
+shader_parameter/alpha_set = 0.7
+shader_parameter/smoke_color = Color(0.24021, 0.73802, 0.55312, 1)
+shader_parameter/noise = ExtResource("2_1ba12")
+
+[node name="objFog" type="ColorRect"]
+material = SubResource("ShaderMaterial_ejx0o")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.228, 0.57, 0.3477, 1)
+script = ExtResource("3_6b1ub")
+smoke_alpha = 1.0

@@ -30,6 +30,7 @@ var focus_speed: float = 0.1
 var get_xy: Vector2 = Vector2.ZERO
 
 var target_position : Vector2 = Vector2.ZERO
+var target_zoom : Vector2 = Vector2.ONE
 
 var snap_to_target : bool = true
 
@@ -107,11 +108,18 @@ func apply_movement():
 	position = target_position
 	GLOBAL_GAME.camera_position_global = position
 	
-func camera_change_limits(left, top, right, bottom):
-	camera_limit_left = left + 400
-	camera_limit_top = top + 304
-	camera_limit_right = right - 400
-	camera_limit_bottom = bottom - 304
+func camera_change_limits(left, top, right, bottom, zoom_level : Vector2 = Vector2.ONE):
+	var ratio = Vector2(800, 608) / (zoom_level * 2)
+	camera_limit_left = left + ratio.x
+	camera_limit_top = top + ratio.y
+	camera_limit_right = right - ratio.x
+	camera_limit_bottom = bottom - ratio.y
+	
+	if target_zoom != zoom_level:
+		target_zoom = zoom_level
+		
+		var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property(self, "zoom", target_zoom, 2.0)
 
 
 func _on_timer_timeout() -> void:

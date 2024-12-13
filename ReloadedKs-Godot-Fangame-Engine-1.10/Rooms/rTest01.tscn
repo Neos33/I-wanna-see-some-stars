@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://1ipi02ltnf6"]
+[gd_scene load_steps=41 format=4 uid="uid://1ipi02ltnf6"]
 
 [ext_resource type="PackedScene" uid="uid://muyqde0gl4we" path="res://Objects/Neos/objFadeOutScreenReset.tscn" id="1_bnttc"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/shTileNoise.gdshader" id="1_bxdb3"]
@@ -16,6 +16,10 @@
 [ext_resource type="PackedScene" uid="uid://cepb2ntnm3yds" path="res://Objects/Neos/objCameraFocusRegion.tscn" id="13_toipx"]
 [ext_resource type="Texture2D" uid="uid://ckj7pl72qw7ve" path="res://Graphics/Sprites/Neos/Tileset/sprTilesetOutlineFull.png" id="14_i1dmi"]
 [ext_resource type="Texture2D" uid="uid://ce764rqb8dydy" path="res://Graphics/Tiles/tilAllTiles.png" id="15_ydcm8"]
+[ext_resource type="PackedScene" uid="uid://dd0w13m7gscov" path="res://Objects/Neos/objFog.tscn" id="17_3dv8f"]
+[ext_resource type="PackedScene" uid="uid://btf5lgweb4c8u" path="res://Objects/Neos/objScreenBlur.tscn" id="18_6okhg"]
+[ext_resource type="Shader" path="res://shScreenBlured.gdshader" id="19_ille5"]
+[ext_resource type="PackedScene" uid="uid://qpkvcl0iv3c3" path="res://Objects/Neos/objGundamBoss.tscn" id="20_y3w38"]
 
 [sub_resource type="Gradient" id="Gradient_h5pwn"]
 colors = PackedColorArray(0.2132, 0.41, 0.28864, 0.415686, 1, 1, 1, 0.294118)
@@ -627,6 +631,46 @@ pattern_1 = SubResource("TileMapPattern_hh54u")
 pattern_2 = SubResource("TileMapPattern_8r8y6")
 pattern_3 = SubResource("TileMapPattern_8lp7r")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dogtx"]
+shader = ExtResource("19_ille5")
+shader_parameter/blur_amount = 0.0
+
+[sub_resource type="Animation" id="Animation_2ph32"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/objScreenBlur:material:shader_parameter/blur_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_avykx"]
+resource_name = "Story"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/objScreenBlur:material:shader_parameter/blur_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m14us"]
+_data = {
+"RESET": SubResource("Animation_2ph32"),
+"Story": SubResource("Animation_avykx")
+}
+
 [node name="rTest01" type="Node2D"]
 
 [node name="Node2D2" type="Control" parent="."]
@@ -635,6 +679,7 @@ anchors_preset = 0
 
 [node name="ColorRect" type="ColorRect" parent="Node2D2"]
 material = SubResource("ShaderMaterial_xtexx")
+layout_mode = 0
 offset_left = -384.0
 offset_top = 240.0
 offset_right = -224.0
@@ -660,6 +705,7 @@ position = Vector2(112, 552)
 
 [node name="objCameraDynamic" parent="Room_related" node_paths=PackedStringArray("target_node") instance=ExtResource("4_3jgni")]
 target_node = NodePath("../objPlayer")
+ignore_global_zoom = true
 stop_left_at = -800
 stop_up_at = 0
 stop_right_at = 2400
@@ -696,7 +742,6 @@ position = Vector2(-288, 576)
 position = Vector2(-288, 448)
 
 [node name="objCameraTrigger" parent="." instance=ExtResource("12_8ra5k")]
-visible = false
 position = Vector2(264, 448)
 scale = Vector2(1, 3.64)
 color = Color(1, 0.35, 0.35, 0.603922)
@@ -705,6 +750,7 @@ color = Color(1, 0.35, 0.35, 0.603922)
 position = Vector2(0, 480)
 scale = Vector2(41.8016, 27.1659)
 camera_index = 1
+zoom = Vector2(2, 2)
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -717,3 +763,59 @@ tile_set = SubResource("TileSet_40gwk")
 tile_map_data = PackedByteArray("AADj/xUAAwAIAAEAAADj/xYAAwAIAAEAAADk/xQAAwAKAAAAAADk/xYAAwAKAAEAAADl/xQAAwAKAAAAAADl/xUAAwAKAAEAAADo/xQAAwAIAAAAAADo/xUAAwAIAAEAAADo/xYAAwAIAAEAAADo/xcAAwAIAAEAAADo/xgAAwAIAAMAAADp/xQAAwAKAAAAAADp/xUAAwAKAAEAAADp/xYAAwAKAAEAAADp/xcAAwAKAAEAAADp/xgAAwAJAAMAAADq/xQAAwAKAAAAAADq/xUAAwAKAAEAAADq/xYAAwAKAAEAAADq/xcAAwAKAAEAAADq/xgAAwAJAAMAAADr/xQAAwAKAAAAAADr/xUAAwAKAAEAAADr/xYAAwAKAAEAAADr/xcAAwAKAAEAAADr/xgAAwAJAAMAAADs/xQAAwALAAAAAADs/xUAAwALAAIAAADs/xYAAwALAAIAAADs/xcAAwALAAIAAADs/xgAAwALAAMAAADu/xQAAwAKAAAAAADu/xUAAwAKAAEAAADu/xYAAwAKAAEAAADu/xcAAwAKAAEAAADu/xgAAwAJAAMAAADv/xQAAwAKAAAAAADv/xUAAwAKAAEAAADv/xYAAwAKAAEAAADv/xcAAwAKAAEAAADv/xgAAwAJAAMAAADw/xQAAwAKAAAAAADw/xUAAwAKAAEAAADw/xYAAwAKAAEAAADw/xcAAwAKAAEAAADw/xgAAwAJAAMAAADx/xQAAwALAAAAAADx/xUAAwALAAIAAADx/xYAAwALAAIAAADx/xcAAwALAAIAAADx/xgAAwALAAMAAADt/xQAAwAIAAAAAADt/xUAAwAIAAEAAADt/xYAAwAIAAEAAADt/xcAAwAIAAEAAADt/xgAAwAIAAMAAADt/w8AAwAIAAAAAADt/xAAAwAIAAEAAADt/xEAAwAIAAEAAADt/xIAAwAIAAEAAADt/xMAAwAIAAMAAADu/w8AAwAKAAAAAADu/xAAAwAKAAEAAADu/xEAAwAKAAEAAADu/xIAAwAKAAEAAADu/xMAAwAJAAMAAADv/w8AAwAKAAAAAADv/xAAAwAKAAEAAADv/xEAAwAKAAEAAADv/xIAAwAKAAEAAADv/xMAAwAJAAMAAADw/w8AAwAKAAAAAADw/xAAAwAKAAEAAADw/xEAAwAKAAEAAADw/xIAAwAKAAEAAADw/xMAAwAJAAMAAADx/w8AAwALAAAAAADx/xAAAwALAAIAAADx/xEAAwALAAIAAADx/xIAAwALAAIAAADx/xMAAwALAAMAAADo/w8AAwAIAAAAAADo/xAAAwAIAAEAAADo/xEAAwAIAAEAAADo/xIAAwAIAAEAAADo/xMAAwAIAAMAAADp/w8AAwAKAAAAAADp/xAAAwAKAAEAAADp/xEAAwAKAAEAAADp/xIAAwAKAAEAAADp/xMAAwAJAAMAAADq/w8AAwAKAAAAAADq/xAAAwAKAAEAAADq/xEAAwAKAAEAAADq/xIAAwAKAAEAAADq/xMAAwAJAAMAAADr/w8AAwAKAAAAAADr/xAAAwAKAAEAAADr/xEAAwAKAAEAAADr/xIAAwAKAAEAAADr/xMAAwAJAAMAAADs/w8AAwALAAAAAADs/xAAAwALAAIAAADs/xEAAwALAAIAAADs/xIAAwALAAIAAADs/xMAAwALAAMAAADj/xQAAwAIAAAAAADj/xcAAwAIAAEAAADj/xgAAwAIAAMAAADk/xUAAwAKAAEAAADk/xcAAwAKAAEAAADk/xgAAwAJAAMAAADl/xYAAwAKAAEAAADl/xcAAwAKAAEAAADl/xgAAwAJAAMAAADm/xQAAwAKAAAAAADm/xUAAwAKAAEAAADm/xYAAwAKAAEAAADm/xcAAwAKAAEAAADm/xgAAwAJAAMAAADn/xQAAwALAAAAAADn/xUAAwALAAIAAADn/xYAAwALAAIAAADn/xcAAwALAAIAAADn/xgAAwALAAMAAADj/w8AAwAIAAAAAADj/xAAAwAIAAEAAADj/xEAAwAIAAEAAADj/xIAAwAIAAEAAADj/xMAAwAIAAMAAADk/w8AAwAKAAAAAADk/xAAAwAKAAEAAADk/xEAAwAKAAEAAADk/xIAAwAKAAEAAADk/xMAAwAJAAMAAADl/w8AAwAKAAAAAADl/xAAAwAKAAEAAADl/xEAAwAKAAEAAADl/xIAAwAKAAEAAADl/xMAAwAJAAMAAADm/w8AAwAKAAAAAADm/xAAAwAKAAEAAADm/xEAAwAKAAEAAADm/xIAAwAKAAEAAADm/xMAAwAJAAMAAADn/w8AAwALAAAAAADn/xAAAwALAAIAAADn/xEAAwALAAIAAADn/xIAAwALAAIAAADn/xMAAwALAAMAAADe/xYAAwAIAAAAAADe/xcAAwAIAAEAAADe/xgAAwAIAAMAAADf/xYAAwAKAAAAAADf/xcAAwAKAAEAAADf/xgAAwAJAAMAAADg/xYAAwAKAAAAAADg/xcAAwAKAAEAAADg/xgAAwAJAAMAAADh/xYAAwAKAAAAAADh/xcAAwAKAAEAAADh/xgAAwAJAAMAAADi/xYAAwALAAAAAADi/xcAAwALAAIAAADi/xgAAwALAAMAAADe/w8AAwAIAAAAAADe/xAAAwAIAAEAAADe/xEAAwAIAAEAAADe/xIAAwAIAAEAAADe/xMAAwAIAAMAAADf/w8AAwAKAAAAAADf/xAAAwAKAAEAAADf/xEAAwAKAAEAAADf/xIAAwAKAAEAAADf/xMAAwAJAAMAAADg/w8AAwALAAAAAADg/xAAAwALAAIAAADg/xEAAwALAAIAAADg/xIAAwALAAIAAADg/xMAAwALAAMAAADX/xMAAwAIAAAAAADX/xQAAwAIAAMAAADY/xMAAwALAAAAAADY/xQAAwALAAMAAAA=")
 tile_set = SubResource("TileSet_6j1ct")
 metadata/_edit_lock_ = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(800, 800)
+
+[node name="objFog" parent="ParallaxBackground/ParallaxLayer" instance=ExtResource("17_3dv8f")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 800.0
+offset_bottom = 800.0
+grow_horizontal = 1
+grow_vertical = 1
+color = Color(0.24021, 0.73802, 0.55312, 1)
+smoke_alpha = 0.7
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="objScreenBlur" parent="CanvasLayer" instance=ExtResource("18_6okhg")]
+material = SubResource("ShaderMaterial_dogtx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_m14us")
+}
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "I forgot what I was doing here"
+
+[node name="objGundamBoss" parent="." instance=ExtResource("20_y3w38")]
+position = Vector2(-24, 520)
+
+[editable path="ParallaxBackground/ParallaxLayer/objFog"]
