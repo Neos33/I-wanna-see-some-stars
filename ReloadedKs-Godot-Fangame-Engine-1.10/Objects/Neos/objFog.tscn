@@ -9,8 +9,8 @@ shader = ExtResource("1_the8o")
 shader_parameter/scroll_speed1 = Vector2(-0.16, 0.075)
 shader_parameter/scroll_speed2 = Vector2(0.03, 0.08)
 shader_parameter/scroll_speed3 = Vector2(0.1, -0.065)
-shader_parameter/alpha_set = 0.7
-shader_parameter/smoke_color = Color(0.24021, 0.73802, 0.55312, 1)
+shader_parameter/alpha_set = 1.0
+shader_parameter/smoke_color = Color(0.228, 0.57, 0.3477, 1)
 shader_parameter/noise = ExtResource("2_1ba12")
 
 [node name="objFog" type="ColorRect"]

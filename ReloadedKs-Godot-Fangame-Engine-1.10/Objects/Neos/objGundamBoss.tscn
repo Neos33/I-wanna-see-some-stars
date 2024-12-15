@@ -1,8 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://qpkvcl0iv3c3"]
+[gd_scene load_steps=15 format=3 uid="uid://qpkvcl0iv3c3"]
 
 [ext_resource type="Texture2D" uid="uid://dxncfahux68wn" path="res://Graphics/Sprites/Neos/Boss/PlayStation 2 - SD Gundam G Generation Wars - Akatsuki Oowashi Pack.png" id="1_cy6st"]
 [ext_resource type="Script" path="res://Scripts/Neos/scrGundamBoss.gd" id="1_li8o1"]
 [ext_resource type="AudioStream" uid="uid://b7xe2mm2nhqin" path="res://Audio/Sounds/Neos/Boss/Chrysalis_Singing.ogg" id="3_7jhhv"]
+[ext_resource type="Script" path="res://Objects/Neos/FiniteStateMachine.gd" id="4_ejbvf"]
+[ext_resource type="Script" path="res://Objects/Neos/state_summersive.gd" id="5_62srp"]
+[ext_resource type="Script" path="res://Objects/Neos/state_radio.gd" id="6_mffql"]
+[ext_resource type="Script" path="res://Objects/Neos/state_shield.gd" id="7_sqbsm"]
+[ext_resource type="Script" path="res://Objects/Neos/state_approch_and_slash.gd" id="7_vpqrf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_08skg"]
 radius = 32.0
@@ -11,10 +16,66 @@ height = 128.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_iwmom"]
 radius = 128.996
 
-[node name="objGundamBoss" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u6khy"]
+size = Vector2(64, 88)
+
+[sub_resource type="Animation" id="Animation_k4di0"]
+resource_name = "summersive_ground"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlaceHolderShapeBoss:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -4.71239]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FiniteStateMachine/StateSummersive")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.866667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"going_down"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_xw0lk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlaceHolderShapeBoss:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qrhxp"]
+_data = {
+"RESET": SubResource("Animation_xw0lk"),
+"summersive_ground": SubResource("Animation_k4di0")
+}
+
+[node name="objGundamBoss" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 0
 script = ExtResource("1_li8o1")
 
 [node name="RobotPart" type="Node2D" parent="."]
+visible = false
 
 [node name="fly" type="Sprite2D" parent="RobotPart"]
 position = Vector2(176, 152)
@@ -64,40 +125,77 @@ texture = ExtResource("1_cy6st")
 region_enabled = true
 region_rect = Rect2(136, 200, 96, 48)
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="PlaceHolderShapeBoss" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+[node name="Sprite2D" type="Sprite2D" parent="PlaceHolderShapeBoss"]
 
-[node name="Polygon2D" type="Polygon2D" parent="Node2D"]
+[node name="Polygon2D" type="Polygon2D" parent="PlaceHolderShapeBoss"]
 color = Color(1, 0.45, 0.45, 1)
 polygon = PackedVector2Array(0, 64, 32, 0, 0, -64, -32, -64, -32, 64)
 
-[node name="DamageHitbox" type="Area2D" parent="Node2D"]
+[node name="DamageHitbox" type="Area2D" parent="PlaceHolderShapeBoss"]
 collision_layer = 0
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/DamageHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaceHolderShapeBoss/DamageHitbox"]
 shape = SubResource("CapsuleShape2D_08skg")
 
-[node name="ShieldHitbox" type="Area2D" parent="Node2D"]
+[node name="ShieldHitbox" type="Area2D" parent="PlaceHolderShapeBoss"]
 collision_layer = 0
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/ShieldHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaceHolderShapeBoss/ShieldHitbox"]
 shape = SubResource("CircleShape2D_iwmom")
 disabled = true
 
-[node name="Label" type="Label" parent="."]
+[node name="BossHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_u6khy")
+debug_color = Color(0.953069, 0.152403, 0.397168, 0.42)
+
+[node name="HPText" type="Label" parent="."]
 offset_left = -24.0
 offset_top = 72.0
 offset_right = 16.0
 offset_bottom = 95.0
+theme_override_constants/outline_size = 3
 text = "HP: "
+
+[node name="DebugStateName" type="Label" parent="."]
+offset_left = -160.0
+offset_top = -88.0
+offset_right = 160.0
+offset_bottom = -65.0
+theme_override_constants/outline_size = 3
+text = "debug"
+horizontal_alignment = 1
 
 [node name="AudioAISinging" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_7jhhv")
 max_distance = 300.0
+panning_strength = 3.0
 bus = &"Sounds"
 
-[connection signal="body_entered" from="Node2D/DamageHitbox" to="." method="_on_damage_hitbox_body_entered"]
-[connection signal="body_entered" from="Node2D/ShieldHitbox" to="." method="_on_shield_hitbox_body_entered"]
+[node name="FiniteStateMachine" type="Node2D" parent="." node_paths=PackedStringArray("controlled_object")]
+script = ExtResource("4_ejbvf")
+controlled_object = NodePath("..")
+
+[node name="StateSummersive" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("5_62srp")
+
+[node name="StateRadio" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("6_mffql")
+
+[node name="StateApprochAndSlash" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("7_vpqrf")
+
+[node name="StateShield" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("7_sqbsm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qrhxp")
+}
+
+[connection signal="body_entered" from="PlaceHolderShapeBoss/DamageHitbox" to="." method="_on_damage_hitbox_body_entered"]
+[connection signal="body_entered" from="PlaceHolderShapeBoss/ShieldHitbox" to="FiniteStateMachine/StateShield" method="_on_shield_hitbox_body_entered"]

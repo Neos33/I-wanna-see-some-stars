@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://dmi0l5pacct23"]
+
+[ext_resource type="PackedScene" uid="uid://byy0nyaw6gtki" path="res://Objects/Room_objects/objMusicPlayer.tscn" id="1_76nfi"]
+[ext_resource type="Script" path="res://Rooms/scrBossRoom.gd" id="1_ec4xw"]
+[ext_resource type="PackedScene" uid="uid://bp5rqk4l7tesk" path="res://Objects/Player/objPlayer.tscn" id="2_r0hhx"]
+[ext_resource type="PackedScene" uid="uid://bm40t36a6m8sc" path="res://Objects/Tiles/til32x32.tscn" id="3_35xyy"]
+[ext_resource type="PackedScene" uid="uid://b31w5fm4w5857" path="res://Objects/Room_objects/objSavePoint.tscn" id="4_eyj7o"]
+[ext_resource type="PackedScene" uid="uid://cdx3h81o7hqb4" path="res://Objects/Room_objects/objCameraDynamic.tscn" id="5_5w7pa"]
+[ext_resource type="PackedScene" uid="uid://cepb2ntnm3yds" path="res://Objects/Neos/objCameraFocusRegion.tscn" id="5_kgg2r"]
+[ext_resource type="PackedScene" uid="uid://qpkvcl0iv3c3" path="res://Objects/Neos/objGundamBoss.tscn" id="6_ekijr"]
+
+[node name="rBossRoom" type="Node2D"]
+script = ExtResource("1_ec4xw")
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="objMusicPlayer" parent="Environment" instance=ExtResource("1_76nfi")]
+position = Vector2(-16, 16)
+
+[node name="objPlayer" parent="Environment" instance=ExtResource("2_r0hhx")]
+position = Vector2(472, 464)
+
+[node name="til32x32" parent="Environment" instance=ExtResource("3_35xyy")]
+rendering_quadrant_size = 32
+layer_0/tile_data = PackedInt32Array(983040, 65536, 3, 983064, 65536, 3, 983063, 0, 3, 983062, 0, 3, 983061, 0, 3, 983060, 0, 3, 983059, 0, 3, 983058, 0, 3, 983057, 0, 3, 983056, 0, 3, 983055, 0, 3, 983054, 0, 3, 983053, 0, 3, 983052, 0, 3, 983051, 0, 3, 983050, 0, 3, 983049, 0, 3, 983048, 0, 3, 983047, 0, 3, 983046, 0, 3, 983045, 0, 3, 983044, 0, 3, 983043, 0, 3, 983042, 0, 3, 983041, 0, 3, 1048576, 0, 2, 1048577, 0, 2, 1048578, 0, 2, 1048579, 0, 2, 1048580, 0, 2, 1048581, 0, 2, 1048582, 0, 2, 1048583, 0, 2, 1048584, 0, 2, 1048585, 0, 2, 1048586, 0, 2, 1048587, 0, 2, 1048588, 0, 2, 1048589, 0, 2, 1048590, 0, 2, 1048591, 0, 2, 1048592, 0, 2, 1048593, 0, 2, 1048594, 0, 2, 1048595, 0, 2, 1048596, 0, 2, 1048597, 0, 2, 1048598, 0, 2, 1048599, 0, 2, 1048600, 0, 2, 1114136, 0, 2, 1179672, 0, 2, 1245208, 0, 2, 1245207, 0, 2, 1245206, 0, 2, 1245205, 0, 2, 1245204, 0, 2, 1245203, 0, 2, 1245202, 0, 2, 1245201, 0, 2, 1245200, 0, 2, 1245199, 0, 2, 1245198, 0, 2, 1245197, 0, 2, 1245196, 0, 2, 1245195, 0, 2, 1245194, 0, 2, 1245193, 0, 2, 1245192, 0, 2, 1245191, 0, 2, 1245190, 0, 2, 1245189, 0, 2, 1245188, 0, 2, 1245187, 0, 2, 1245186, 0, 2, 1245185, 0, 2, 1245184, 0, 2, 1179648, 0, 2, 1114112, 0, 2, 1179653, 0, 2, 1114117, 0, 2, 1114116, 0, 2, 1114115, 0, 2, 1114114, 0, 2, 1114113, 0, 2, 1179649, 0, 2, 1179650, 0, 2, 1179651, 0, 2, 1179652, 0, 2, 1114118, 0, 2, 1179654, 0, 2, 1179655, 0, 2, 1114119, 0, 2, 1114120, 0, 2, 1179656, 0, 2, 1179657, 0, 2, 1114121, 0, 2, 1114122, 0, 2, 1179658, 0, 2, 1179659, 0, 2, 1114123, 0, 2, 1114124, 0, 2, 1179660, 0, 2, 1179661, 0, 2, 1114125, 0, 2, 1114126, 0, 2, 1179662, 0, 2, 1179663, 0, 2, 1114127, 0, 2, 1114128, 0, 2, 1179664, 0, 2, 1179665, 0, 2, 1114129, 0, 2, 1114130, 0, 2, 1179666, 0, 2, 1179667, 0, 2, 1114131, 0, 2, 1114132, 0, 2, 1179668, 0, 2, 1179669, 0, 2, 1114133, 0, 2, 1114134, 0, 2, 1179670, 0, 2, 1179671, 0, 2, 1114135, 0, 2)
+
+[node name="objSavePoint" parent="Environment" instance=ExtResource("4_eyj7o")]
+position = Vector2(304, 464)
+
+[node name="Room_related" type="Node2D" parent="."]
+
+[node name="CameraRegions" type="Node2D" parent="Room_related"]
+visible = false
+
+[node name="objCameraFocusRegion" parent="Room_related/CameraRegions" instance=ExtResource("5_kgg2r")]
+position = Vector2(0, 32)
+scale = Vector2(25, 19)
+
+[node name="objCameraFocusRegion2" parent="Room_related/CameraRegions" instance=ExtResource("5_kgg2r")]
+modulate = Color(0.735229, 0.957512, 0.99319, 0.486275)
+position = Vector2(-192, -40)
+scale = Vector2(37, 19)
+
+[node name="objCameraDynamic" parent="Room_related" node_paths=PackedStringArray("target_node") instance=ExtResource("5_5w7pa")]
+target_node = NodePath("../../Environment/objPlayer")
+stop_left_at = -800
+stop_up_at = -608
+stop_right_at = 1600
+stop_down_at = 1216
+
+[node name="Gimmicks" type="Node2D" parent="."]
+
+[node name="Hazards" type="Node2D" parent="."]
+
+[node name="Trigger_related" type="Node2D" parent="."]
+
+[node name="Boss" type="Node2D" parent="."]
+
+[node name="objGundamBoss" parent="Boss" instance=ExtResource("6_ekijr")]
+position = Vector2(656, 384)
+
+[connection signal="camera_mode_switch" from="Boss/objGundamBoss" to="." method="_on_obj_gundam_boss_camera_mode_switch"]

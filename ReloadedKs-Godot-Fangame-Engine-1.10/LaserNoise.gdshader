@@ -1,6 +1,7 @@
 shader_type canvas_item;
 
 uniform sampler2D noise : repeat_enable;
+uniform sampler2D gradient;
 uniform vec2 speed_texture = vec2(1, 1);
 
 uniform vec2 texture_size; // Tamaño de la textura (ancho y alto)
@@ -34,6 +35,7 @@ void fragment() {
         uv_final.rgb = replacement_color.rgb;
     }
 	COLOR = uv_final * texture_color * replacement_color;
+	COLOR.a = texture(gradient, vec2(UV.y, UV.x)).r;
 	//COLOR.rgba *= texture_color;
 }
 

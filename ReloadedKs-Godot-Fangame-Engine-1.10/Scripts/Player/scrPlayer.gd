@@ -29,9 +29,9 @@ signal player_walljumped
 signal player_shot
 
 var PS_stored_velocity : Vector2 = Vector2.ZERO
+@onready var player_listener: AudioListener2D = $PlayerListener
 
 func _ready():
-	
 	# If a savefile exists (we've saved at least once), we move the player to
 	# the saved position, and also set its sprite state (flipped or not).
 	if !GLOBAL_SAVELOAD.variableGameData.first_time_saving:

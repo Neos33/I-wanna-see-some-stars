@@ -8,12 +8,13 @@ var loop_end: float = 0.0
 enum MUSIC_MODE {PLAYING, PAUSED, STOPPED, SWITCHING, MUTED}
 
 var current_music_mode = null
-var main_music_volume = 1.0
+var main_music_volume = 0.0
 var song_index_selection : int = 0
 
 # Music should keep on playing/processing even if the game is paused
 func _ready():
 	process_mode = PROCESS_MODE_ALWAYS
+	main_music_volume = 1.0
 
 
 # Updates the volume level from the "Music" audio bus. Also checks if the music
@@ -21,7 +22,9 @@ func _ready():
 func _physics_process(_delta):
 	
 	if current_music_mode == MUSIC_MODE.PLAYING:
-		volume_db = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))
+		var bus_music_volume = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))
+		#volume_db = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))
+		volume_db = linear_to_db(db_to_linear(bus_music_volume) * main_music_volume)
 		# For pausing or resuming the music. Check scrGlobalGame
 		set_stream_paused(!GLOBAL_GAME.music_is_playing)
 	
@@ -102,3 +105,19 @@ func swap_music(new_audio_file : AudioStream, duration : float = 1.0, sync_song 
 		
 		# Set current mode to PLAYING
 		current_music_mode = MUSIC_MODE.PLAYING
+		
+func change_volume(volume : float, duration : float = 1.0):
+	var tween = create_tween()
+	tween.tween_property(self, "main_music_volume", volume, duration)
+	await tween.finished
+	main_music_volume = volume
+	
+func fade_out_and_stop(duration : float = 1.0):
+	var tween = create_tween()
+	tween.tween_property(self, "main_music_volume", 0.0, duration)
+	await tween.finished
+	# Stop music
+	stop()
+	stream = null
+	song_playing = null
+	main_music_volume = 1.0

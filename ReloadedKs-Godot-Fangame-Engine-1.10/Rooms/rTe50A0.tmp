@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://1ipi02ltnf6"]
+[gd_scene load_steps=41 format=4 uid="uid://1ipi02ltnf6"]
 
 [ext_resource type="PackedScene" uid="uid://muyqde0gl4we" path="res://Objects/Neos/objFadeOutScreenReset.tscn" id="1_bnttc"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/shTileNoise.gdshader" id="1_bxdb3"]
@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://btf5lgweb4c8u" path="res://Objects/Neos/objScreenBlur.tscn" id="18_6okhg"]
 [ext_resource type="Shader" path="res://shScreenBlured.gdshader" id="19_ille5"]
 [ext_resource type="PackedScene" uid="uid://qpkvcl0iv3c3" path="res://Objects/Neos/objGundamBoss.tscn" id="20_y3w38"]
-[ext_resource type="PackedScene" uid="uid://bo3vrmvp7ayf8" path="res://Objects/Room_objects/objWarp.tscn" id="21_3cnoi"]
 
 [sub_resource type="Gradient" id="Gradient_h5pwn"]
 colors = PackedColorArray(0.2132, 0.41, 0.28864, 0.415686, 1, 1, 1, 0.294118)
@@ -818,9 +817,5 @@ text = "I forgot what I was doing here"
 
 [node name="objGundamBoss" parent="." instance=ExtResource("20_y3w38")]
 position = Vector2(-24, 520)
-
-[node name="objWarp" parent="." instance=ExtResource("21_3cnoi")]
-position = Vector2(88, 408)
-warp_to = "res://Rooms/rBossRoom.tscn"
 
 [editable path="ParallaxBackground/ParallaxLayer/objFog"]

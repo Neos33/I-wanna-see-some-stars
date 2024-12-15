@@ -1,6 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cntuum6spm8lb"]
+[gd_scene load_steps=8 format=3 uid="uid://cntuum6spm8lb"]
 
 [ext_resource type="Shader" path="res://LaserNoise.gdshader" id="1_t6it7"]
+
+[sub_resource type="Gradient" id="Gradient_q8nao"]
+offsets = PackedFloat32Array(0, 0.314815, 0.679012, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0sawx"]
+gradient = SubResource("Gradient_q8nao")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hi2kl"]
 
@@ -16,6 +23,7 @@ shader_parameter/screen_size = Vector2(13, 60)
 shader_parameter/texture_color = Color(0.368, 0.828, 0.92, 1)
 shader_parameter/replacement_color = Color(1, 1, 1, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_oblrk")
+shader_parameter/gradient = SubResource("GradientTexture1D_0sawx")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r86cs"]
 size = Vector2(11.089, 5.8697)
