@@ -57,6 +57,6 @@ stop_down_at = 1216
 [node name="Boss" type="Node2D" parent="."]
 
 [node name="objGundamBoss" parent="Boss" instance=ExtResource("6_ekijr")]
-position = Vector2(656, 384)
+position = Vector2(464, 320)
 
 [connection signal="camera_mode_switch" from="Boss/objGundamBoss" to="." method="_on_obj_gundam_boss_camera_mode_switch"]
