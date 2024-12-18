@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmi0l5pacct23"]
+[gd_scene load_steps=10 format=3 uid="uid://dmi0l5pacct23"]
 
 [ext_resource type="PackedScene" uid="uid://byy0nyaw6gtki" path="res://Objects/Room_objects/objMusicPlayer.tscn" id="1_76nfi"]
 [ext_resource type="Script" path="res://Rooms/scrBossRoom.gd" id="1_ec4xw"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cdx3h81o7hqb4" path="res://Objects/Room_objects/objCameraDynamic.tscn" id="5_5w7pa"]
 [ext_resource type="PackedScene" uid="uid://cepb2ntnm3yds" path="res://Objects/Neos/objCameraFocusRegion.tscn" id="5_kgg2r"]
 [ext_resource type="PackedScene" uid="uid://qpkvcl0iv3c3" path="res://Objects/Neos/objGundamBoss.tscn" id="6_ekijr"]
+[ext_resource type="PackedScene" uid="uid://den5o41ncyqsn" path="res://Objects/Neos/Boss/objMissile.tscn" id="9_2q4hd"]
 
 [node name="rBossRoom" type="Node2D"]
 script = ExtResource("1_ec4xw")
@@ -61,5 +62,8 @@ position = Vector2(464, 320)
 
 [node name="AimSpawners" type="Node2D" parent="Boss"]
 position = Vector2(0, 352)
+
+[node name="objMissile" parent="." instance=ExtResource("9_2q4hd")]
+position = Vector2(210.914, 458.435)
 
 [connection signal="camera_mode_switch" from="Boss/objGundamBoss" to="." method="_on_obj_gundam_boss_camera_mode_switch"]

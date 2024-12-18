@@ -34,7 +34,7 @@ var target_zoom : Vector2 = Vector2.ONE
 
 var snap_to_target : bool = true
 
-var magnitude : Vector2 = Vector2(0.0, 4.0)
+var magnitude : Vector2 = Vector2(0.0, 0.0)
 
 
 func _ready():
@@ -68,7 +68,7 @@ func _ready():
 			var limit_array_2 = [stop_left_at, stop_up_at, stop_right_at, stop_down_at]
 			set_limit(limit_array_1, limit_array_2[limit_array_1])
 	
-		change_magnitude(Vector2(0.0, 2.0), 0.4)
+		
 		
 func change_magnitude(screenshake_magnitude : Vector2, duration : float):
 	var tween = create_tween()

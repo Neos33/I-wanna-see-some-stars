@@ -19,6 +19,7 @@ func boom():
 	obj_aim_visual_explosion.animation_player.play("Boom")
 	obj_aim_visual_explosion.visible = true
 	obj_aim_visual_explosion.collision_shape_2d.disabled = false
+	GLOBAL_INSTANCES.objCameraID.change_magnitude(Vector2(0.0, 2.0), 0.3)
 	#if explosion == null and parent != null:
 		#explosion = OBJ_AIM_VISUAL_EXPLOSION.instantiate()
 		##explosion.position = position #global_position
