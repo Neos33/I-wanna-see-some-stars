@@ -1,0 +1,168 @@
+[gd_scene load_steps=16 format=3 uid="uid://b145pxe80fi2f"]
+
+[ext_resource type="Texture2D" uid="uid://cd6kwxpwtxn84" path="res://Objects/Neos/explosion_gradient.tres" id="1_60l2k"]
+[ext_resource type="Script" path="res://Scripts/Neos/scrAimVisualExplosion.gd" id="1_s0uw6"]
+
+[sub_resource type="Curve" id="Curve_keiq6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.247368, 1), 0.0, 0.0, 0, 0, Vector2(0.868421, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_4gnwf"]
+curve = SubResource("Curve_keiq6")
+
+[sub_resource type="Gradient" id="Gradient_ceshb"]
+offsets = PackedFloat32Array(0, 0.160494, 0.277778, 0.734568, 1)
+colors = PackedColorArray(0.905, 1, 0.43, 1, 0.98, 0.703967, 0.343, 1, 1, 0.59, 0.59, 1, 1, 0.695833, 0.27, 1, 1, 0.933333, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n45k1"]
+gradient = SubResource("Gradient_ceshb")
+
+[sub_resource type="Curve" id="Curve_5dq60"]
+_data = [Vector2(0, 0.285714), 0.0, 0.0, 0, 0, Vector2(1, 0.483516), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0t3ea"]
+curve = SubResource("Curve_5dq60")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mxv7y"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+direction = Vector3(0, -15.905, 0)
+spread = 180.0
+initial_velocity_min = 230.09
+initial_velocity_max = 318.58
+gravity = Vector3(0, 139.36, 0)
+damping_min = 1.327
+damping_max = 6.637
+scale_curve = SubResource("CurveTexture_0t3ea")
+color_ramp = SubResource("GradientTexture1D_n45k1")
+alpha_curve = SubResource("CurveTexture_4gnwf")
+
+[sub_resource type="Gradient" id="Gradient_kg1ww"]
+offsets = PackedFloat32Array(0.448454, 0.515464, 0.572165)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sbvvm"]
+gradient = SubResource("Gradient_kg1ww")
+
+[sub_resource type="Animation" id="Animation_6w6gm"]
+resource_name = "Boom"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(4, 4), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.166667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"burst_particles"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../StaticBody2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_obe4g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_08uij"]
+_data = {
+"Boom": SubResource("Animation_6w6gm"),
+"RESET": SubResource("Animation_obe4g")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3tsm6"]
+radius = 32.0
+
+[node name="objAimVisualExplosion" type="GPUParticles2D"]
+emitting = false
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_mxv7y")
+texture = SubResource("GradientTexture2D_sbvvm")
+lifetime = 0.75
+one_shot = true
+explosiveness = 0.74
+randomness = 0.27
+script = ExtResource("1_s0uw6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_60l2k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_08uij")
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Killers"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_3tsm6")
+disabled = true
+debug_color = Color(0.981553, 0, 0.370048, 0.42)
+
+[connection signal="finished" from="." to="." method="_on_finished"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://1ipi02ltnf6"]
+[gd_scene load_steps=44 format=4 uid="uid://1ipi02ltnf6"]
 
 [ext_resource type="PackedScene" uid="uid://muyqde0gl4we" path="res://Objects/Neos/objFadeOutScreenReset.tscn" id="1_bnttc"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/shTileNoise.gdshader" id="1_bxdb3"]
@@ -21,6 +21,7 @@
 [ext_resource type="Shader" path="res://shScreenBlured.gdshader" id="19_ille5"]
 [ext_resource type="PackedScene" uid="uid://qpkvcl0iv3c3" path="res://Objects/Neos/objGundamBoss.tscn" id="20_y3w38"]
 [ext_resource type="PackedScene" uid="uid://bo3vrmvp7ayf8" path="res://Objects/Room_objects/objWarp.tscn" id="21_3cnoi"]
+[ext_resource type="Texture2D" uid="uid://bn3kd5f1m0n1p" path="res://Graphics/Tilemaps/tilSheepBlocks.png" id="22_ncsi2"]
 
 [sub_resource type="Gradient" id="Gradient_h5pwn"]
 colors = PackedColorArray(0.2132, 0.41, 0.28864, 0.415686, 1, 1, 1, 0.294118)
@@ -672,6 +673,9 @@ _data = {
 "Story": SubResource("Animation_avykx")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2urc"]
+size = Vector2(32, 32)
+
 [node name="rTest01" type="Node2D"]
 
 [node name="Node2D2" type="Control" parent="."]
@@ -725,6 +729,11 @@ song_data = Array[Resource]([ExtResource("6_t3fk7")])
 
 [node name="Trigger_related" type="Node2D" parent="."]
 
+[node name="objCameraTrigger" parent="Trigger_related" instance=ExtResource("12_8ra5k")]
+position = Vector2(280, 512)
+scale = Vector2(1, 3.64)
+color = Color(1, 0.35, 0.35, 0.603922)
+
 [node name="objRingPowerSource" parent="." instance=ExtResource("7_l4kct")]
 position = Vector2(176, 520)
 
@@ -741,11 +750,6 @@ position = Vector2(-288, 576)
 
 [node name="objPSBlockBounce3" parent="." instance=ExtResource("11_q6hro")]
 position = Vector2(-288, 448)
-
-[node name="objCameraTrigger" parent="." instance=ExtResource("12_8ra5k")]
-position = Vector2(264, 448)
-scale = Vector2(1, 3.64)
-color = Color(1, 0.35, 0.35, 0.603922)
 
 [node name="objCameraFocusRegion" parent="." instance=ExtResource("13_toipx")]
 position = Vector2(0, 480)
@@ -822,5 +826,31 @@ position = Vector2(-24, 520)
 [node name="objWarp" parent="." instance=ExtResource("21_3cnoi")]
 position = Vector2(88, 408)
 warp_to = "res://Rooms/rBossRoom.tscn"
+
+[node name="Node2D3" type="Node2D" parent="."]
+position = Vector2(33.002, 241.242)
+
+[node name="til32x32" parent="Node2D3" instance=ExtResource("2_srr13")]
+rendering_quadrant_size = 32
+layer_0/tile_data = PackedInt32Array(-1, 65536, 3, -65536, 65536, 3)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Node2D3"]
+node_a = NodePath("../RigidBody2D")
+node_b = NodePath("../../objPSBlockBounce")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Node2D3"]
+position = Vector2(1, 1.22)
+collision_layer = 0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D3/RigidBody2D"]
+position = Vector2(-1.00198, 14.7576)
+texture = ExtResource("22_ncsi2")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D3/RigidBody2D"]
+position = Vector2(-1.00198, 14.7576)
+shape = SubResource("RectangleShape2D_x2urc")
 
 [editable path="ParallaxBackground/ParallaxLayer/objFog"]

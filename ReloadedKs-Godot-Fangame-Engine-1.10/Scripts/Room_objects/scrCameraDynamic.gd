@@ -34,6 +34,8 @@ var target_zoom : Vector2 = Vector2.ONE
 
 var snap_to_target : bool = true
 
+var magnitude : float = 4.0
+
 
 func _ready():
 		if GLOBAL_INSTANCES.objCameraID == null or GLOBAL_INSTANCES.objCameraID != self:
@@ -66,6 +68,12 @@ func _ready():
 			var limit_array_2 = [stop_left_at, stop_up_at, stop_right_at, stop_down_at]
 			set_limit(limit_array_1, limit_array_2[limit_array_1])
 	
+		change_magnitude(2.0, 0.5)
+		
+func change_magnitude(screenshake_magnitude, duration):
+	var tween = create_tween()
+	tween.tween_property(self, "magnitude", screenshake_magnitude, duration)
+	tween.tween_property(self, "magnitude", 0.0, duration)
 
 
 # Updates the camera target
@@ -99,8 +107,11 @@ func apply_movement():
 	get_xy = target_node.position
 	get_xy.x = clamp(get_xy.x, camera_limit_left, camera_limit_right)
 	get_xy.y = clamp(get_xy.y, camera_limit_top, camera_limit_bottom)
+	var off_x = randi_range(-magnitude, magnitude)
+	var off_y = randi_range(-magnitude, magnitude)
+	#target_position = lerp(target_position, get_xy + Vector2(off_x, off_y), focus_speed)
 	target_position = lerp(target_position, get_xy, focus_speed)
-	
+	target_position += Vector2(off_x, off_y)
 	if snap_to_target:
 		position = get_xy
 		target_position = get_xy

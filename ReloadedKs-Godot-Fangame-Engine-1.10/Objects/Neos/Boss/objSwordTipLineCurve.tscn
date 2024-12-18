@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4injqplwxkqp"]
+
+[ext_resource type="Script" path="res://Scripts/Neos/Boss/SwordTipLineCurve.gd" id="1_do0vo"]
+
+[sub_resource type="Curve" id="Curve_ull56"]
+_data = [Vector2(0, 0.54945), 0.0, 0.0, 0, 0, Vector2(0.513043, 0.989011), 1.92773, -2.031, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_2kg4b"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y8mcr"]
+curve = SubResource("Curve_2kg4b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1ebgv"]
+particle_flag_disable_z = true
+direction = Vector3(1, 1, 0)
+spread = 180.0
+initial_velocity_max = 66.38
+radial_velocity_min = -26.55
+radial_velocity_max = 70.8
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_y8mcr")
+color = Color(0.966667, 1, 0, 1)
+
+[node name="SwordTipLineCurve" type="Line2D"]
+width_curve = SubResource("Curve_ull56")
+joint_mode = 2
+round_precision = 32
+script = ExtResource("1_do0vo")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_1ebgv")
+fixed_fps = 60
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

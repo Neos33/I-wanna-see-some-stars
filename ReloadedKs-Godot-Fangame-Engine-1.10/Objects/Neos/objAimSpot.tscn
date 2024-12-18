@@ -1,0 +1,154 @@
+[gd_scene load_steps=12 format=3 uid="uid://rj7lc86bjac"]
+
+[ext_resource type="Texture2D" uid="uid://b3g3rr7q1dybk" path="res://Graphics/Sprites/Neos/sprAim.png" id="1_nctnh"]
+[ext_resource type="Script" path="res://Scripts/Neos/scrAimSpot.gd" id="1_xky6o"]
+[ext_resource type="Texture2D" uid="uid://drag1jkvjlc7n" path="res://Graphics/Sprites/Neos/sprAim2.png" id="2_8l2cj"]
+[ext_resource type="PackedScene" uid="uid://b145pxe80fi2f" path="res://Objects/Neos/objAimVisualExplosion.tscn" id="4_31qmr"]
+
+[sub_resource type="Animation" id="Animation_2h20j"]
+resource_name = "OscillatePointers"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OutsideCircle:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(0.5, -2, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_645he"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OutsideCircle:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ho32"]
+_data = {
+"OscillatePointers": SubResource("Animation_2h20j"),
+"RESET": SubResource("Animation_645he")
+}
+
+[sub_resource type="Animation" id="Animation_cii32"]
+resource_name = "FadeIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4t8ju"]
+resource_name = "FadeOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.733333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_j45a8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nyejv"]
+_data = {
+"FadeIn": SubResource("Animation_cii32"),
+"FadeOut": SubResource("Animation_4t8ju"),
+"RESET": SubResource("Animation_j45a8")
+}
+
+[node name="objAimSpot" type="Node2D"]
+script = ExtResource("1_xky6o")
+
+[node name="Aim" type="Sprite2D" parent="."]
+texture = ExtResource("1_nctnh")
+
+[node name="OutsideCircle" type="Sprite2D" parent="."]
+texture = ExtResource("2_8l2cj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1ho32")
+}
+autoplay = "OscillatePointers"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nyejv")
+}
+autoplay = "FadeIn"
+
+[node name="objAimVisualExplosion" parent="." instance=ExtResource("4_31qmr")]
+visible = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="objAimVisualExplosion"]

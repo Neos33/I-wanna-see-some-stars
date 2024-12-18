@@ -9,3 +9,5 @@ extends Node
 var objPlayerID: Node = null
 
 var objCameraID: Node = null
+
+var Main_Scene: Node = null
