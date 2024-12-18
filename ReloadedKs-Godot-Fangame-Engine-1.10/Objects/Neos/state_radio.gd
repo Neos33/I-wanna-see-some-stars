@@ -10,6 +10,12 @@ var spawn_aims : bool = false
 func enter():
 	super.enter()
 	radio_spawn_period.start()
+	var timer = get_tree().create_timer(4.0)
+	await timer.timeout
+	radio_spawn_period.stop()
+	timer = get_tree().create_timer(2.0)
+	await timer.timeout
+	fsm.change_state(0)
 	
 func exit():
 	super.exit()

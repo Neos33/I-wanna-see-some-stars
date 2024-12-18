@@ -34,7 +34,7 @@ var target_zoom : Vector2 = Vector2.ONE
 
 var snap_to_target : bool = true
 
-var magnitude : float = 4.0
+var magnitude : Vector2 = Vector2(0.0, 4.0)
 
 
 func _ready():
@@ -68,12 +68,12 @@ func _ready():
 			var limit_array_2 = [stop_left_at, stop_up_at, stop_right_at, stop_down_at]
 			set_limit(limit_array_1, limit_array_2[limit_array_1])
 	
-		change_magnitude(2.0, 0.5)
+		change_magnitude(Vector2(0.0, 2.0), 0.4)
 		
-func change_magnitude(screenshake_magnitude, duration):
+func change_magnitude(screenshake_magnitude : Vector2, duration : float):
 	var tween = create_tween()
 	tween.tween_property(self, "magnitude", screenshake_magnitude, duration)
-	tween.tween_property(self, "magnitude", 0.0, duration)
+	tween.tween_property(self, "magnitude", Vector2.ZERO, duration)
 
 
 # Updates the camera target
@@ -107,11 +107,17 @@ func apply_movement():
 	get_xy = target_node.position
 	get_xy.x = clamp(get_xy.x, camera_limit_left, camera_limit_right)
 	get_xy.y = clamp(get_xy.y, camera_limit_top, camera_limit_bottom)
-	var off_x = randi_range(-magnitude, magnitude)
-	var off_y = randi_range(-magnitude, magnitude)
+	
 	#target_position = lerp(target_position, get_xy + Vector2(off_x, off_y), focus_speed)
 	target_position = lerp(target_position, get_xy, focus_speed)
-	target_position += Vector2(off_x, off_y)
+	
+	# Screenshake
+	var off_x = randi_range(-magnitude.x, magnitude.x)
+	var off_y = randi_range(-magnitude.y, magnitude.y)
+	#target_position += Vector2(off_x, off_y)
+	offset = Vector2(off_x, off_y)
+	
+	
 	if snap_to_target:
 		position = get_xy
 		target_position = get_xy

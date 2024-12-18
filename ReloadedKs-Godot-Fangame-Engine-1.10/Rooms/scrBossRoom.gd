@@ -16,7 +16,6 @@ var camera_list : Array = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GLOBAL_INSTANCES.Main_Scene = self
-	print(GLOBAL_INSTANCES.Main_Scene)
 	camera_list = camera_regions.get_children()
 
 
