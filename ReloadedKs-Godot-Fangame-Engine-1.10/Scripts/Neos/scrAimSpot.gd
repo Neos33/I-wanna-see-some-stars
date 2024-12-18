@@ -6,7 +6,7 @@ var parent = null
 var parent_pos = Vector2.ZERO
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_player_2: AnimationPlayer = $AnimationPlayer2
-@onready var obj_aim_visual_explosion: GPUParticles2D = $objAimVisualExplosion
+@onready var obj_aim_visual_explosion: Node2D = $objAimVisualExplosion
 
 func _ready():
 	var tween = create_tween()

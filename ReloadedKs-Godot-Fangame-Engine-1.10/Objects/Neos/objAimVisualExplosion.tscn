@@ -1,103 +1,52 @@
-[gd_scene load_steps=16 format=3 uid="uid://b145pxe80fi2f"]
+[gd_scene load_steps=22 format=3 uid="uid://b145pxe80fi2f"]
 
-[ext_resource type="Texture2D" uid="uid://cd6kwxpwtxn84" path="res://Objects/Neos/explosion_gradient.tres" id="1_60l2k"]
 [ext_resource type="Script" path="res://Scripts/Neos/scrAimVisualExplosion.gd" id="1_s0uw6"]
-
-[sub_resource type="Curve" id="Curve_keiq6"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.247368, 1), 0.0, 0.0, 0, 0, Vector2(0.868421, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_4gnwf"]
-curve = SubResource("Curve_keiq6")
-
-[sub_resource type="Gradient" id="Gradient_ceshb"]
-offsets = PackedFloat32Array(0, 0.160494, 0.277778, 0.734568, 1)
-colors = PackedColorArray(0.905, 1, 0.43, 1, 0.98, 0.703967, 0.343, 1, 1, 0.59, 0.59, 1, 1, 0.695833, 0.27, 1, 1, 0.933333, 0, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_n45k1"]
-gradient = SubResource("Gradient_ceshb")
-
-[sub_resource type="Curve" id="Curve_5dq60"]
-_data = [Vector2(0, 0.285714), 0.0, 0.0, 0, 0, Vector2(1, 0.483516), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_0t3ea"]
-curve = SubResource("Curve_5dq60")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mxv7y"]
-particle_flag_align_y = true
-particle_flag_disable_z = true
-direction = Vector3(0, -15.905, 0)
-spread = 180.0
-initial_velocity_min = 230.09
-initial_velocity_max = 318.58
-gravity = Vector3(0, 139.36, 0)
-damping_min = 1.327
-damping_max = 6.637
-scale_curve = SubResource("CurveTexture_0t3ea")
-color_ramp = SubResource("GradientTexture1D_n45k1")
-alpha_curve = SubResource("CurveTexture_4gnwf")
-
-[sub_resource type="Gradient" id="Gradient_kg1ww"]
-offsets = PackedFloat32Array(0.448454, 0.515464, 0.572165)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_sbvvm"]
-gradient = SubResource("Gradient_kg1ww")
+[ext_resource type="Material" uid="uid://qox5vh61uc5w" path="res://Objects/Neos/resAimVisualExplosion.tres" id="3_2g6m1"]
+[ext_resource type="Texture2D" uid="uid://lqtabf663mfg" path="res://Graphics/Sprites/Particle Textures/smoke_02.png" id="3_8x3ak"]
+[ext_resource type="Texture2D" uid="uid://s6pn65d38jow" path="res://Graphics/Sprites/Particle Textures/light_02.png" id="4_xof6f"]
+[ext_resource type="Texture2D" uid="uid://cshp8dr58m5ly" path="res://Graphics/Sprites/Particle Textures/Rotated/trace_05_rotated.png" id="6_ysnec"]
 
 [sub_resource type="Animation" id="Animation_6w6gm"]
 resource_name = "Boom"
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(4, 4), Vector2(1e-05, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("..")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.166667),
+"times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"burst_particles"
 }]
 }
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../StaticBody2D")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.1),
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.133333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"queue_free"
 }]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StaticBody2D/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_obe4g"]
@@ -105,26 +54,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("StaticBody2D/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_08uij"]
@@ -136,22 +73,69 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_3tsm6"]
 radius = 32.0
 
-[node name="objAimVisualExplosion" type="GPUParticles2D"]
-emitting = false
-amount = 40
-process_material = SubResource("ParticleProcessMaterial_mxv7y")
-texture = SubResource("GradientTexture2D_sbvvm")
-lifetime = 0.75
-one_shot = true
-explosiveness = 0.74
-randomness = 0.27
+[sub_resource type="Curve" id="Curve_grm61"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.494505), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_8ukuv"]
+curve = SubResource("Curve_grm61")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4n4pr"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+initial_velocity_max = 146.01
+gravity = Vector3(0, -50, 0)
+scale_min = 0.3
+scale_max = 0.8
+alpha_curve = SubResource("CurveTexture_8ukuv")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i5sh7"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_thu3t"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_l43kh"]
+curve = SubResource("Curve_thu3t")
+
+[sub_resource type="Gradient" id="Gradient_k2q0b"]
+offsets = PackedFloat32Array(0, 0.216049, 0.358025, 0.493827, 0.734568, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.702545, 0.533608, 0.403121, 1, 0.73, 0.626583, 0.4818, 1, 0.92, 0.808833, 0.69, 1, 0.96, 0.8352, 0.8352, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qgy5v"]
+gradient = SubResource("Gradient_k2q0b")
+
+[sub_resource type="Curve" id="Curve_5iw7p"]
+_data = [Vector2(0, 0.362637), 0.0, 0.0, 0, 0, Vector2(1, 0.835165), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_em1a0"]
+curve = SubResource("Curve_5iw7p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jg47j"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, -40, 0)
+scale_min = 0.2
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_em1a0")
+color = Color(1.5, 0.766, 0.48, 1)
+color_ramp = SubResource("GradientTexture1D_qgy5v")
+alpha_curve = SubResource("CurveTexture_l43kh")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2ew51"]
+blend_mode = 1
+
+[node name="objAimVisualExplosion" type="Node2D"]
 script = ExtResource("1_s0uw6")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_60l2k")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Sprite2D")
 libraries = {
 "": SubResource("AnimationLibrary_08uij")
 }
@@ -165,4 +149,39 @@ shape = SubResource("CircleShape2D_3tsm6")
 disabled = true
 debug_color = Color(0.981553, 0, 0.370048, 0.42)
 
-[connection signal="finished" from="." to="." method="_on_finished"]
+[node name="Smoke" type="GPUParticles2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_4n4pr")
+texture = ExtResource("3_8x3ak")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.7
+randomness = 0.1
+
+[node name="Explosion" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_i5sh7")
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_jg47j")
+texture = ExtResource("4_xof6f")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.57
+
+[node name="ExplosionTrail" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_2ew51")
+emitting = false
+amount = 20
+process_material = ExtResource("3_2g6m1")
+texture = ExtResource("6_ysnec")
+lifetime = 1.2
+one_shot = true
+explosiveness = 0.41
+
+[node name="FreeScene" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="FreeScene" to="." method="_on_free_scene_timeout"]
