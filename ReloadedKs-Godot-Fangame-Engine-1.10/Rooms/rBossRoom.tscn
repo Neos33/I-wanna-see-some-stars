@@ -63,6 +63,8 @@ position = Vector2(464, 320)
 [node name="AimSpawners" type="Node2D" parent="Boss"]
 position = Vector2(0, 352)
 
+[node name="MissilesSpawners" type="Node2D" parent="Boss"]
+
 [node name="objMissile" parent="." instance=ExtResource("9_2q4hd")]
 position = Vector2(210.914, 458.435)
 

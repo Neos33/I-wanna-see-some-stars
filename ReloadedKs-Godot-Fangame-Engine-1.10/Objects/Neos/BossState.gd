@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 class_name State
 
 @onready var player = GLOBAL_INSTANCES.objPlayerID

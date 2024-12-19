@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://dqnjfa3j6xyjf" path="res://Graphics/Sprites/Particle Textures/fire_01.png" id="2_72cey"]
 [ext_resource type="AudioStream" uid="uid://dbad8fsvpe8ja" path="res://Audio/Sounds/Neos/M1_BreakBlock.wav" id="3_kxejk"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30qwt"]
+size = Vector2(27, 8)
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e8les"]
 blend_mode = 1
 
@@ -39,15 +42,18 @@ scale_curve = SubResource("CurveTexture_frqhx")
 color_ramp = SubResource("GradientTexture1D_4urh8")
 alpha_curve = SubResource("CurveTexture_5q4aa")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_30qwt"]
-size = Vector2(27, 8)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pfsw3"]
 size = Vector2(28, 8)
 
-[node name="objMissile" type="Node2D"]
+[node name="objMissile" type="Node2D" groups=["Killers"]]
 script = ExtResource("1_5jcxj")
 metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-2.5, 0)
+shape = SubResource("RectangleShape2D_30qwt")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_e8les")
@@ -59,14 +65,6 @@ texture = ExtResource("2_72cey")
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.15, 1, 0.971667, 1)
 polygon = PackedVector2Array(16, 0, -16, -8, -16, 8)
-
-[node name="Killer" type="StaticBody2D" parent="." groups=["Killers"]]
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killer"]
-position = Vector2(-2.5, 0)
-shape = SubResource("RectangleShape2D_30qwt")
 
 [node name="BulletDamage" type="Area2D" parent="."]
 collision_layer = 0
