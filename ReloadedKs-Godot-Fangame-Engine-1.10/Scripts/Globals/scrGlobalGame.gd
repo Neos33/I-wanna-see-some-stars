@@ -322,3 +322,9 @@ func handle_titlebar():
 # Custom methods
 func circuit_mode(mode : bool):
 	circuit_gimmick = mode
+	
+func time_change(speed_game : float = 1.0, duration : float = 1.0):
+	Engine.time_scale = speed_game
+	var timer = get_tree().create_timer(duration * speed_game)
+	await timer.timeout
+	Engine.time_scale = 1.0

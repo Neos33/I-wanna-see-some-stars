@@ -3,22 +3,27 @@ extends Node2D
 var HP : int = 3
 @onready var snd_break: AudioStreamPlayer = $sndBreak
 const OBJ_PS_BLOCK_BOUNCE = preload("res://Objects/Neos/objPSBlockBounce.tscn")
+@onready var timer: Timer = $Timer
+@onready var missile_sprite: Sprite2D = $MissileSprite
+@onready var missile_trail: GPUParticles2D = $MissileTrail
 
 var velocity_move = Vector2.ZERO
 var prev_position = Vector2.ZERO
 
 var speed: float = 200.0
-var turn_rate: float = 5.0
+var turn_rate: float = 3.0
+
+var in_motion : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	timer.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var player = GLOBAL_INSTANCES.objPlayerID
-	if is_instance_valid(player):
+	if is_instance_valid(player) and in_motion:
 		# Dirección actual del misil
 		var current_direction = velocity_move.normalized()
 		# Dirección hacia el jugador
@@ -58,3 +63,13 @@ func _on_bullet_damage_body_entered(body: Node2D) -> void:
 	if HP > 0:
 		print("HIT")
 	body.queue_free()
+
+
+func _on_timer_timeout() -> void:
+	in_motion = true
+	#var tween = create_tween()
+	var col = "ff7878"
+	missile_sprite.modulate = col
+	missile_trail.emitting = true
+	#tween.tween_property(missile_sprite, "modulate", col,  0.5)
+	timer.queue_free()

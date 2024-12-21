@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdnm4vu2ftyan"]
+
+[ext_resource type="PackedScene" uid="uid://b145pxe80fi2f" path="res://Objects/Neos/objAimVisualExplosion.tscn" id="1_qtqs0"]
+[ext_resource type="PackedScene" uid="uid://den5o41ncyqsn" path="res://Objects/Neos/Boss/objMissile.tscn" id="2_23d3e"]
+
+[node name="ResourcePreloader" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="objAimVisualExplosion" parent="." instance=ExtResource("1_qtqs0")]
+
+[node name="objMissile" parent="." instance=ExtResource("2_23d3e")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.996078)

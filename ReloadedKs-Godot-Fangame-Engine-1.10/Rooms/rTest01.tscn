@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://1ipi02ltnf6"]
+[gd_scene load_steps=42 format=4 uid="uid://1ipi02ltnf6"]
 
 [ext_resource type="PackedScene" uid="uid://muyqde0gl4we" path="res://Objects/Neos/objFadeOutScreenReset.tscn" id="1_bnttc"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/shTileNoise.gdshader" id="1_bxdb3"]
@@ -10,9 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://b31w5fm4w5857" path="res://Objects/Room_objects/objSavePoint.tscn" id="5_8pcl1"]
 [ext_resource type="Resource" uid="uid://bu232ghrmguxb" path="res://Scripts/Neos/Music Resources/resMusic_Level01.tres" id="6_t3fk7"]
 [ext_resource type="PackedScene" uid="uid://cbb60on63st1e" path="res://Objects/Neos/objRingPowerSource.tscn" id="7_l4kct"]
-[ext_resource type="Texture2D" uid="uid://mgx6x5nn2vb8" path="res://Graphics/Tilemaps/tilSpikes.png" id="10_70thi"]
 [ext_resource type="PackedScene" uid="uid://filj18te7doj" path="res://Objects/Neos/objPSBlockBounce.tscn" id="11_q6hro"]
 [ext_resource type="PackedScene" uid="uid://durjf6pfxn2o8" path="res://Objects/Neos/objCameraTrigger.tscn" id="12_8ra5k"]
+[ext_resource type="PackedScene" uid="uid://bq2tgk436ml6m" path="res://Objects/Neos/tilePSSpikes.tscn" id="12_53otm"]
 [ext_resource type="PackedScene" uid="uid://cepb2ntnm3yds" path="res://Objects/Neos/objCameraFocusRegion.tscn" id="13_toipx"]
 [ext_resource type="Texture2D" uid="uid://ckj7pl72qw7ve" path="res://Graphics/Sprites/Neos/Tileset/sprTilesetOutlineFull.png" id="14_i1dmi"]
 [ext_resource type="Texture2D" uid="uid://ce764rqb8dydy" path="res://Graphics/Tiles/tilAllTiles.png" id="15_ydcm8"]
@@ -183,25 +183,6 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.686546, 0.0939832, 0.347847, 1)
 sources/0 = SubResource("TileSetAtlasSource_jpl2p")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_euu1o"]
-texture = ExtResource("10_70thi")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 0, 16)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 16, 16, 16, -0.176777, -16)
-0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, 16, -16, 0, 16, -16)
-1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 16, -16, -16, 16, 0.0441933)
-
-[sub_resource type="TileSet" id="TileSet_d73sw"]
-tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 8192
-physics_layer_0/collision_mask = 0
-terrain_set_0/mode = 0
-sources/0 = SubResource("TileSetAtlasSource_euu1o")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v5thh"]
 texture = ExtResource("15_ydcm8")
@@ -737,10 +718,7 @@ color = Color(1, 0.35, 0.35, 0.603922)
 [node name="objRingPowerSource" parent="." instance=ExtResource("7_l4kct")]
 position = Vector2(176, 520)
 
-[node name="PSSpikes" type="TileMapLayer" parent="."]
-modulate = Color(0.337, 1, 0.22, 1)
-tile_map_data = PackedByteArray("AAD9/xEAAAABAAAAAAD9/xAAAAABAAAAAAD9/w8AAAABAAAAAAA=")
-tile_set = SubResource("TileSet_d73sw")
+[node name="PSSpikes" parent="." instance=ExtResource("12_53otm")]
 
 [node name="objPSBlockBounce" parent="." instance=ExtResource("11_q6hro")]
 position = Vector2(-224, 576)
@@ -821,6 +799,7 @@ grow_vertical = 2
 text = "I forgot what I was doing here"
 
 [node name="objGundamBoss" parent="." instance=ExtResource("20_y3w38")]
+visible = false
 position = Vector2(-24, 520)
 
 [node name="objWarp" parent="." instance=ExtResource("21_3cnoi")]

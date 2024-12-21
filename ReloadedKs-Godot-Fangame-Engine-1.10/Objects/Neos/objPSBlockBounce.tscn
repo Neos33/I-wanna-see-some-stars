@@ -7,7 +7,7 @@
 size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a0iro"]
-size = Vector2(32, 9.5)
+size = Vector2(32, 10.5)
 
 [node name="objPSBlockBounce" type="AnimatableBody2D"]
 collision_layer = 2
@@ -29,6 +29,6 @@ collision_layer = 16384
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BounceHitbox"]
-position = Vector2(16, -3.25)
+position = Vector2(16, -3.75)
 shape = SubResource("RectangleShape2D_a0iro")
 debug_color = Color(0.90617, 0.227843, 0.510381, 0.42)

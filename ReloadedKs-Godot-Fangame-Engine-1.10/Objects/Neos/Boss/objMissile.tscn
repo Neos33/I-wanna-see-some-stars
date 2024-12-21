@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://den5o41ncyqsn"]
+[gd_scene load_steps=15 format=3 uid="uid://den5o41ncyqsn"]
 
 [ext_resource type="Script" path="res://Scripts/Neos/Boss/scrMissile.gd" id="1_5jcxj"]
 [ext_resource type="Texture2D" uid="uid://dqnjfa3j6xyjf" path="res://Graphics/Sprites/Particle Textures/fire_01.png" id="2_72cey"]
 [ext_resource type="AudioStream" uid="uid://dbad8fsvpe8ja" path="res://Audio/Sounds/Neos/M1_BreakBlock.wav" id="3_kxejk"]
+[ext_resource type="Texture2D" uid="uid://bvo8qlootnspw" path="res://Graphics/Sprites/Neos/Boss/missile.png" id="3_l6mhm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30qwt"]
 size = Vector2(27, 8)
@@ -11,7 +12,7 @@ size = Vector2(27, 8)
 blend_mode = 1
 
 [sub_resource type="Curve" id="Curve_51rwp"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.494505), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_5q4aa"]
@@ -47,22 +48,30 @@ size = Vector2(28, 8)
 
 [node name="objMissile" type="Node2D" groups=["Killers"]]
 script = ExtResource("1_5jcxj")
-metadata/_edit_group_ = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Killers"]]
+collision_layer = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-2.5, 0)
 shape = SubResource("RectangleShape2D_30qwt")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="MissileTrail" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_e8les")
 position = Vector2(-16, 0)
+emitting = false
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_xaf84")
 texture = ExtResource("2_72cey")
 
+[node name="MissileSprite" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(0.785714, 0.5)
+texture = ExtResource("3_l6mhm")
+
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
 color = Color(0.15, 1, 0.971667, 1)
 polygon = PackedVector2Array(16, 0, -16, -8, -16, 8)
 
@@ -87,5 +96,9 @@ debug_color = Color(0.90277, 0.267408, 0.400655, 0.42)
 [node name="sndBreak" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_kxejk")
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="BulletDamage" to="." method="_on_bullet_damage_body_entered"]
 [connection signal="body_entered" from="WallDetect" to="." method="_on_wall_detect_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

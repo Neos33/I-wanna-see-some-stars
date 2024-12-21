@@ -1,15 +1,17 @@
 extends Node2D
 
-@onready var player = GLOBAL_INSTANCES.objPlayerID
+var is_active : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if is_instance_valid(player):
-		position = player.position
-	
-	
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if is_instance_valid(GLOBAL_INSTANCES.objPlayerID):
-		position = GLOBAL_INSTANCES.objPlayerID.position
+	pass
+
+
+func _on_detector_body_entered(body: Node2D) -> void:
+	if !is_active:
+		is_active = true

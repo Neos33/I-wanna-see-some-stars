@@ -21,8 +21,8 @@ func _ready() -> void:
 	if !Engine.is_editor_hint():
 		sprite_2d.queue_free()
 		label.queue_free()
-		
-	visible = false
+		visible = false
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

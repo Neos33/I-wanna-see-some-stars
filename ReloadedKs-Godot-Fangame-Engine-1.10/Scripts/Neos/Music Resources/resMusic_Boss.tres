@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b6lv3ypq2mxqj"]
+
+[ext_resource type="Script" path="res://Scripts/Neos/scrResourceMusicInfo.gd" id="1_ec4x1"]
+[ext_resource type="AudioStream" uid="uid://8b4ybtfpaefv" path="res://Audio/Music/Neos/CHRYSALIS - Metal Gear Solid Peace Walker OST.ogg" id="1_iu427"]
+
+[resource]
+script = ExtResource("1_ec4x1")
+musica = ExtResource("1_iu427")
+loop_start = 32.088
+loop_end = 116.494

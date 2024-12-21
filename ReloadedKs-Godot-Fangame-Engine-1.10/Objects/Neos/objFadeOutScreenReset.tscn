@@ -27,7 +27,7 @@ tracks/1/path = NodePath("Node2D/Circle:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.06, 0.6),
+"times": PackedFloat32Array(0.08, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1e-05, 1e-05), Vector2(5, 5)]
@@ -39,7 +39,7 @@ tracks/2/path = NodePath("Node2D/Polygon2D:polygon")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.06, 0.6),
+"times": PackedFloat32Array(0.08, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0), PackedVector2Array(-640, -640, 640, -640, 640, 640, -640, 640)]
@@ -63,7 +63,7 @@ tracks/4/path = NodePath("Node2D:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.06, 0.6),
+"times": PackedFloat32Array(0.08, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
@@ -153,7 +153,7 @@ modulate = Color(0, 0, 0, 1)
 
 [node name="Polygon2D" type="Polygon2D" parent="Node2D"]
 invert_enabled = true
-invert_border = 1500.0
+invert_border = 3014.5
 polygon = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0)
 
 [node name="Circle" type="Sprite2D" parent="Node2D"]

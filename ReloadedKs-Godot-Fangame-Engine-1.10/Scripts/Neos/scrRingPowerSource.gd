@@ -9,6 +9,7 @@ extends Area2D
 @onready var ring: Sprite2D = $Ring
 
 @onready var music_source: AudioStreamPlayer = $MusicSource
+@onready var charge_sound: AudioStreamPlayer = $ChargeSound
 
 const RING_POWER_ATTACH = preload("res://Objects/Neos/objRingPowerAttach.tscn")
 
@@ -68,6 +69,7 @@ func _on_area_entered(area: Area2D) -> void:
 	get_tree().call_group("PlayerPowerSource", "destroy_attach")
 	power_player = null
 	music_source.stop()
+	charge_sound.play()
 	GLOBAL_MUSIC.music_pause()
 	
 	# Create Power source attach
@@ -88,15 +90,14 @@ func _on_area_entered(area: Area2D) -> void:
 func _on_area_exited(area: Area2D) -> void:
 	#ring_toggle.play("ToggleVisibility")
 
-	
 	if power_player != null:
 		power_player.call_deferred("run_countdown")
 
-	var total_song = song_list.size()
-	var song_selected = song_list[randi() % total_song]
+	var song_selected = song_list[randi() % song_list.size()]
 	var music_pick = load(song_selected)
 	music_source.stream = music_pick
 	music_source.play()
+	charge_sound.stop()
 		
 	
 	#Play charge music 
@@ -104,4 +105,4 @@ func _on_area_exited(area: Area2D) -> void:
 
 func available():
 	power_player = null
-	print("Is now available")
+	#print("Is now available")

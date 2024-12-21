@@ -121,6 +121,7 @@ func apply_movement():
 	if snap_to_target:
 		position = get_xy
 		target_position = get_xy
+		zoom = target_zoom
 
 	position = target_position
 	GLOBAL_GAME.camera_position_global = position

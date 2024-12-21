@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmi0l5pacct23"]
+[gd_scene load_steps=11 format=3 uid="uid://dmi0l5pacct23"]
 
 [ext_resource type="PackedScene" uid="uid://byy0nyaw6gtki" path="res://Objects/Room_objects/objMusicPlayer.tscn" id="1_76nfi"]
 [ext_resource type="Script" path="res://Rooms/scrBossRoom.gd" id="1_ec4xw"]
 [ext_resource type="PackedScene" uid="uid://bp5rqk4l7tesk" path="res://Objects/Player/objPlayer.tscn" id="2_r0hhx"]
 [ext_resource type="PackedScene" uid="uid://bm40t36a6m8sc" path="res://Objects/Tiles/til32x32.tscn" id="3_35xyy"]
+[ext_resource type="Resource" uid="uid://b6lv3ypq2mxqj" path="res://Scripts/Neos/Music Resources/resMusic_Boss.tres" id="3_jgwp4"]
 [ext_resource type="PackedScene" uid="uid://b31w5fm4w5857" path="res://Objects/Room_objects/objSavePoint.tscn" id="4_eyj7o"]
 [ext_resource type="PackedScene" uid="uid://cdx3h81o7hqb4" path="res://Objects/Room_objects/objCameraDynamic.tscn" id="5_5w7pa"]
 [ext_resource type="PackedScene" uid="uid://cepb2ntnm3yds" path="res://Objects/Neos/objCameraFocusRegion.tscn" id="5_kgg2r"]
@@ -17,6 +18,7 @@ script = ExtResource("1_ec4xw")
 
 [node name="objMusicPlayer" parent="Environment" instance=ExtResource("1_76nfi")]
 position = Vector2(-16, 16)
+song_data = Array[Resource]([ExtResource("3_jgwp4")])
 
 [node name="objPlayer" parent="Environment" instance=ExtResource("2_r0hhx")]
 position = Vector2(472, 464)

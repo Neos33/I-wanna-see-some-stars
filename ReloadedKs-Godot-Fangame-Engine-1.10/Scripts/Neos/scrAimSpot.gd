@@ -28,8 +28,9 @@ func boom():
 		##visible = false
 
 func set_child(parent_instance: Node):
-	parent = parent_instance
-	parent_pos = parent_instance.position
+	pass
+	#parent = parent_instance
+	#parent_pos = parent_instance.position
 
 func _on_timer_timeout() -> void:
 	boom()

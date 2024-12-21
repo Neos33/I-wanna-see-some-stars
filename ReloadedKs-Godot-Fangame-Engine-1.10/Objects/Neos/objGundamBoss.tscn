@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://qpkvcl0iv3c3"]
 
-[ext_resource type="Texture2D" uid="uid://dxncfahux68wn" path="res://Graphics/Sprites/Neos/Boss/PlayStation 2 - SD Gundam G Generation Wars - Akatsuki Oowashi Pack.png" id="1_cy6st"]
 [ext_resource type="Script" path="res://Scripts/Neos/scrGundamBoss.gd" id="1_li8o1"]
+[ext_resource type="Texture2D" uid="uid://cgafxik3jrsvr" path="res://Graphics/Sprites/Neos/Boss/PlayStation 2 - SD Gundam G Generation Wars - Dinn.png" id="2_b1jjk"]
 [ext_resource type="AudioStream" uid="uid://b7xe2mm2nhqin" path="res://Audio/Sounds/Neos/Boss/Chrysalis_Singing.ogg" id="3_7jhhv"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="3_rxwhi"]
 [ext_resource type="Script" path="res://Objects/Neos/FiniteStateMachine.gd" id="4_ejbvf"]
@@ -199,57 +199,73 @@ collision_mask = 0
 script = ExtResource("1_li8o1")
 
 [node name="RobotPart" type="Node2D" parent="."]
-visible = false
 
-[node name="fly" type="Sprite2D" parent="RobotPart"]
-position = Vector2(176, 152)
-texture = ExtResource("1_cy6st")
-region_enabled = true
-region_rect = Rect2(144, 520, 216, 56)
+[node name="Node2D" type="Node2D" parent="RobotPart"]
 
-[node name="arm_gun" type="Sprite2D" parent="RobotPart"]
-position = Vector2(40, 256)
-texture = ExtResource("1_cy6st")
-region_enabled = true
-region_rect = Rect2(0, 56, 128, 120)
+[node name="CanvasGroup" type="CanvasGroup" parent="RobotPart/Node2D"]
 
-[node name="arm_gun5" type="Sprite2D" parent="RobotPart"]
-position = Vector2(240, 232)
-texture = ExtResource("1_cy6st")
+[node name="PlayStation2-SdGundamGGenerationWars-Dinn4" type="Sprite2D" parent="RobotPart/Node2D/CanvasGroup"]
+position = Vector2(-133, 20)
+rotation = -0.49687
+texture = ExtResource("2_b1jjk")
 region_enabled = true
-region_rect = Rect2(336, 424, 112, 64)
+region_rect = Rect2(376, 352, 112, 48)
 
-[node name="arm_gun3" type="Sprite2D" parent="RobotPart"]
-position = Vector2(96, 232)
-texture = ExtResource("1_cy6st")
+[node name="PlayStation2-SdGundamGGenerationWars-Dinn2" type="Sprite2D" parent="RobotPart/Node2D/CanvasGroup"]
+position = Vector2(-139, 11)
+rotation = -0.421297
+texture = ExtResource("2_b1jjk")
 region_enabled = true
-region_rect = Rect2(128, 56, 80, 88)
+region_rect = Rect2(336, 288, 136, 64)
 
-[node name="head" type="Sprite2D" parent="RobotPart"]
-position = Vector2(112, 168)
-texture = ExtResource("1_cy6st")
+[node name="PlayStation2-SdGundamGGenerationWars-Dinn3" type="Sprite2D" parent="RobotPart/Node2D/CanvasGroup"]
+position = Vector2(-104, 39)
+texture = ExtResource("2_b1jjk")
 region_enabled = true
-region_rect = Rect2(0, 176, 136, 112)
+region_rect = Rect2(400, 408, 88, 72)
 
-[node name="arm_gun2" type="Sprite2D" parent="RobotPart"]
-position = Vector2(360, 176)
-texture = ExtResource("1_cy6st")
+[node name="Head" type="Sprite2D" parent="RobotPart/Node2D/CanvasGroup"]
+position = Vector2(-104, 0)
+texture = ExtResource("2_b1jjk")
 region_enabled = true
-region_rect = Rect2(0, 0, 80, 56)
+region_rect = Rect2(520, 1040, 96, 88)
 
-[node name="arm_gun4" type="Sprite2D" parent="RobotPart"]
-position = Vector2(280, 304)
-texture = ExtResource("1_cy6st")
+[node name="PlayStation2-SdGundamGGenerationWars-Dinn" type="Sprite2D" parent="RobotPart/Node2D/CanvasGroup"]
+position = Vector2(18, -27)
+rotation = -0.157142
+scale = Vector2(0.875219, 0.875219)
+texture = ExtResource("2_b1jjk")
 region_enabled = true
-region_rect = Rect2(240, 344, 56, 40)
+region_rect = Rect2(296, 64, 176, 72)
 
-[node name="arm_hand" type="Sprite2D" parent="RobotPart"]
-position = Vector2(184, 216)
-texture = ExtResource("1_cy6st")
+[node name="PlayStation2-SdGundamGGenerationWars-Dinn5" type="Sprite2D" parent="RobotPart/Node2D/CanvasGroup"]
+position = Vector2(-5, 29)
+rotation = -0.353559
+texture = ExtResource("2_b1jjk")
 region_enabled = true
-region_rect = Rect2(136, 200, 96, 48)
+region_rect = Rect2(256, 760, 104, 144)
+
+[node name="PlayStation2-SdGundamGGenerationWars-Dinn6" type="Sprite2D" parent="RobotPart/Node2D/CanvasGroup"]
+position = Vector2(-79, 42)
+texture = ExtResource("2_b1jjk")
+
+[node name="PlayStation2-SdGundamGGenerationWars-Dinn7" type="Sprite2D" parent="RobotPart/Node2D/CanvasGroup"]
+position = Vector2(-131, 36)
+rotation = -0.407546
+texture = ExtResource("2_b1jjk")
+region_enabled = true
+region_rect = Rect2(1200, 912, 112, 96)
+
+[node name="Full" type="Sprite2D" parent="RobotPart/Node2D"]
+modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(-52, 5)
+scale = Vector2(0.599999, 0.599999)
+texture = ExtResource("2_b1jjk")
+region_enabled = true
+region_rect = Rect2(1032, 1624, 552, 328)
 
 [node name="PlaceHolderShapeBoss" type="Node2D" parent="."]
+visible = false
 
 [node name="LeftHand" type="Node2D" parent="PlaceHolderShapeBoss"]
 position = Vector2(40, -8)
@@ -300,11 +316,13 @@ offset_right = 8.0
 offset_bottom = 8.0
 
 [node name="BossHitbox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_u6khy")
 debug_color = Color(0.953069, 0.152403, 0.397168, 0.42)
 
 [node name="HPText" type="Label" parent="."]
+visible = false
 offset_left = -24.0
 offset_top = 72.0
 offset_right = 16.0
@@ -313,6 +331,7 @@ theme_override_constants/outline_size = 3
 text = "HP: "
 
 [node name="DebugStateName" type="Label" parent="."]
+visible = false
 offset_left = -160.0
 offset_top = -88.0
 offset_right = 160.0
@@ -357,7 +376,11 @@ wait_time = 0.2
 [node name="MissileShotPeriod" type="Timer" parent="."]
 wait_time = 1.3
 
+[node name="SummersiveArrive" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="PlaceHolderShapeBoss/DamageHitbox" to="." method="_on_damage_hitbox_body_entered"]
 [connection signal="body_entered" from="PlaceHolderShapeBoss/ShieldHitbox" to="FiniteStateMachine/StateShield" method="_on_shield_hitbox_body_entered"]
 [connection signal="timeout" from="RadioSpawnPeriod" to="FiniteStateMachine/StateRadio" method="_on_radio_spawn_period_timeout"]
 [connection signal="timeout" from="MissileShotPeriod" to="FiniteStateMachine/StateMissiles" method="_on_missile_shot_period_timeout"]
+[connection signal="timeout" from="SummersiveArrive" to="FiniteStateMachine/StateSummersive" method="_on_summersive_arrive_timeout"]

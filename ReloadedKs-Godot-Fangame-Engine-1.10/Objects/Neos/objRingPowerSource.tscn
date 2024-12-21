@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbb60on63st1e"]
+[gd_scene load_steps=12 format=3 uid="uid://cbb60on63st1e"]
 
 [ext_resource type="Script" path="res://Scripts/Neos/scrRingPowerSource.gd" id="1_s415x"]
+[ext_resource type="AudioStream" uid="uid://54slhym3qqfg" path="res://Audio/Sounds/Neos/GexChargeSound.ogg" id="2_pb8sa"]
 
 [sub_resource type="Gradient" id="Gradient_r5wcu"]
 offsets = PackedFloat32Array(0.335052, 0.515464, 0.680412)
@@ -150,6 +151,10 @@ polygon = PackedVector2Array(64, 24, 72, 24, 80, 0, 72, -24, 64, -24)
 
 [node name="MusicSource" type="AudioStreamPlayer" parent="."]
 bus = &"Music"
+
+[node name="ChargeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_pb8sa")
+bus = &"Sounds"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
