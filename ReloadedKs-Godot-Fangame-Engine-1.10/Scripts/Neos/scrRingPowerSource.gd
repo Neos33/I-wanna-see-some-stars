@@ -13,15 +13,15 @@ extends Area2D
 
 const RING_POWER_ATTACH = preload("res://Objects/Neos/objRingPowerAttach.tscn")
 
-var song_list : Array = [
-	"res://Audio/Music/Neos/Charge1.ogg",
-	"res://Audio/Music/Neos/Charge2.ogg",
-	"res://Audio/Music/Neos/Charge3.ogg", 
-	"res://Audio/Music/Neos/Charge4.ogg", 
-	"res://Audio/Music/Neos/Charge5.ogg", 
-	"res://Audio/Music/Neos/Charge6.ogg", 
-	"res://Audio/Music/Neos/Charge7.ogg"
-]
+#var song_list : Array = [
+	#"res://Audio/Music/Neos/Charge1.ogg",
+	#"res://Audio/Music/Neos/Charge2.ogg",
+	#"res://Audio/Music/Neos/Charge3.ogg", 
+	#"res://Audio/Music/Neos/Charge4.ogg", 
+	#"res://Audio/Music/Neos/Charge5.ogg", 
+	#"res://Audio/Music/Neos/Charge6.ogg", 
+	#"res://Audio/Music/Neos/Charge7.ogg"
+#]
 
 var save_time : float = 0.0
 var active : bool = false
@@ -68,7 +68,8 @@ func _on_area_entered(area: Area2D) -> void:
 	#print("IS THIS GETTING ACTIVATED?")
 	get_tree().call_group("PlayerPowerSource", "destroy_attach")
 	power_player = null
-	music_source.stop()
+	#music_source.stop()
+	PSMusic.stop_music()
 	charge_sound.play()
 	GLOBAL_MUSIC.music_pause()
 	
@@ -93,10 +94,11 @@ func _on_area_exited(area: Area2D) -> void:
 	if power_player != null:
 		power_player.call_deferred("run_countdown")
 
-	var song_selected = song_list[randi() % song_list.size()]
-	var music_pick = load(song_selected)
-	music_source.stream = music_pick
-	music_source.play()
+	#var song_selected = song_list[randi() % song_list.size()]
+	#var music_pick = load(song_selected)
+	PSMusic.play_music()
+	#music_source.stream = music_pick
+	#music_source.play()
 	charge_sound.stop()
 		
 	
@@ -106,3 +108,8 @@ func _on_area_exited(area: Area2D) -> void:
 func available():
 	power_player = null
 	#print("Is now available")
+	
+func erase():
+	global_position = Vector2(-1000, -1000)
+	#await music_source.finished
+	queue_free()

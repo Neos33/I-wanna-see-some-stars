@@ -1,7 +1,63 @@
-[gd_scene load_steps=5 format=3 uid="uid://filj18te7doj"]
+[gd_scene load_steps=12 format=3 uid="uid://filj18te7doj"]
 
 [ext_resource type="Script" path="res://Scripts/Neos/scrPSBlockBounce.gd" id="1_4v2r3"]
-[ext_resource type="Texture2D" uid="uid://ce764rqb8dydy" path="res://Graphics/Tiles/tilAllTiles.png" id="1_ft7x3"]
+[ext_resource type="Texture2D" uid="uid://dn625bney82rq" path="res://Graphics/Sprites/Neos/Tileset/sprBouncer_strip6.png" id="2_eeu4y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nixn7"]
+atlas = ExtResource("2_eeu4y")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5ogy"]
+atlas = ExtResource("2_eeu4y")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swjrc"]
+atlas = ExtResource("2_eeu4y")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52lin"]
+atlas = ExtResource("2_eeu4y")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61fny"]
+atlas = ExtResource("2_eeu4y")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46odv"]
+atlas = ExtResource("2_eeu4y")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vpm3t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nixn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5ogy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swjrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52lin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61fny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46odv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46odv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46odv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kuli5"]
 size = Vector2(32, 32)
@@ -13,12 +69,12 @@ size = Vector2(32, 10.5)
 collision_layer = 2
 script = ExtResource("1_4v2r3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BounceSprite" type="AnimatedSprite2D" parent="."]
 modulate = Color(0, 0.93, 0.527, 1)
-texture = ExtResource("1_ft7x3")
+sprite_frames = SubResource("SpriteFrames_vpm3t")
+autoplay = "default"
+frame_progress = 0.263351
 centered = false
-region_enabled = true
-region_rect = Rect2(96, 64, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(16, 16)

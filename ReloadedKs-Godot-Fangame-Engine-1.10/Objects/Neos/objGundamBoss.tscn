@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://qpkvcl0iv3c3"]
+[gd_scene load_steps=19 format=3 uid="uid://qpkvcl0iv3c3"]
 
 [ext_resource type="Script" path="res://Scripts/Neos/scrGundamBoss.gd" id="1_li8o1"]
 [ext_resource type="Texture2D" uid="uid://cgafxik3jrsvr" path="res://Graphics/Sprites/Neos/Boss/PlayStation 2 - SD Gundam G Generation Wars - Dinn.png" id="2_b1jjk"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Objects/Neos/FiniteStateMachine.gd" id="4_ejbvf"]
 [ext_resource type="Script" path="res://Objects/Neos/state_summersive.gd" id="5_62srp"]
 [ext_resource type="Script" path="res://Objects/Neos/state_radio.gd" id="6_mffql"]
+[ext_resource type="Script" path="res://Objects/Neos/state_intro.gd" id="6_phvqf"]
 [ext_resource type="Script" path="res://Objects/Neos/state_shield.gd" id="7_sqbsm"]
 [ext_resource type="Script" path="res://Objects/Neos/state_approch_and_slash.gd" id="7_vpqrf"]
 [ext_resource type="Script" path="res://Objects/Neos/state_shotmisslles.gd" id="10_g5fgj"]
@@ -349,6 +350,9 @@ bus = &"Sounds"
 [node name="FiniteStateMachine" type="Node2D" parent="." node_paths=PackedStringArray("controlled_object")]
 script = ExtResource("4_ejbvf")
 controlled_object = NodePath("..")
+
+[node name="StateIntro" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("6_phvqf")
 
 [node name="StateSummersive" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("5_62srp")

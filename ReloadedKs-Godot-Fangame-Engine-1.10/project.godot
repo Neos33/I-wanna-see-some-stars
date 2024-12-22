@@ -34,6 +34,7 @@ GLOBAL_SOUNDS="*res://Objects/System/objSoundManager.tscn"
 objHUD="*res://Objects/System/objHUD.tscn"
 objWarpTransition="*res://Objects/System/objWarpTransition.tscn"
 ScreenTransition="*res://ScreenTransition.tscn"
+PSMusic="*res://Objects/Neos/PS_Audio.gd"
 
 [debug]
 

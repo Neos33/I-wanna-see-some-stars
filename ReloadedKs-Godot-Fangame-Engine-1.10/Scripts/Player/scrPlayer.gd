@@ -48,6 +48,7 @@ func _ready():
 		
 		
 	GLOBAL_GAME.circuit_gimmick = false
+	PSMusic.stop_music()
 	
 """
 ---------- MAIN LOGIC LOOP ----------
