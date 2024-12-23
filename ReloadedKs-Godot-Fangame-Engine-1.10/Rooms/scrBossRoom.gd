@@ -11,6 +11,7 @@ var camera_list : Array = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	camera_list = camera_regions.get_children()
+	GLOBAL_SAVELOAD.save_game(true)
 
 
 

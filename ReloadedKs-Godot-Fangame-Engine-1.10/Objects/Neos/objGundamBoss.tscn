@@ -202,6 +202,7 @@ script = ExtResource("1_li8o1")
 [node name="RobotPart" type="Node2D" parent="."]
 
 [node name="Node2D" type="Node2D" parent="RobotPart"]
+visible = false
 
 [node name="CanvasGroup" type="CanvasGroup" parent="RobotPart/Node2D"]
 
@@ -247,6 +248,7 @@ region_enabled = true
 region_rect = Rect2(256, 760, 104, 144)
 
 [node name="PlayStation2-SdGundamGGenerationWars-Dinn6" type="Sprite2D" parent="RobotPart/Node2D/CanvasGroup"]
+visible = false
 position = Vector2(-79, 42)
 texture = ExtResource("2_b1jjk")
 
@@ -266,7 +268,6 @@ region_enabled = true
 region_rect = Rect2(1032, 1624, 552, 328)
 
 [node name="PlaceHolderShapeBoss" type="Node2D" parent="."]
-visible = false
 
 [node name="LeftHand" type="Node2D" parent="PlaceHolderShapeBoss"]
 position = Vector2(40, -8)
@@ -323,7 +324,6 @@ shape = SubResource("RectangleShape2D_u6khy")
 debug_color = Color(0.953069, 0.152403, 0.397168, 0.42)
 
 [node name="HPText" type="Label" parent="."]
-visible = false
 offset_left = -24.0
 offset_top = 72.0
 offset_right = 16.0
@@ -332,7 +332,6 @@ theme_override_constants/outline_size = 3
 text = "HP: "
 
 [node name="DebugStateName" type="Label" parent="."]
-visible = false
 offset_left = -160.0
 offset_top = -88.0
 offset_right = 160.0

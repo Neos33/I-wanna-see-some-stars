@@ -681,7 +681,6 @@ z_index = 10
 [node name="Environment" type="Node2D" parent="."]
 
 [node name="til32x32" parent="Environment" instance=ExtResource("2_srr13")]
-rendering_quadrant_size = 32
 layer_0/tile_data = PackedInt32Array(1179648, 0, 0, 1179649, 0, 0, 1179650, 0, 0, 1179651, 0, 0, 1179652, 0, 0, 1179653, 0, 0, 1179654, 0, 0, 1179663, 0, 0, 1179664, 0, 0, 1179665, 0, 0, 1179666, 0, 0, 1179667, 0, 0, 1179668, 0, 0, 1179669, 0, 0, 1179670, 0, 0, 1179671, 0, 0, 1179672, 0, 0, 1179662, 0, 0, 1179661, 0, 0, 1179660, 0, 0, 1179659, 0, 0, 1179658, 0, 0, 1179657, 0, 0, 1179656, 0, 0, 1179655, 0, 0, 1245182, 0, 0, 1245181, 0, 0, 1245180, 0, 0, 1245179, 0, 0, 1245178, 0, 0, 1245183, 0, 0, 1179673, 0, 0, 1179674, 0, 0, 1179675, 0, 0, 1179676, 0, 0, 1179677, 0, 0, 1179678, 0, 0, 1179679, 0, 0, 917505, 0, 0, 917504, 0, 0, 917506, 0, 0, 917528, 0, 0, 917527, 0, 0, 917526, 0, 0, 720920, 0, 0, 720919, 0, 0, 720897, 0, 0, 720896, 0, 0)
 
 [node name="Room_related" type="Node2D" parent="."]
@@ -810,7 +809,6 @@ warp_to = "res://Rooms/rBossRoom.tscn"
 position = Vector2(33.002, 241.242)
 
 [node name="til32x32" parent="Node2D3" instance=ExtResource("2_srr13")]
-rendering_quadrant_size = 32
 layer_0/tile_data = PackedInt32Array(-1, 65536, 3, -65536, 65536, 3)
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Node2D3"]

@@ -39,7 +39,7 @@ func enter():
 	
 
 func finish():
-	fsm.change_state(3)
+	fsm.change_state("StateShield")
 	
 func exit():
 	super.exit()
