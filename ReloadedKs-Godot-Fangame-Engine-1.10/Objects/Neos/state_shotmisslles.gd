@@ -8,10 +8,20 @@ const MISSILE = preload("res://Objects/Neos/Boss/objMissile.tscn")
 
 var missile_amount_shot : int = 6
 var current_count = 0
+var start_position : Vector2 = Vector2.ZERO
 
 func enter():
 	super.enter()
+	
+	current_count = 0
+	start_position = parent.position
+	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(parent, "position", Vector2(0, -64), 2.0).as_relative()
+	
+	await tween.finished
+	print("Tween finished")
 	missile_shot_period.start()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,3 +40,6 @@ func _on_missile_shot_period_timeout() -> void:
 		current_count += 1
 	else:
 		missile_shot_period.stop()
+		var time_wait = get_tree().create_timer(10.0)
+		await(time_wait.timeout)
+		parent.next_state()

@@ -34,6 +34,7 @@ func _process(delta: float) -> void:
 		if is_instance_valid(player):
 			if player.position.x < parent.position.x:
 				boss_sprite.scale.x = -1
+				
 		
 	
 func going_down():
@@ -50,7 +51,7 @@ func going_down():
 	parent.position.y = 608
 	
 	# AI singing
-	parent.summersive_music_singing(1.0, 1.0)
+	#parent.summersive_music_singing(1.0, 1.0)
 	#fsm.change_state("StateShield")
 
 
@@ -58,7 +59,7 @@ func _on_summersive_arrive_timeout() -> void:
 	underground = false
 	going_back = true
 	boss_sprite.rotation = 0
-	parent.summersive_music_stop()
+	#parent.summersive_music_stop()
 	
 	# Delay
 	var timer = get_tree().create_timer(1.5)
@@ -67,4 +68,11 @@ func _on_summersive_arrive_timeout() -> void:
 	# Move up
 	var tween = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	tween.tween_property(parent, "position:y", start_position.y, 1.5)
+	
+	await tween.finished
+	# Reset camera focus
+	parent.emit_signal("camera_mode_switch", 0)
+	var time_wait = get_tree().create_timer(2.0)
+	await time_wait.timeout
+	parent.next_state()
 	

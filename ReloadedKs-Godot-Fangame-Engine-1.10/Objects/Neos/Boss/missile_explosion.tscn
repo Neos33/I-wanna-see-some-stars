@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://7kalsmuxcggu"]
+
+[ext_resource type="Texture2D" uid="uid://byt7bjvci2ce2" path="res://Graphics/Sprites/Particle Textures/fire_02.png" id="1_nhtd5"]
+[ext_resource type="Script" path="res://Objects/Neos/Boss/missile_explosion.gd" id="1_p6ko1"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_051qm"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_li7is"]
+_data = [Vector2(0, 0.241758), 0.0, 0.0, 0, 0, Vector2(0.126316, 0.769231), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_brgm0"]
+curve = SubResource("Curve_li7is")
+
+[sub_resource type="Gradient" id="Gradient_wlllb"]
+offsets = PackedFloat32Array(0, 0.123457, 0.327161, 0.45679, 0.666667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.652, 0.42, 1, 1, 0.94, 0.64, 1, 1, 0.681, 0.42, 1, 0.76, 0.71402, 0.6764, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jpjyu"]
+gradient = SubResource("Gradient_wlllb")
+
+[sub_resource type="Curve" id="Curve_43crx"]
+_data = [Vector2(0, 0.714286), 0.0, 0.0, 0, 0, Vector2(0.768421, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.340659), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hisqn"]
+curve = SubResource("Curve_43crx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pmcde"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 4.0
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+flatness = 0.073
+initial_velocity_min = 26.55
+initial_velocity_max = 26.55
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_hisqn")
+color_ramp = SubResource("GradientTexture1D_jpjyu")
+alpha_curve = SubResource("CurveTexture_brgm0")
+
+[node name="MissileExplosion" type="Node2D"]
+script = ExtResource("1_p6ko1")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_051qm")
+emitting = false
+amount = 19
+process_material = SubResource("ParticleProcessMaterial_pmcde")
+texture = ExtResource("1_nhtd5")
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+
+[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]

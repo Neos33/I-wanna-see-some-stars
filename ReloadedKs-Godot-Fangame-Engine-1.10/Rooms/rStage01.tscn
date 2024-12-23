@@ -74,6 +74,33 @@ fill_to = Vector2(1, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ut8p"]
 size = Vector2(20, 160)
 
+[sub_resource type="Animation" id="Animation_u43s8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossArrival:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5957.14, 1886.87)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BossArrival/Node2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_rotjg"]
 resource_name = "ShowBoss"
 length = 10.0
@@ -114,33 +141,6 @@ tracks/2/keys = {
 "args": [],
 "method": &"next_room"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_u43s8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BossArrival:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(5957.14, 1886.87)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BossArrival/Node2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e1q37"]
@@ -256,6 +256,21 @@ shader = ExtResource("16_afemc")
 shader_parameter/speed = Vector2(4, 9)
 shader_parameter/noise = SubResource("NoiseTexture2D_58vln")
 
+[sub_resource type="Animation" id="Animation_gebsq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tilSpikes:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_hrfpw"]
 resource_name = "wave_spikes"
 length = 2.0
@@ -271,21 +286,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, -2, 1, -2),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(64, 0), Vector2(64, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_gebsq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("tilSpikes:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_battw"]

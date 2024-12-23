@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var audio_ai_singing: AudioStreamPlayer2D = $AudioAISinging
 @onready var FSM: Node2D = $FiniteStateMachine
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var progress_bar: ProgressBar = $GUI/Control/ProgressBar
 
 enum ATTACK_MODE {SUMMERSIVE, RADIO, APPROCH, SHIELD}
 var attack_mode = ATTACK_MODE.SUMMERSIVE
@@ -12,29 +13,47 @@ var cooldown_attack_finished = 5.0
 
 var HP : int = 10
 var HP_intermission : int = 6
+var phase : int = 1
+
+var state_list : Array = ["StateSummersive", "StateRadio", "StateApprochAndSlash", "StateMissiles"]
+var current_state_count : int = 0
 
 signal camera_mode_switch(camera_index : int)
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
-	pass # Replace with function body.
+	progress_bar.max_value = HP
+	progress_bar.value = HP
+	
+	state_list.shuffle()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	HP_text.text = "HP: " + str(HP)
+	progress_bar.value = HP
+	
 	# Enable shield
 	if HP == HP_intermission:
-		if attack_mode == ATTACK_MODE.SUMMERSIVE:
+		if phase == 1:
 			switch_state("StateRadio")
 			#summersive_music_singing(3.0, 1.0)
 			emit_signal("camera_mode_switch", 1)
-			attack_mode = ATTACK_MODE.RADIO
+			phase = 2
 			#shield_mode(true)
 			
 
-func switch_state(state):
+func switch_state(state : String):
 	FSM.change_state(state)
+	#attack_mode = state
+
+func next_state():
+	if current_state_count == state_list.size():
+		state_list.shuffle()
+		current_state_count = 0
+		print("state list shuffled")
+		
+	FSM.change_state(state_list[current_state_count])
+	current_state_count += 1
 	#attack_mode = state
 
 func shield_mode(mode : bool = true):

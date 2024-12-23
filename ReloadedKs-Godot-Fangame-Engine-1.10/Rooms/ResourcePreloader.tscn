@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdnm4vu2ftyan"]
+[gd_scene load_steps=5 format=3 uid="uid://bdnm4vu2ftyan"]
 
+[ext_resource type="Script" path="res://Rooms/resource_preloader.gd" id="1_5tak2"]
 [ext_resource type="PackedScene" uid="uid://b145pxe80fi2f" path="res://Objects/Neos/objAimVisualExplosion.tscn" id="1_qtqs0"]
 [ext_resource type="PackedScene" uid="uid://den5o41ncyqsn" path="res://Objects/Neos/Boss/objMissile.tscn" id="2_23d3e"]
+[ext_resource type="PackedScene" uid="uid://7kalsmuxcggu" path="res://Objects/Neos/Boss/missile_explosion.tscn" id="3_h8q8m"]
 
 [node name="ResourcePreloader" type="Control"]
 layout_mode = 3
@@ -10,10 +12,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5tak2")
 
 [node name="objAimVisualExplosion" parent="." instance=ExtResource("1_qtqs0")]
 
 [node name="objMissile" parent="." instance=ExtResource("2_23d3e")]
+
+[node name="MissileExplosion" parent="." instance=ExtResource("3_h8q8m")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -23,3 +28,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.996078)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

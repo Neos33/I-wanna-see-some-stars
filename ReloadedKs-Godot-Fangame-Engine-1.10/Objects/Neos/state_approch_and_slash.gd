@@ -9,6 +9,7 @@ extends State
 const SWORD_TIP_LINE_CURVE = preload("res://Objects/Neos/Boss/objSwordTipLineCurve.tscn")
 var effect = null
 var do_effect : bool = false
+var start_position : Vector2 = Vector2.ZERO
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if do_effect:
@@ -22,13 +23,15 @@ func _process(delta: float) -> void:
 
 func enter():
 	super.enter()
+	start_position = parent.global_position
 	effect = SWORD_TIP_LINE_CURVE.instantiate()
 	right_hand.add_child(effect)
 	
 	sword_collision.disabled = false
 	var look = 1
-	if player.position.x < parent.position.x:
-		look = -1
+	if is_instance_valid(player):
+		if player.position.x < parent.position.x:
+			look = -1
 		
 	place_holder_shape_boss.scale.x = look
 	
@@ -39,7 +42,11 @@ func enter():
 	
 
 func finish():
-	fsm.change_state("StateShield")
+	#fsm.change_state("StateShield")
+	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(parent, "position", start_position, 3.0)
+	await tween.finished
+	parent.next_state()
 	
 func exit():
 	super.exit()

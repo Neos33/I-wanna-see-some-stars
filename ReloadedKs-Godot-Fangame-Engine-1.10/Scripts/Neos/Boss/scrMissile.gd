@@ -2,7 +2,7 @@ extends Node2D
 
 var HP : int = 3
 @onready var snd_break: AudioStreamPlayer = $sndBreak
-const OBJ_PS_BLOCK_BOUNCE = preload("res://Objects/Neos/objPSBlockBounce.tscn")
+const MISSILE_EXPLOSION = preload("res://Objects/Neos/Boss/missile_explosion.tscn")
 @onready var timer: Timer = $Timer
 @onready var missile_sprite: Sprite2D = $MissileSprite
 @onready var missile_trail: GPUParticles2D = $MissileTrail
@@ -51,7 +51,7 @@ func destroy_missile():
 
 func _on_wall_detect_body_entered(body: Node2D) -> void:
 	destroy_missile()
-	var ser = OBJ_PS_BLOCK_BOUNCE.instantiate()
+	var ser = MISSILE_EXPLOSION.instantiate()
 	add_sibling(ser)
 	ser.position = position
 

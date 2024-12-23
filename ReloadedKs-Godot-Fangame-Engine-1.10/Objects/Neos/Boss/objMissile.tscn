@@ -64,6 +64,7 @@ emitting = false
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_xaf84")
 texture = ExtResource("2_72cey")
+local_coords = true
 
 [node name="MissileSprite" type="Sprite2D" parent="."]
 position = Vector2(1, 0)

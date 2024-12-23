@@ -13,9 +13,10 @@ func enter():
 	var timer = get_tree().create_timer(4.0)
 	await timer.timeout
 	radio_spawn_period.stop()
-	timer = get_tree().create_timer(2.0)
-	await timer.timeout
-	fsm.change_state("StateSummersive")
+	var timer2 = get_tree().create_timer(8.0)
+	await timer2.timeout
+	#fsm.change_state("StateSummersive")
+	parent.next_state()
 	
 func exit():
 	super.exit()
