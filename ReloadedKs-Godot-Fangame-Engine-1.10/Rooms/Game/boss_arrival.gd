@@ -10,6 +10,7 @@ func next_room():
 	#GLOBAL_GAME.warp_to_point = Vector2(400, 608 - 128)
 	get_tree().change_scene_to_file(target_room)
 	GLOBAL_GAME.is_changing_rooms = true
+	WarpTransitionToBoss.animation_player.play("fade_out")
 	#var transition = OBJ_WARP.instantiate()
 	#add_child(transition)
 	#transition.warp_to = target_room

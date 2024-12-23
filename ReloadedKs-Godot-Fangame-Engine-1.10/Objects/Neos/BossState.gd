@@ -2,7 +2,6 @@ extends Node
 class_name State
 
 @onready var player = GLOBAL_INSTANCES.objPlayerID
-@onready var current_scene = GLOBAL_INSTANCES.Main_Scene
 @onready var debug_test: Label = owner.find_child("DebugStateName")
 @onready var animation_player: AnimationPlayer = owner.find_child("AnimationPlayer")
 

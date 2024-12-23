@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://du4jr3hlfgw3s"]
+
+[ext_resource type="AudioStream" uid="uid://qyhtghspgq0b" path="res://Audio/Music/GameCentral3.ogg" id="1_2fp0v"]
+[ext_resource type="Script" path="res://Scripts/Neos/scrResourceMusicInfo.gd" id="1_lrh5t"]
+
+[resource]
+script = ExtResource("1_lrh5t")
+musica = ExtResource("1_2fp0v")
+loop_start = 30.86
+loop_end = 58.291

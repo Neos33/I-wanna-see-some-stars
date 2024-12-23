@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdnm4vu2ftyan"]
+[gd_scene load_steps=6 format=3 uid="uid://bdnm4vu2ftyan"]
 
-[ext_resource type="Script" path="res://Rooms/resource_preloader.gd" id="1_5tak2"]
+[ext_resource type="Script" path="res://Rooms/Game/resource_preloader.gd" id="1_5tak2"]
 [ext_resource type="PackedScene" uid="uid://b145pxe80fi2f" path="res://Objects/Neos/objAimVisualExplosion.tscn" id="1_qtqs0"]
 [ext_resource type="PackedScene" uid="uid://den5o41ncyqsn" path="res://Objects/Neos/Boss/objMissile.tscn" id="2_23d3e"]
 [ext_resource type="PackedScene" uid="uid://7kalsmuxcggu" path="res://Objects/Neos/Boss/missile_explosion.tscn" id="3_h8q8m"]
+[ext_resource type="PackedScene" uid="uid://cbb60on63st1e" path="res://Objects/Neos/objRingPowerSource.tscn" id="5_2giro"]
 
 [node name="ResourcePreloader" type="Control"]
 layout_mode = 3
@@ -19,6 +20,8 @@ script = ExtResource("1_5tak2")
 [node name="objMissile" parent="." instance=ExtResource("2_23d3e")]
 
 [node name="MissileExplosion" parent="." instance=ExtResource("3_h8q8m")]
+
+[node name="objRingPowerSource" parent="." instance=ExtResource("5_2giro")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

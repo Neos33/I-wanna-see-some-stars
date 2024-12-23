@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdy55qbq4pgwo"]
+
+[ext_resource type="Script" path="res://spatial_shader.gd" id="1_4bm4k"]
+[ext_resource type="Shader" path="res://Spatial.gdshader" id="1_lelyt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6d83t"]
+shader = ExtResource("1_lelyt")
+shader_parameter/OCTAVE = 12
+shader_parameter/timescale = -2.0
+shader_parameter/CLOUD1_COL = Color(0.962973, 0.344494, 0.638392, 0.4)
+shader_parameter/CLOUD2_COL = Color(0.99, 0.79, 0.46, 0.2)
+shader_parameter/CLOUD3_COL = Color(0.81, 0.31, 0.59, 1)
+shader_parameter/CLOUD4_COL = Color(0.25118, 0.138956, 0.391336, 1)
+shader_parameter/SPACE = Color(0.203646, 0.0534455, 0, 0.3)
+shader_parameter/zoomScale = 6.0
+shader_parameter/size = 10.0
+shader_parameter/starscale = 20.0
+shader_parameter/prob = 0.98
+
+[sub_resource type="Gradient" id="Gradient_0nhj3"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_umuis"]
+gradient = SubResource("Gradient_0nhj3")
+width = 800
+height = 608
+
+[node name="SpatialShader" type="Node2D"]
+script = ExtResource("1_4bm4k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6d83t")
+texture = SubResource("GradientTexture2D_umuis")

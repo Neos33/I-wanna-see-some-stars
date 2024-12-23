@@ -153,7 +153,7 @@ modulate = Color(0, 0, 0, 1)
 
 [node name="Polygon2D" type="Polygon2D" parent="Node2D"]
 invert_enabled = true
-invert_border = 3014.5
+invert_border = 5000.0
 polygon = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0)
 
 [node name="Circle" type="Sprite2D" parent="Node2D"]

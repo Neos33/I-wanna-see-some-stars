@@ -11,8 +11,8 @@ enum ATTACK_MODE {SUMMERSIVE, RADIO, APPROCH, SHIELD}
 var attack_mode = ATTACK_MODE.SUMMERSIVE
 var cooldown_attack_finished = 5.0
 
-var HP : int = 10
-var HP_intermission : int = 6
+var HP : int = 60
+var HP_intermission : int = 20
 var phase : int = 1
 
 var state_list : Array = ["StateSummersive", "StateRadio", "StateApprochAndSlash", "StateMissiles"]
@@ -36,9 +36,9 @@ func _process(delta: float) -> void:
 	if HP == HP_intermission:
 		if phase == 1:
 			switch_state("StateRadio")
-			#summersive_music_singing(3.0, 1.0)
-			emit_signal("camera_mode_switch", 1)
-			phase = 2
+			##summersive_music_singing(3.0, 1.0)
+			#emit_signal("camera_mode_switch", 1)
+			#phase = 2
 			#shield_mode(true)
 			
 
