@@ -15,7 +15,10 @@ var start_position : Vector2 = Vector2.ZERO
 
 func enter():
 	super.enter()
-	
+	boss_sprite.scale.x = 1
+	if is_instance_valid(GLOBAL_INSTANCES.objPlayerID):
+		if GLOBAL_INSTANCES.objPlayerID.global_position.x < boss_sprite.global_position.x:
+			boss_sprite.scale.x = -1
 	current_count = 0
 	start_position = parent.position
 	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)

@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cg8g5lswxbk4k"]
+[gd_scene load_steps=8 format=3 uid="uid://cg8g5lswxbk4k"]
 
+[ext_resource type="Script" path="res://Rooms/Game/r_clear_screen.gd" id="1_e3rok"]
 [ext_resource type="Texture2D" uid="uid://ga378uvstot0" path="res://Graphics/Sprites/Neos/tag.jpg" id="1_wpftq"]
 [ext_resource type="PackedScene" uid="uid://bm40t36a6m8sc" path="res://Objects/Tiles/til32x32.tscn" id="2_3tcnd"]
 [ext_resource type="PackedScene" uid="uid://bp5rqk4l7tesk" path="res://Objects/Player/objPlayer.tscn" id="3_3ut5t"]
 [ext_resource type="PackedScene" uid="uid://b31w5fm4w5857" path="res://Objects/Room_objects/objSavePoint.tscn" id="4_hgft4"]
+[ext_resource type="PackedScene" uid="uid://byy0nyaw6gtki" path="res://Objects/Room_objects/objMusicPlayer.tscn" id="6_dg1jb"]
+[ext_resource type="Resource" uid="uid://du4jr3hlfgw3s" path="res://Scripts/Neos/Music Resources/resMusic_Stage1.tres" id="7_arhom"]
 
 [node name="rClearScreen" type="Node2D"]
+script = ExtResource("1_e3rok")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(400, 304)
@@ -13,7 +17,7 @@ texture = ExtResource("1_wpftq")
 
 [node name="til32x32" parent="." instance=ExtResource("2_3tcnd")]
 visible = false
-layer_0/tile_data = PackedInt32Array(1179648, 2, 3, 1179649, 65538, 3, 1179650, 65538, 3, 1179651, 65538, 3, 1179652, 65538, 3, 1179653, 65538, 3, 1179654, 65538, 3, 1179655, 65538, 3, 1179656, 65538, 3, 1179657, 65538, 3, 1179658, 65538, 3, 1179659, 65538, 3, 1179660, 65538, 3, 1179661, 65538, 3, 1179662, 65538, 3, 1179663, 65538, 3, 1179664, 65538, 3, 1179665, 65538, 3, 1179666, 65538, 3, 1179667, 65538, 3, 1179668, 65538, 3, 1179669, 65538, 3, 1179670, 65538, 3, 1179671, 65538, 3, 1179672, 131074, 3)
+layer_0/tile_data = PackedInt32Array(1179648, 2, 3, 1179649, 65538, 3, 1179650, 65538, 3, 1179651, 65538, 3, 1179652, 65538, 3, 1179653, 65538, 3, 1179654, 65538, 3, 1179655, 65538, 3, 1179656, 65538, 3, 1179657, 65538, 3, 1179658, 65538, 3, 1179659, 65538, 3, 1179660, 65538, 3, 1179661, 65538, 3, 1179662, 65538, 3, 1179663, 65538, 3, 1179664, 65538, 3, 1179665, 65538, 3, 1179666, 65538, 3, 1179667, 65538, 3, 1179668, 65538, 3, 1179669, 65538, 3, 1179670, 65538, 3, 1179671, 65538, 3, 1179672, 131074, 3, 1245183, 0, 2, 1179647, 0, 2, 1114111, 0, 2, 1048575, 0, 2, 983039, 0, 2, 917503, 0, 2, 851967, 0, 2, 786431, 0, 2, 720895, 0, 2, 655359, 0, 2, 589823, 0, 2, 1179673, 0, 2, 1114137, 0, 2, 1048601, 0, 2, 983065, 0, 2, 917529, 0, 2, 851993, 0, 2, 786457, 0, 2, 720921, 0, 2, 655385, 0, 2, 589849, 0, 2, 524313, 0, 2)
 
 [node name="objPlayer" parent="." instance=ExtResource("3_3ut5t")]
 position = Vector2(400, 520)
@@ -36,3 +40,7 @@ offset_top = 373.0
 offset_right = 391.0
 offset_bottom = 396.0
 text = "Neos"
+
+[node name="objMusicPlayer" parent="." instance=ExtResource("6_dg1jb")]
+position = Vector2(-33.3573, 104.199)
+song_data = Array[Resource]([ExtResource("7_arhom")])

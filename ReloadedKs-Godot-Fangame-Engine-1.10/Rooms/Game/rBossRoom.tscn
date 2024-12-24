@@ -68,7 +68,6 @@ z_index = -10
 [node name="Room_related" type="Node2D" parent="."]
 
 [node name="CameraRegions" type="Node2D" parent="Room_related"]
-visible = false
 
 [node name="objCameraFocusRegion" parent="Room_related/CameraRegions" instance=ExtResource("5_kgg2r")]
 position = Vector2(0, 32)
@@ -91,9 +90,9 @@ scale = Vector2(60.8796, 34.6119)
 
 [node name="objCameraDynamic" parent="Room_related" node_paths=PackedStringArray("target_node") instance=ExtResource("5_5w7pa")]
 target_node = NodePath("../../Environment/objPlayer")
-stop_left_at = -800
+stop_left_at = -1600
 stop_up_at = -608
-stop_right_at = 1600
+stop_right_at = 2400
 stop_down_at = 3040
 
 [node name="Gimmicks" type="Node2D" parent="."]

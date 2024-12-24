@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Some adventure game that does not have a name yet"
 config/tags=PackedStringArray("fangame_engine")
-run/main_scene="res://Rooms/00_Title_and_menus/rTitle.tscn"
+run/main_scene="res://Rooms/Game/ResourcePreloader.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 boot_splash/show_image=false

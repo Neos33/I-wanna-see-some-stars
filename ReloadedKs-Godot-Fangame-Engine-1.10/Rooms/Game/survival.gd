@@ -14,6 +14,7 @@ var spawner_list : Array = []
 @onready var ps_spikes: TileMapLayer = $SpikesSurvival/PSSpikes
 @onready var animation_player: AnimationPlayer = $SpikesSurvival/AnimationPlayer
 @onready var spikes_action: Timer = $SpikesSurvival/SpikesAction
+@onready var survival_block_way_2: TileMap = $"../SurvivalBlockWay2"
 
 
 var ps = null
@@ -21,6 +22,7 @@ const OBJ_RING_POWER_SOURCE = preload("res://Objects/Neos/objRingPowerSource.tsc
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawner_list = spawner_node.get_children()
+	survival_block_way_2.position.y = 1024
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,6 +37,7 @@ func _on_detector_body_entered(body: Node2D) -> void:
 		timer.start()
 		end_survival.start()
 		spikes_action.start()
+		survival_block_way_2.position = Vector2(-680, 152)
 
 
 func _on_timer_timeout() -> void:
@@ -54,6 +57,7 @@ func _on_end_survival_timeout() -> void:
 	survival_block_way.queue_free()
 	obj_camera_trigger_5.queue_free()
 	obj_camera_focus_region_6.camera_setting(5)
+	survival_block_way_2.queue_free()
 	
 	spikes_survival.queue_free()
 	

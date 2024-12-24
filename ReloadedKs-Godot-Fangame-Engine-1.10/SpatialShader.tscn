@@ -6,7 +6,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6d83t"]
 shader = ExtResource("1_lelyt")
 shader_parameter/OCTAVE = 12
-shader_parameter/timescale = -2.0
+shader_parameter/timescale = 0.5
 shader_parameter/CLOUD1_COL = Color(0.962973, 0.344494, 0.638392, 0.4)
 shader_parameter/CLOUD2_COL = Color(0.99, 0.79, 0.46, 0.2)
 shader_parameter/CLOUD3_COL = Color(0.81, 0.31, 0.59, 1)

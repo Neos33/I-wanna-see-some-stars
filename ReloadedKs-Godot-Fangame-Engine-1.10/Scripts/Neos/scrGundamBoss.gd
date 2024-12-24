@@ -20,6 +20,8 @@ var phase : int = 1
 var state_list : Array = ["StateSummersive", "StateRadio", "StateApprochAndSlash", "StateMissiles"]
 var current_state_count : int = 0
 
+
+
 signal camera_mode_switch(camera_index : int)
 
 
@@ -57,14 +59,15 @@ func switch_state(state : String):
 	#attack_mode = state
 
 func next_state():
-	if current_state_count == state_list.size():
-		state_list.shuffle()
-		current_state_count = 0
-		print("state list shuffled")
-		
-	FSM.change_state(state_list[current_state_count])
-	current_state_count += 1
-	#attack_mode = state
+	if phase != -1:
+		if current_state_count == state_list.size():
+			state_list.shuffle()
+			current_state_count = 0
+			print("state list shuffled")
+			
+		FSM.change_state(state_list[current_state_count])
+		current_state_count += 1
+		#attack_mode = state
 
 func shield_mode(mode : bool = true):
 	shield_collision.disabled = !mode
@@ -91,17 +94,6 @@ func summersive_music_stop():
 		
 
 #region Signals
-func _on_damage_hitbox_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Bullet"):
-		if !shield_enabled:
-			if HP > 0:
-				HP -= 1
-				GLOBAL_SOUNDS.play_sound(GLOBAL_SOUNDS.sndHit)
-		else:
-			shield_sound.play()
-		
-		
-		body.queue_free()
 
 
 #func _on_shield_hitbox_body_entered(body: Node2D) -> void:
@@ -110,3 +102,16 @@ func _on_damage_hitbox_body_entered(body: Node2D) -> void:
 		#body.queue_free()
 
 #endregion
+
+
+func _on_place_holder_shape_boss_boss_damage(bullet: Node2D) -> void:
+	if bullet.is_in_group("Bullet"):
+		if !shield_enabled:
+			if HP > 0:
+				HP -= 1
+				GLOBAL_SOUNDS.play_sound(GLOBAL_SOUNDS.sndHit)
+		else:
+			shield_sound.play()
+		
+		
+		bullet.queue_free()

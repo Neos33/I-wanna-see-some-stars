@@ -49,7 +49,7 @@ func enter():
 	var offset_x = 64 * -look
 	if is_instance_valid(player):
 		var tween = create_tween()
-		tween.tween_property(parent, "position", player.position + Vector2(offset_x, 0), 1.5)
+		tween.tween_property(parent, "position", player.position + Vector2(offset_x, -5), 1.5)
 	
 
 func finish():
