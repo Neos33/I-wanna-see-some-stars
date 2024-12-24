@@ -6,6 +6,7 @@ const MISSILE_EXPLOSION = preload("res://Objects/Neos/Boss/missile_explosion.tsc
 @onready var timer: Timer = $Timer
 @onready var missile_sprite: Sprite2D = $MissileSprite
 @onready var missile_trail: GPUParticles2D = $MissileTrail
+@onready var snd_speed_up: AudioStreamPlayer = $sndSpeedUp
 
 var velocity_move = Vector2.ZERO
 var prev_position = Vector2.ZERO
@@ -73,3 +74,4 @@ func _on_timer_timeout() -> void:
 	missile_trail.emitting = true
 	#tween.tween_property(missile_sprite, "modulate", col,  0.5)
 	timer.queue_free()
+	snd_speed_up.play()

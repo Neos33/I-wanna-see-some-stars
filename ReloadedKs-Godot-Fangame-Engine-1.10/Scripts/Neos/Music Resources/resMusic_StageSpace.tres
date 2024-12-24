@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dkpgmieh2otb4"]
+
+[ext_resource type="Script" path="res://Scripts/Neos/scrResourceMusicInfo.gd" id="1_27050"]
+[ext_resource type="AudioStream" uid="uid://bsb20044jngcg" path="res://Audio/Music/Rendezvous - DEKU (Realism.).ogg" id="1_ojx5i"]
+
+[resource]
+script = ExtResource("1_27050")
+musica = ExtResource("1_ojx5i")
+loop_start = 0.0
+loop_end = 0.0

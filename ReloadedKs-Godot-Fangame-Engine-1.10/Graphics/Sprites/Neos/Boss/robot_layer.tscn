@@ -1,0 +1,132 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp2rr84lp8jby"]
+
+[ext_resource type="Texture2D" uid="uid://cgafxik3jrsvr" path="res://Graphics/Sprites/Neos/Boss/PlayStation 2 - SD Gundam G Generation Wars - Dinn.png" id="1_tkbew"]
+
+[node name="RobotLayer" type="CanvasGroup"]
+position = Vector2(51, -14)
+
+[node name="AlasRight" type="Sprite2D" parent="."]
+position = Vector2(-133, 20)
+rotation = -0.49687
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(376, 352, 112, 48)
+
+[node name="AlasRight2" type="Sprite2D" parent="."]
+position = Vector2(-139, 11)
+rotation = -0.421297
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(336, 288, 136, 64)
+
+[node name="Unk" type="Sprite2D" parent="."]
+position = Vector2(-104, 39)
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(400, 408, 88, 72)
+
+[node name="AlasLeft1" type="Sprite2D" parent="."]
+position = Vector2(18, -27)
+rotation = -0.157142
+scale = Vector2(0.875219, 0.875219)
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(296, 64, 176, 72)
+
+[node name="AlasLeft2" type="Sprite2D" parent="."]
+position = Vector2(30, 8)
+rotation = 0.334868
+scale = Vector2(0.875219, 0.875219)
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(296, 64, 176, 72)
+
+[node name="AlasLeft3" type="Sprite2D" parent="."]
+position = Vector2(16, 35)
+rotation = 0.777321
+scale = Vector2(0.875219, 0.875219)
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(296, 64, 176, 72)
+
+[node name="WeaponLeft" type="Sprite2D" parent="."]
+position = Vector2(-5, 29)
+rotation = -0.353559
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(256, 760, 104, 144)
+
+[node name="WeaponRight" type="Sprite2D" parent="."]
+position = Vector2(-131, 36)
+rotation = -0.407546
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(1200, 912, 112, 96)
+
+[node name="ShoulderRight" type="Sprite2D" parent="."]
+position = Vector2(-144, 20)
+rotation = -0.26062
+scale = Vector2(0.736927, 0.736927)
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(784, 1040, 72, 56)
+
+[node name="LegLeft" type="Sprite2D" parent="."]
+position = Vector2(-22, 57)
+rotation = -0.116762
+scale = Vector2(0.862352, 0.862352)
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(664, 1248, 96, 88)
+
+[node name="Hat" type="Sprite2D" parent="."]
+position = Vector2(-91, -18)
+rotation = -0.479978
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(888, 1040, 128, 120)
+
+[node name="LegRight" type="Sprite2D" parent="."]
+position = Vector2(-101, 56)
+scale = Vector2(0.859668, 0.859668)
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(760, 1256, 64, 56)
+
+[node name="Cannon" type="Sprite2D" parent="."]
+position = Vector2(-84, 47)
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(640, 1112, 56, 48)
+
+[node name="BodyWork" type="Sprite2D" parent="."]
+position = Vector2(-100, 25)
+rotation = -0.534923
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(120, 0, 104, 56)
+
+[node name="UnkLeft" type="Sprite2D" parent="."]
+position = Vector2(-56, 46)
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(728, 1192, 72, 56)
+
+[node name="ArmLeft" type="Sprite2D" parent="."]
+position = Vector2(-40, 36)
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(528, 1128, 80, 56)
+
+[node name="ShoulderLeft" type="Sprite2D" parent="."]
+position = Vector2(-63, 17)
+rotation = -0.139711
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(720, 1040, 64, 72)
+
+[node name="Head" type="Sprite2D" parent="."]
+position = Vector2(-104, 0)
+texture = ExtResource("1_tkbew")
+region_enabled = true
+region_rect = Rect2(520, 1040, 96, 88)

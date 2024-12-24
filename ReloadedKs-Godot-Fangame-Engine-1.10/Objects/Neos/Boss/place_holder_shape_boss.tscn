@@ -1,0 +1,434 @@
+[gd_scene load_steps=8 format=3 uid="uid://ccumcsybahp0f"]
+
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="1_jagdx"]
+[ext_resource type="Texture2D" uid="uid://mgx6x5nn2vb8" path="res://Graphics/Tilemaps/tilSpikes.png" id="2_l2iwv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_08skg"]
+radius = 32.0
+height = 128.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iwmom"]
+radius = 128.996
+
+[sub_resource type="Animation" id="Animation_bunf3"]
+resource_name = "ApprochSlash"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftArm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-51, 19), Vector2(-24.965, 32.49), Vector2(-24.965, 32.49), Vector2(-51, 19)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftArm/LeftForeArm/LeftHand/Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2, 1.46667, 1.76667, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.389208, -1.29503, -1.29503, 1.34041, 1.34041, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftArm/LeftForeArm:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.2, 1.46667, 1.8, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -2.07345, -2.07345, 0.0, 0.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeftArm:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.2, 2.63333, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.5708, 0.815069, 0.815069, 1.18159, 1.5708]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RightArm:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.2, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(51, 18), Vector2(32.2, 3.78), Vector2(32.2, 3.78), Vector2(51, 18)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LeftArm/LeftForeArm/LeftHand/Sword:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RightArm/RightForeArm/RightHand2/Sword:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LeftArm/LeftForeArm/LeftHand/Sword:color")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.5, 1.8, 2.63333, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.818, 0.48, 1), Color(1, 0.818, 0.48, 1), Color(1, 0.26, 0.26, 1), Color(1, 0.26, 0.26, 1), Color(1, 0.756863, 0.454902, 1)]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../FiniteStateMachine/StateApprochAndSlash")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.5, 2.9, 4.03333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"make_effect"
+}, {
+"args": [],
+"method": &"stop_effect"
+}, {
+"args": [],
+"method": &"finish"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_i2dmg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftArm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-51, 19)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftArm/LeftForeArm/LeftHand/Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftArm/LeftForeArm:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeftArm:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RightArm:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(51, 18)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LeftArm/LeftForeArm/LeftHand/Sword:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RightArm/RightForeArm/RightHand2/Sword:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LeftArm/LeftForeArm/LeftHand/Sword:color")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.818, 0.48, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_34q3i"]
+_data = {
+"ApprochSlash": SubResource("Animation_bunf3"),
+"RESET": SubResource("Animation_i2dmg")
+}
+
+[node name="PlaceHolderShapeBoss" type="Node2D"]
+
+[node name="LeftHand" type="Node2D" parent="."]
+visible = false
+position = Vector2(40, -8)
+script = ExtResource("1_jagdx")
+size = Vector2(20, 20)
+
+[node name="Body" type="Polygon2D" parent="."]
+visible = false
+color = Color(1, 0.45, 0.45, 1)
+polygon = PackedVector2Array(0, 64, 32, 0, 0, -64, -32, -64, -32, 64)
+
+[node name="DamageHitbox" type="Area2D" parent="."]
+scale = Vector2(1, 1.2)
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageHitbox"]
+shape = SubResource("CapsuleShape2D_08skg")
+
+[node name="ShieldHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHitbox"]
+shape = SubResource("CircleShape2D_iwmom")
+disabled = true
+
+[node name="RightHand" type="Node2D" parent="."]
+visible = false
+position = Vector2(-40, 24)
+script = ExtResource("1_jagdx")
+size = Vector2(20, 20)
+
+[node name="Sword" type="Polygon2D" parent="RightHand"]
+rotation = 0.200713
+color = Color(1, 0.818, 0.48, 1)
+polygon = PackedVector2Array(80, 0, 0, -16, 0, 16)
+
+[node name="SwordHitbox" type="StaticBody2D" parent="RightHand/Sword" groups=["Killers"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightHand/Sword/SwordHitbox"]
+polygon = PackedVector2Array(0, -16, 80, 0, 0, 16)
+
+[node name="SwordTip" type="Node2D" parent="RightHand/Sword"]
+position = Vector2(80, 0)
+
+[node name="Head" type="Node2D" parent="."]
+
+[node name="Neck" type="Sprite2D" parent="Head"]
+texture = ExtResource("2_l2iwv")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="Head" type="Sprite2D" parent="Head"]
+modulate = Color(1, 0.4, 0.4, 1)
+position = Vector2(-1, -42)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_l2iwv")
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 32)
+
+[node name="RightArm" type="Node2D" parent="."]
+position = Vector2(51, 18)
+rotation = 1.5708
+
+[node name="TilSpikes" type="Sprite2D" parent="RightArm"]
+position = Vector2(16, 0)
+texture = ExtResource("2_l2iwv")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="TilSpikes3" type="Sprite2D" parent="RightArm"]
+position = Vector2(48, 0)
+texture = ExtResource("2_l2iwv")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="TilSpikes4" type="Sprite2D" parent="RightArm"]
+position = Vector2(80, 0)
+texture = ExtResource("2_l2iwv")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="RightForeArm" type="Node2D" parent="RightArm"]
+position = Vector2(96, -4.19629e-06)
+
+[node name="TilSpikes5" type="Sprite2D" parent="RightArm/RightForeArm"]
+position = Vector2(16, -3.33786e-06)
+texture = ExtResource("2_l2iwv")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="TilSpikes6" type="Sprite2D" parent="RightArm/RightForeArm"]
+position = Vector2(48, -3.33786e-06)
+texture = ExtResource("2_l2iwv")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="RightHand2" type="Node2D" parent="RightArm/RightForeArm"]
+position = Vector2(64, -3.90212e-06)
+rotation = -1.5708
+script = ExtResource("1_jagdx")
+size = Vector2(20, 20)
+
+[node name="Sword" type="Polygon2D" parent="RightArm/RightForeArm/RightHand2"]
+visible = false
+rotation = -1.22348
+color = Color(1, 0.818, 0.48, 1)
+polygon = PackedVector2Array(80, 0, 0, -16, 0, 16)
+
+[node name="SwordHitbox" type="StaticBody2D" parent="RightArm/RightForeArm/RightHand2/Sword" groups=["Killers"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightArm/RightForeArm/RightHand2/Sword/SwordHitbox"]
+polygon = PackedVector2Array(0, -16, 80, 0, 0, 16)
+disabled = true
+
+[node name="SwordTip" type="Node2D" parent="RightArm/RightForeArm/RightHand2/Sword"]
+position = Vector2(80, 0)
+
+[node name="RightShoulder" type="Node2D" parent="RightArm"]
+rotation = -1.5708
+script = ExtResource("1_jagdx")
+size = Vector2(30, 30)
+
+[node name="LeftArm" type="Node2D" parent="."]
+position = Vector2(-51, 19)
+rotation = 1.5708
+
+[node name="TilSpikes" type="Sprite2D" parent="LeftArm"]
+position = Vector2(16, 0)
+texture = ExtResource("2_l2iwv")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="TilSpikes3" type="Sprite2D" parent="LeftArm"]
+position = Vector2(48, 0)
+texture = ExtResource("2_l2iwv")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="TilSpikes4" type="Sprite2D" parent="LeftArm"]
+position = Vector2(80, 0)
+texture = ExtResource("2_l2iwv")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="LeftForeArm" type="Node2D" parent="LeftArm"]
+position = Vector2(96, -4.19629e-06)
+
+[node name="TilSpikes5" type="Sprite2D" parent="LeftArm/LeftForeArm"]
+position = Vector2(16, -3.33786e-06)
+texture = ExtResource("2_l2iwv")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="TilSpikes6" type="Sprite2D" parent="LeftArm/LeftForeArm"]
+position = Vector2(48, -3.33786e-06)
+texture = ExtResource("2_l2iwv")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="LeftHand" type="Node2D" parent="LeftArm/LeftForeArm"]
+position = Vector2(64, -3.90212e-06)
+rotation = -1.5708
+script = ExtResource("1_jagdx")
+size = Vector2(20, 20)
+
+[node name="Sword" type="Polygon2D" parent="LeftArm/LeftForeArm/LeftHand"]
+rotation = 0.389208
+color = Color(1, 0.818, 0.48, 1)
+polygon = PackedVector2Array(80, 0, 0, -16, 0, 16)
+
+[node name="SwordHitbox" type="StaticBody2D" parent="LeftArm/LeftForeArm/LeftHand/Sword" groups=["Killers"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftArm/LeftForeArm/LeftHand/Sword/SwordHitbox"]
+polygon = PackedVector2Array(0, -16, 80, 0, 0, 16)
+
+[node name="SwordTip" type="Node2D" parent="LeftArm/LeftForeArm/LeftHand/Sword"]
+position = Vector2(80, 0)
+
+[node name="LeftShoulder" type="Node2D" parent="LeftArm"]
+rotation = -1.5708
+script = ExtResource("1_jagdx")
+size = Vector2(30, 30)
+
+[node name="RightSwordAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_34q3i")
+}

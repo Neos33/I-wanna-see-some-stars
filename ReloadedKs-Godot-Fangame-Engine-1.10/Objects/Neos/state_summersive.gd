@@ -5,10 +5,11 @@ var time : float = 0.0
 var speed_wave = 0.0
 var going_back : bool = false
 var start_position : Vector2 = Vector2.ZERO
+@onready var sword_hitbox: CollisionPolygon2D = $"../../PlaceHolderShapeBoss/LeftArm/LeftForeArm/LeftHand/Sword/SwordHitbox/CollisionPolygon2D"
 
-@onready var summersive_arrive: Timer = $"../../SummersiveArrive"
+@onready var summersive_arrive: Timer = $SummersiveArrive
 @onready var boss_sprite = parent.find_child("PlaceHolderShapeBoss")
-
+#@onready var boss_sprite = $"../../RobotPart/Robot/RobotLayer"
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func transition():
 	pass
@@ -18,10 +19,18 @@ func enter():
 	start_position = parent.position
 	animation_player.play("summersive_ground")
 	speed_wave = randf_range(0.5, 1.3)
+	sword_hitbox.disabled = true
 	
 func exit():
 	super.exit()
 	parent.rotation = 0
+	#animation_player.stop()
+	#animation_player.clear_queue()
+	underground = false
+	going_back = false
+	start_position = Vector2.ZERO
+	summersive_arrive.stop()
+	sword_hitbox.disabled = false
 	
 func _process(delta: float) -> void:
 	if underground:
@@ -58,6 +67,7 @@ func going_down():
 func _on_summersive_arrive_timeout() -> void:
 	underground = false
 	going_back = true
+	animation_player.play("summersive_back_normal")
 	boss_sprite.rotation = 0
 	#parent.summersive_music_stop()
 	

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bsb20044jngcg"
+path="res://.godot/imported/Rendezvous - DEKU (Realism.).ogg-8a2da1ee1c14ad846ad9b810e41cfc3e.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/Music/Rendezvous - DEKU (Realism.).ogg"
+dest_files=["res://.godot/imported/Rendezvous - DEKU (Realism.).ogg-8a2da1ee1c14ad846ad9b810e41cfc3e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

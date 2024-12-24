@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://den5o41ncyqsn"]
+[gd_scene load_steps=16 format=3 uid="uid://den5o41ncyqsn"]
 
 [ext_resource type="Script" path="res://Scripts/Neos/Boss/scrMissile.gd" id="1_5jcxj"]
 [ext_resource type="Texture2D" uid="uid://dqnjfa3j6xyjf" path="res://Graphics/Sprites/Particle Textures/fire_01.png" id="2_72cey"]
-[ext_resource type="AudioStream" uid="uid://dbad8fsvpe8ja" path="res://Audio/Sounds/Neos/M1_BreakBlock.wav" id="3_kxejk"]
 [ext_resource type="Texture2D" uid="uid://bvo8qlootnspw" path="res://Graphics/Sprites/Neos/Boss/missile.png" id="3_l6mhm"]
+[ext_resource type="AudioStream" uid="uid://bqwa8b536o6w5" path="res://Audio/Sounds/Neos/Boss/sfx_explosion_bullet_01.wav" id="4_mkrv6"]
+[ext_resource type="AudioStream" uid="uid://tpf58li21l4q" path="res://Audio/Sounds/Neos/sfx_missile_accelerate.wav" id="5_kgg6v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30qwt"]
 size = Vector2(27, 8)
@@ -95,10 +96,15 @@ shape = SubResource("RectangleShape2D_pfsw3")
 debug_color = Color(0.90277, 0.267408, 0.400655, 0.42)
 
 [node name="sndBreak" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_kxejk")
+stream = ExtResource("4_mkrv6")
+bus = &"Sounds"
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="sndSpeedUp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_kgg6v")
+bus = &"Sounds"
 
 [connection signal="body_entered" from="BulletDamage" to="." method="_on_bullet_damage_body_entered"]
 [connection signal="body_entered" from="WallDetect" to="." method="_on_wall_detect_body_entered"]

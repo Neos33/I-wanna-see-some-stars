@@ -6,9 +6,11 @@ extends CharacterBody2D
 @onready var FSM: Node2D = $FiniteStateMachine
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var progress_bar: ProgressBar = $GUI/Control/ProgressBar
+@onready var shield_sound: AudioStreamPlayer = $ShieldSound
 
 enum ATTACK_MODE {SUMMERSIVE, RADIO, APPROCH, SHIELD}
 var attack_mode = ATTACK_MODE.SUMMERSIVE
+var shield_enabled : bool = false
 var cooldown_attack_finished = 5.0
 
 var HP : int = 60
@@ -32,10 +34,18 @@ func _process(delta: float) -> void:
 	HP_text.text = "HP: " + str(HP)
 	progress_bar.value = HP
 	
+	if HP == 0 and phase != -1:
+		switch_state("StateBossDefeated")
+		progress_bar.visible = false
+		phase = -1
 	# Enable shield
-	if HP == HP_intermission:
-		if phase == 1:
-			switch_state("StateRadio")
+	#if HP == HP_intermission:
+		#if phase == 1:
+			##switch_state("StateIntermission")
+			#state_list.insert(current_state_count, "StateIntermission")
+			#print(state_list)
+			#phase = 2
+			#shield_enabled = true
 			##summersive_music_singing(3.0, 1.0)
 			#emit_signal("camera_mode_switch", 1)
 			#phase = 2
@@ -83,10 +93,12 @@ func summersive_music_stop():
 #region Signals
 func _on_damage_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Bullet"):
-		if attack_mode != ATTACK_MODE.SHIELD:
+		if !shield_enabled:
 			if HP > 0:
 				HP -= 1
 				GLOBAL_SOUNDS.play_sound(GLOBAL_SOUNDS.sndHit)
+		else:
+			shield_sound.play()
 		
 		
 		body.queue_free()

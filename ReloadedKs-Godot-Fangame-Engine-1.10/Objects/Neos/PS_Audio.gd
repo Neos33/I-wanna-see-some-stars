@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 func play_music():
 	stream = CHARGE[randi() % CHARGE.size()]
 	play()
+	
 
 func stop_music():
 	stop()

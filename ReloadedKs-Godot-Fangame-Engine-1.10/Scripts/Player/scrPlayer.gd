@@ -578,5 +578,5 @@ func _on_ps_bouncers_area_entered(area: Area2D) -> void:
 	if GLOBAL_GAME.circuit_gimmick and velocity.y > 0:
 		velocity.y = -s_jump_speed * 1.5
 		# Audio
-		GLOBAL_SOUNDS.play_sound(GLOBAL_SOUNDS.sndCoin)
+		GLOBAL_SOUNDS.play_sound(GLOBAL_SOUNDS.sndPSBouncyBlocks)
 	print(velocity.y)
