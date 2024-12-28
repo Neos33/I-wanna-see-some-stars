@@ -1,7 +1,61 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyb8wstwwwxci"]
+[gd_scene load_steps=7 format=3 uid="uid://cyb8wstwwwxci"]
 
 [ext_resource type="Script" path="res://Scripts/r_volume_control.gd" id="1_vs528"]
 [ext_resource type="AudioStream" uid="uid://dio0twbyudmye" path="res://Audio/Music/guy_rock.ogg" id="2_yx1gk"]
+
+[sub_resource type="Animation" id="Animation_07sdw"]
+resource_name = "ShowContinueKey"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Continue:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qsjfg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Continue:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_00rgd"]
+resource_name = "HideContinueKey"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Continue:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_87bsk"]
+_data = {
+"HideContinueKey": SubResource("Animation_00rgd"),
+"RESET": SubResource("Animation_qsjfg"),
+"ShowContinueKey": SubResource("Animation_07sdw")
+}
 
 [node name="rVolumeControl" type="Control"]
 layout_mode = 3
@@ -19,7 +73,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.393086, 0.393086, 0.393085, 1)
+color = Color(0.0923972, 0.0923971, 0.0923967, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -29,9 +83,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -264.0
-offset_top = -69.0
+offset_top = -68.5
 offset_right = 264.0
-offset_bottom = 70.0
+offset_bottom = 105.5
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -54,7 +108,7 @@ text = "Master"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../../ButtonTestAudio/MusicButton")
+focus_neighbor_top = NodePath("../../StartGameButton")
 focus_neighbor_bottom = NodePath("../../BGMData/BGMSlider")
 
 [node name="ValueInfo" type="Label" parent="VBoxContainer/MasterData"]
@@ -115,7 +169,7 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../MusicButton")
 focus_neighbor_top = NodePath("../../SFXData/SFXSlider")
 focus_neighbor_right = NodePath("../MusicButton")
-focus_neighbor_bottom = NodePath("../../MasterData/MasterSlider")
+focus_neighbor_bottom = NodePath("../../StartGameButton")
 text = "Test sound"
 
 [node name="MusicButton" type="Button" parent="VBoxContainer/ButtonTestAudio"]
@@ -123,11 +177,19 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../SoundButton")
 focus_neighbor_top = NodePath("../../SFXData/SFXSlider")
 focus_neighbor_right = NodePath("../SoundButton")
-focus_neighbor_bottom = NodePath("../../MasterData/MasterSlider")
+focus_neighbor_bottom = NodePath("../../StartGameButton")
 toggle_mode = true
 text = "Test music"
 
-[node name="Label" type="Label" parent="."]
+[node name="StartGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ButtonTestAudio/SoundButton")
+focus_neighbor_bottom = NodePath("../MasterData/MasterSlider")
+text = "Start
+"
+
+[node name="Continue" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -162,8 +224,15 @@ theme_override_constants/outline_size = 3
 text = "Playing!"
 vertical_alignment = 1
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_87bsk")
+}
+
 [connection signal="value_changed" from="VBoxContainer/MasterData/MasterSlider" to="." method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/BGMData/BGMSlider" to="." method="_on_bgm_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/SFXData/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/ButtonTestAudio/SoundButton" to="." method="_on_sound_button_pressed"]
 [connection signal="toggled" from="VBoxContainer/ButtonTestAudio/MusicButton" to="." method="_on_music_button_toggled"]
+[connection signal="focus_entered" from="VBoxContainer/StartGameButton" to="." method="_on_start_game_button_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/StartGameButton" to="." method="_on_start_game_button_focus_exited"]

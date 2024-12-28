@@ -6,10 +6,9 @@ extends CharacterBody2D
 @onready var FSM: Node2D = $FiniteStateMachine
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var progress_bar: ProgressBar = $GUI/Control/ProgressBar
-@onready var shield_sound: AudioStreamPlayer = $ShieldSound
+@onready var shield_sound: AudioStreamPlayer = $FiniteStateMachine/StateShield/ShieldSound
+@onready var damage_blink: AnimationPlayer = $PlaceHolderShapeBoss/WeakPoint/DamageBlink
 
-enum ATTACK_MODE {SUMMERSIVE, RADIO, APPROCH, SHIELD}
-var attack_mode = ATTACK_MODE.SUMMERSIVE
 var shield_enabled : bool = false
 var cooldown_attack_finished = 5.0
 
@@ -18,7 +17,9 @@ var HP_intermission : int = 20
 var phase : int = 1
 
 var state_list : Array = ["StateSummersive", "StateRadio", "StateApprochAndSlash", "StateMissiles"]
+#var state_list : Array = ["StateSummersive", "StateSummersive"]
 var current_state_count : int = 0
+var ignore_reshuffle : bool = false # Set this to true if you want to test a specific state
 
 
 
@@ -61,7 +62,14 @@ func switch_state(state : String):
 func next_state():
 	if phase != -1:
 		if current_state_count == state_list.size():
+			var last_state_selected = state_list[current_state_count - 1]
 			state_list.shuffle()
+			if !ignore_reshuffle:
+				while state_list[0] == last_state_selected:
+					state_list.shuffle()
+					print("Reshuffled because we did get the same state twice in a row")
+
+
 			current_state_count = 0
 			print("state list shuffled")
 			
@@ -101,8 +109,6 @@ func summersive_music_stop():
 		#GLOBAL_SOUNDS.play_sound(GLOBAL_SOUNDS.sndBlockChange)
 		#body.queue_free()
 
-#endregion
-
 
 func _on_place_holder_shape_boss_boss_damage(bullet: Node2D) -> void:
 	if bullet.is_in_group("Bullet"):
@@ -110,8 +116,12 @@ func _on_place_holder_shape_boss_boss_damage(bullet: Node2D) -> void:
 			if HP > 0:
 				HP -= 1
 				GLOBAL_SOUNDS.play_sound(GLOBAL_SOUNDS.sndHit)
+				damage_blink.stop()
+				damage_blink.play("DamageAnimation")
 		else:
 			shield_sound.play()
 		
 		
 		bullet.queue_free()
+
+#endregion

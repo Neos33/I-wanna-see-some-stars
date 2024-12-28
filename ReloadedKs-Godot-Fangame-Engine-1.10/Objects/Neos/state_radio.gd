@@ -2,7 +2,7 @@ extends State
 
 @onready var spawn_point = parent.get_parent().find_child("AimSpawners")
 const OBJ_AIM_SPOT = preload("res://Objects/Neos/objAimSpot.tscn")
-@onready var radio_spawn_period: Timer = $"../../RadioSpawnPeriod"
+@onready var radio_spawn_period: Timer = $RadioSpawnPeriod
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 
@@ -15,7 +15,7 @@ func enter():
 	var timer = get_tree().create_timer(4.0)
 	await timer.timeout
 	radio_spawn_period.stop()
-	var timer2 = get_tree().create_timer(8.0)
+	var timer2 = get_tree().create_timer(4.0)
 	await timer2.timeout
 	#fsm.change_state("StateSummersive")
 	parent.next_state()

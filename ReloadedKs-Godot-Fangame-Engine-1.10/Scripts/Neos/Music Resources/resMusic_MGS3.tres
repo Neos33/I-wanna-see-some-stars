@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b8v27m1dw7bet"]
+
+[ext_resource type="Script" path="res://Scripts/Neos/scrResourceMusicInfo.gd" id="1_7rkkk"]
+[ext_resource type="AudioStream" uid="uid://dlqs641mbb1nm" path="res://Audio/Music/Neos/Metal Gear Solid 3 - Takin' On the Shagohod Extended.ogg" id="1_83qw6"]
+
+[resource]
+script = ExtResource("1_7rkkk")
+musica = ExtResource("1_83qw6")
+loop_start = 17.785
+loop_end = 118.294

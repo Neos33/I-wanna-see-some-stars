@@ -14,3 +14,4 @@ func _process(delta: float) -> void:
 
 func _on_damage_hitbox_body_entered(body: Node2D) -> void:
 	emit_signal("boss_damage", body)
+	

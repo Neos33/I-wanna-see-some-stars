@@ -46,10 +46,10 @@ func enter():
 	
 	#animation_player.play("approch_slash")
 	right_sword_anim.play("ApprochSlash")
-	var offset_x = 64 * -look
+	var offset_x = 110 * -look
 	if is_instance_valid(player):
 		var tween = create_tween()
-		tween.tween_property(parent, "position", player.position + Vector2(offset_x, -5), 1.5)
+		tween.tween_property(parent, "position", player.position + Vector2(offset_x, -100), 1.5)
 	
 
 func finish():
@@ -57,11 +57,12 @@ func finish():
 	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(parent, "position", start_position, 3.0)
 	await tween.finished
+	sword_collision.disabled = true
 	parent.next_state()
 	
 func exit():
 	super.exit()
-	sword_collision.disabled = true
+	#sword_collision.disabled = true
 	
 func make_effect():
 	if effect != null:

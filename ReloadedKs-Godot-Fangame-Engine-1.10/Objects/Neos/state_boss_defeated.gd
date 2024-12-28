@@ -1,7 +1,7 @@
 extends State
 @onready var timer: Timer = $Timer
 @onready var timer_2: Timer = $Timer2
-@onready var collision_polygon_2d: CollisionPolygon2D = $"../../PlaceHolderShapeBoss/LeftArm/LeftForeArm/LeftHand/Sword/SwordHitbox/CollisionPolygon2D"
+@onready var sword_hitbox: CollisionPolygon2D = $"../../PlaceHolderShapeBoss/LeftArm/LeftForeArm/LeftHand/Sword/SwordHitbox/CollisionPolygon2D"
 
 var time : int = 0
 @onready var robot_layer: CanvasGroup = $"../../RobotPart/Robot/RobotLayer"
@@ -12,7 +12,10 @@ var time : int = 0
 @onready var weak_point: Node2D = $"../../PlaceHolderShapeBoss/WeakPoint"
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
+@onready var head_animation: AnimationPlayer = $"../../PlaceHolderShapeBoss/Head/HeadAnimation"
 @onready var color_rect: ColorRect = $ScreenBlack/Control/ColorRect
+
+@onready var right_sword_anim: AnimationPlayer = $"../../PlaceHolderShapeBoss/RightSwordAnim"
 
 
 var destroyed : bool = false
@@ -21,16 +24,18 @@ func enter():
 	super.enter()
 	get_tree().call_group("Missile_from_boss", "queue_free")
 	get_tree().call_group("Aim_from_boss", "queue_free")
+	right_sword_anim.stop()
+	head_animation.stop()
 	timer.start()
 	timer_2.start()
 	destroyed = true
-	collision_polygon_2d.disabled = true
+	sword_hitbox.disabled = true
 	GLOBAL_MUSIC.change_volume(0.0, 1.0)
 	
 func exit():
 	super.exit()
 	timer.stop()
-	collision_polygon_2d.disabled = false
+	sword_hitbox.disabled = false
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -62,7 +67,7 @@ func _on_timer_2_timeout() -> void:
 	weak_point.visible = false
 	audio_stream_player.play()
 	
-	var tween = create_tween()
+	var tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
 	tween.tween_property(head, "position:y", 216, 2.0)
 	
 		

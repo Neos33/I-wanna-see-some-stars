@@ -1,6 +1,6 @@
 extends State
 
-@onready var missile_shot_period: Timer = $"../../MissileShotPeriod"
+@onready var missile_shot_period: Timer = $MissileShotPeriod
 @onready var sword_tip: Node2D = $"../../PlaceHolderShapeBoss/RightArm/RightShoulder"
 
 @onready var spawn_point = parent.get_parent().find_child("MissilesSpawners")
@@ -21,6 +21,8 @@ func enter():
 			boss_sprite.scale.x = -1
 	current_count = 0
 	start_position = parent.position
+	
+	# Move up to avoid getting shot
 	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 	tween.tween_property(parent, "position", Vector2(0, -64), 2.0).as_relative()
 	
@@ -33,15 +35,12 @@ func exit():
 	super.exit()
 	missile_shot_period.stop()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func create_missile(spawn_position : Vector2):
 	var missile = MISSILE.instantiate()
 	spawn_point.add_child(missile)
 	missile.global_position = spawn_position
-	missile.velocity_move = Vector2(2.0 * boss_sprite.scale.x, 0)
+	missile.velocity_move = Vector2(2.0 * boss_sprite.scale.x, randf_range(-3.0, 3.0))
 	audio_stream_player.play()
 	missile.add_to_group("Missile_from_boss")
 

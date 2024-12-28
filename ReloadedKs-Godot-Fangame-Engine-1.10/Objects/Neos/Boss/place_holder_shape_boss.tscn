@@ -1,11 +1,27 @@
-[gd_scene load_steps=12 format=3 uid="uid://ccumcsybahp0f"]
+[gd_scene load_steps=19 format=3 uid="uid://ccumcsybahp0f"]
 
 [ext_resource type="Script" path="res://Objects/Neos/Boss/place_holder_shape_boss.gd" id="1_8474a"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="1_jagdx"]
 [ext_resource type="Texture2D" uid="uid://mgx6x5nn2vb8" path="res://Graphics/Tilemaps/tilSpikes.png" id="2_l2iwv"]
+[ext_resource type="Texture2D" uid="uid://bjoekv4s76mnd" path="res://Graphics/Sprites/Neos/sword_candy_texture.png" id="4_sdep6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iwmom"]
 radius = 128.996
+
+[sub_resource type="Animation" id="Animation_raldw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_fknpy"]
 resource_name = "new_animation"
@@ -23,21 +39,6 @@ tracks/0/keys = {
 "values": [0.0, 6.28319, 6.28319]
 }
 
-[sub_resource type="Animation" id="Animation_raldw"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Polygon2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hhecw"]
 _data = {
 "RESET": SubResource("Animation_raldw"),
@@ -46,6 +47,81 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ohf56"]
 radius = 24.0
+
+[sub_resource type="Animation" id="Animation_p7r7t"]
+resource_name = "DamageAnimation"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.76, 0.2432, 0.251813, 1), Color(1, 1, 1, 1), Color(0.76, 0.2432, 0.251813, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nke41"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.76, 0.2432, 0.251813, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6h070"]
+_data = {
+"DamageAnimation": SubResource("Animation_p7r7t"),
+"RESET": SubResource("Animation_nke41")
+}
+
+[sub_resource type="Animation" id="Animation_ss4q8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -42)]
+}
+
+[sub_resource type="Animation" id="Animation_pk0me"]
+resource_name = "WaveHead"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8),
+"transitions": PackedFloat32Array(0.5, 1, 2),
+"update": 0,
+"values": [Vector2(0, -42), Vector2(0, -56), Vector2(0, -56)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_piikd"]
+_data = {
+"RESET": SubResource("Animation_ss4q8"),
+"WaveHead": SubResource("Animation_pk0me")
+}
 
 [sub_resource type="Animation" id="Animation_bunf3"]
 resource_name = "ApprochSlash"
@@ -144,7 +220,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0, 1.5, 1.8, 2.63333, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 0.818, 0.48, 1), Color(1, 0.818, 0.48, 1), Color(1, 0.26, 0.26, 1), Color(1, 0.26, 0.26, 1), Color(1, 0.756863, 0.454902, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0.26, 0.26, 1), Color(1, 0.26, 0.26, 1), Color(1, 1, 1, 1)]
 }
 tracks/8/type = "method"
 tracks/8/imported = false
@@ -263,7 +339,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 0.818, 0.48, 1)]
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_34q3i"]
@@ -322,7 +398,7 @@ position = Vector2(0, 64)
 color = Color(0.76, 0.2432, 0.251813, 1)
 polygon = PackedVector2Array(0, -24, -24, 0, 0, 24, 24, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="WeakPoint"]
+[node name="CoreAnimation" type="AnimationPlayer" parent="WeakPoint"]
 libraries = {
 "": SubResource("AnimationLibrary_hhecw")
 }
@@ -338,6 +414,12 @@ collision_mask = 16
 position = Vector2(0, 51.6667)
 shape = SubResource("CircleShape2D_ohf56")
 
+[node name="DamageBlink" type="AnimationPlayer" parent="WeakPoint"]
+libraries = {
+"": SubResource("AnimationLibrary_6h070")
+}
+speed_scale = 2.0
+
 [node name="Head" type="Node2D" parent="."]
 
 [node name="Neck" type="Sprite2D" parent="Head"]
@@ -347,11 +429,17 @@ region_rect = Rect2(0, 0, 32, 32)
 
 [node name="Head" type="Sprite2D" parent="Head"]
 modulate = Color(1, 0.4, 0.4, 1)
-position = Vector2(-1, -42)
+position = Vector2(0, -42)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_l2iwv")
 region_enabled = true
 region_rect = Rect2(32, 0, 32, 32)
+
+[node name="HeadAnimation" type="AnimationPlayer" parent="Head"]
+libraries = {
+"": SubResource("AnimationLibrary_piikd")
+}
+autoplay = "WaveHead"
 
 [node name="RightArm" type="Node2D" parent="."]
 position = Vector2(51, 18)
@@ -462,7 +550,8 @@ script = ExtResource("1_jagdx")
 size = Vector2(20, 20)
 
 [node name="Sword" type="Polygon2D" parent="LeftArm/LeftForeArm/LeftHand"]
-color = Color(1, 0.818, 0.48, 1)
+texture_repeat = 2
+texture = ExtResource("4_sdep6")
 polygon = PackedVector2Array(80, 0, 0, -16, 0, 16)
 
 [node name="SwordHitbox" type="StaticBody2D" parent="LeftArm/LeftForeArm/LeftHand/Sword" groups=["Killers"]]

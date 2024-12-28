@@ -11,11 +11,14 @@ extends Control
 @onready var music_play: AudioStreamPlayer = $MusicPlay
 @onready var music_playing_text: Label = $MusicPlayingText
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 var master_bus = null
 var music_bus = null
 var sound_bus = null
 
 var is_transitioning : bool = false
+var start_focused : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,9 +42,12 @@ func _process(delta: float) -> void:
 	pass
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("button_proceed_check") and !is_transitioning:
+	if Input.is_action_just_pressed("button_proceed_check") and !is_transitioning and start_focused:
 		ScreenTransition.change_room("res://Rooms/00_Title_and_menus/rTitle.tscn")
 		is_transitioning = true
+		music_play.stop()
+		music_playing_text.visible = false
+		
 
 func _on_master_slider_value_changed(value: float) -> void:
 	master_value_info.text = str(value) + "%"
@@ -70,3 +76,13 @@ func _on_music_button_toggled(toggled_on: bool) -> void:
 	else:
 		music_play.stop()
 		music_playing_text.visible = false
+
+
+func _on_start_game_button_focus_entered() -> void:
+	animation_player.play("ShowContinueKey")
+	start_focused = true
+
+
+func _on_start_game_button_focus_exited() -> void:
+	animation_player.play_backwards("ShowContinueKey")
+	start_focused = false

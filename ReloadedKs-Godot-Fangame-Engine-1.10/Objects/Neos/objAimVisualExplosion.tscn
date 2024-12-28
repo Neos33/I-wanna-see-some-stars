@@ -187,6 +187,7 @@ one_shot = true
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_6hdjr")
+volume_db = -5.557
 bus = &"Sounds"
 
 [connection signal="timeout" from="FreeScene" to="." method="_on_free_scene_timeout"]

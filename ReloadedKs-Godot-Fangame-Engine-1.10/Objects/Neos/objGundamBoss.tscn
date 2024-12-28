@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://qpkvcl0iv3c3"]
+[gd_scene load_steps=33 format=3 uid="uid://qpkvcl0iv3c3"]
 
 [ext_resource type="Script" path="res://Scripts/Neos/scrGundamBoss.gd" id="1_li8o1"]
 [ext_resource type="Texture2D" uid="uid://cgafxik3jrsvr" path="res://Graphics/Sprites/Neos/Boss/PlayStation 2 - SD Gundam G Generation Wars - Dinn.png" id="2_b1jjk"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Objects/Neos/state_intro.gd" id="6_phvqf"]
 [ext_resource type="Script" path="res://Objects/Neos/state_shield.gd" id="7_sqbsm"]
 [ext_resource type="Script" path="res://Objects/Neos/state_approch_and_slash.gd" id="7_vpqrf"]
+[ext_resource type="AudioStream" uid="uid://v420ejnmjxuu" path="res://Audio/Sounds/Neos/Boss/laserminigun-1.wav" id="9_81si1"]
 [ext_resource type="AudioStream" uid="uid://bfg1t4vofeeg2" path="res://Audio/Sounds/Neos/Boss/09 - target looking.wav" id="9_waxqa"]
 [ext_resource type="AudioStream" uid="uid://v5ef6mvixoqq" path="res://Audio/Sounds/Neos/Boss/sfx_KL_trap_throw01.wav" id="10_f572a"]
 [ext_resource type="Script" path="res://Objects/Neos/state_shotmisslles.gd" id="10_g5fgj"]
@@ -658,12 +659,23 @@ script = ExtResource("5_62srp")
 [node name="SummersiveArrive" type="Timer" parent="FiniteStateMachine/StateSummersive"]
 one_shot = true
 
+[node name="SummersiveShotPeriod" type="Timer" parent="FiniteStateMachine/StateSummersive"]
+one_shot = true
+
+[node name="AudioLaserShot" type="AudioStreamPlayer" parent="FiniteStateMachine/StateSummersive"]
+stream = ExtResource("9_81si1")
+volume_db = -12.703
+bus = &"Sounds"
+
 [node name="StateRadio" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("6_mffql")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="FiniteStateMachine/StateRadio"]
 stream = ExtResource("9_waxqa")
 bus = &"Sounds"
+
+[node name="RadioSpawnPeriod" type="Timer" parent="FiniteStateMachine/StateRadio"]
+wait_time = 0.2
 
 [node name="StateApprochAndSlash" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("7_vpqrf")
@@ -675,6 +687,10 @@ bus = &"Sounds"
 [node name="StateShield" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("7_sqbsm")
 
+[node name="ShieldSound" type="AudioStreamPlayer" parent="FiniteStateMachine/StateShield"]
+stream = ExtResource("16_p8cb1")
+bus = &"Sounds"
+
 [node name="StateMissiles" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("10_g5fgj")
 
@@ -682,6 +698,9 @@ script = ExtResource("10_g5fgj")
 stream = ExtResource("14_awyt5")
 volume_db = -10.321
 bus = &"Sounds"
+
+[node name="MissileShotPeriod" type="Timer" parent="FiniteStateMachine/StateMissiles"]
+wait_time = 1.2
 
 [node name="StateIntermission" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("12_1mnqj")
@@ -725,12 +744,6 @@ libraries = {
 "": SubResource("AnimationLibrary_qrhxp")
 }
 
-[node name="RadioSpawnPeriod" type="Timer" parent="."]
-wait_time = 0.2
-
-[node name="MissileShotPeriod" type="Timer" parent="."]
-wait_time = 1.3
-
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="GUI"]
@@ -754,17 +767,14 @@ max_value = 10.0
 value = 10.0
 metadata/_edit_lock_ = true
 
-[node name="ShieldSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("16_p8cb1")
-bus = &"Sounds"
-
 [connection signal="boss_damage" from="PlaceHolderShapeBoss" to="." method="_on_place_holder_shape_boss_boss_damage"]
 [connection signal="timeout" from="FiniteStateMachine/StateIntro/Timer" to="FiniteStateMachine/StateIntro" method="_on_timer_timeout"]
 [connection signal="timeout" from="FiniteStateMachine/StateSummersive/SummersiveArrive" to="FiniteStateMachine/StateSummersive" method="_on_summersive_arrive_timeout"]
+[connection signal="timeout" from="FiniteStateMachine/StateSummersive/SummersiveShotPeriod" to="FiniteStateMachine/StateSummersive" method="_on_summersive_shot_period_timeout"]
+[connection signal="timeout" from="FiniteStateMachine/StateRadio/RadioSpawnPeriod" to="FiniteStateMachine/StateRadio" method="_on_radio_spawn_period_timeout"]
+[connection signal="timeout" from="FiniteStateMachine/StateMissiles/MissileShotPeriod" to="FiniteStateMachine/StateMissiles" method="_on_missile_shot_period_timeout"]
 [connection signal="timeout" from="FiniteStateMachine/StateBossDefeated/Timer" to="FiniteStateMachine/StateBossDefeated" method="_on_timer_timeout"]
 [connection signal="timeout" from="FiniteStateMachine/StateBossDefeated/Timer2" to="FiniteStateMachine/StateBossDefeated" method="_on_timer_2_timeout"]
-[connection signal="timeout" from="RadioSpawnPeriod" to="FiniteStateMachine/StateRadio" method="_on_radio_spawn_period_timeout"]
-[connection signal="timeout" from="MissileShotPeriod" to="FiniteStateMachine/StateMissiles" method="_on_missile_shot_period_timeout"]
 
 [editable path="RobotPart/Robot/RobotLayer"]
 [editable path="PlaceHolderShapeBoss"]

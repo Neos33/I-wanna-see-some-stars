@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://6n6bq0mhkv6i"]
+
+[ext_resource type="Script" path="res://Scripts/Neos/Boss/scrBossLaser.gd" id="1_smsl8"]
+[ext_resource type="Texture2D" uid="uid://br26spbljba8y" path="res://Graphics/Sprites/Neos/Boss/sprLaser.png" id="2_xlcho"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7grbb"]
+size = Vector2(8, 16)
+
+[node name="objBossLaser" type="AnimatableBody2D" groups=["Killers"]]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_smsl8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2_xlcho")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_7grbb")
+debug_color = Color(0.727402, 0.238982, 1, 0.42)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(9.53674e-07, -13.5)
+scale = Vector2(2, 1.35)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
