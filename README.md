@@ -7,7 +7,7 @@ Play the game [here](https://github.com/Neos33/I-wanna-see-some-stars/releases/t
 
 ### Special thanks
 
-- Reloaded-K - Engine
+- ReloadedK - Engine
 - Rndguy - Save system help (Godot 4.3 version)
 - MauriPlays - Testplay, Feedback
 - Plasma - Secret santa event
