@@ -1,7 +1,7 @@
 A gift game made for Shaperones (Secret santa 2024 event).
 My 2nd game made in Godot (Godot 4.3 this time).
 
-Play the game here
+Play the game [here](https://github.com/Neos33/I-wanna-see-some-stars/releases/tag/v1.02)
 
 # Readme file:
 
