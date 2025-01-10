@@ -7,10 +7,10 @@ Play the game here
 
 ### Special thanks
 
-Reloaded-K - Engine
-Rndguy - Save system help (Godot 4.3 version)
-MauriPlays - Testplay, Feedback
-Plasma - Secret santa event
+- Reloaded-K - Engine
+- Rndguy - Save system help (Godot 4.3 version)
+- MauriPlays - Testplay, Feedback
+- Plasma - Secret santa event
 
 __________________________________________________________________________________________________________
 
@@ -18,12 +18,12 @@ ________________________________________________________________________________
 # Changelog
 
 27/12/2024
-Polished animations added for boss and rebalancing
-Change the platforming on the 3rd screen
+- Polished animations added for boss and rebalancing
+- Change the platforming on the 3rd screen
 
 ----------------------------------------------------------------------------------------------
 
 24/12/2024
-First version
+- First version
 
 ----------------------------------------------------------------------------------------------
