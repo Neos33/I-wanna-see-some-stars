@@ -3,7 +3,7 @@ My 2nd game made in Godot (Godot 4.3 this time).
 
 Play the game here
 
-## Readme file:
+# Readme file:
 
 ### Special thanks
 
@@ -15,10 +15,10 @@ Plasma - Secret santa event
 __________________________________________________________________________________________________________
 
 
-### Changelog
+# Changelog
 
 27/12/2024
-some polished animations added for boss and rebalancing
+Polished animations added for boss and rebalancing
 Change the platforming on the 3rd screen
 
 ----------------------------------------------------------------------------------------------
