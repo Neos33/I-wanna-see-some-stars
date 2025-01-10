@@ -21,8 +21,6 @@ ________________________________________________________________________________
 - Polished animations added for boss and rebalancing
 - Change the platforming on the 3rd screen
 
-----------------------------------------------------------------------------------------------
-
 24/12/2024
 - First version
 
